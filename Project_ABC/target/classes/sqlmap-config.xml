@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+	PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-config.dtd">
+		
+<configuration>
+<settings>
+  <setting name="jdbcTypeForNull" value="VARCHAR"/>
+</settings>
+<typeAliases>
+    <typeAlias type="com.bitacademy.board.Board" alias="Board"/>
+    <typeAlias type="com.bitacademy.dept.Dept" alias="Dept"/>
+    <typeAlias type="com.bitacademy.college.College" alias="College"/>
+    <typeAlias type="com.bitacademy.customer.Customer" alias="Customer"/>
+    <typeAlias type="com.bitacademy.comment.Comment" alias="Comment"/>
+</typeAliases>
+	<environments default="development">
+		<environment id="development">
+			
+	<transactionManager type="JDBC"/>
+	<dataSource type="POOLED">
+		<property name="driver"
+			value="oracle.jdbc.driver.OracleDriver" />
+		<property name="url"
+				value="jdbc:oracle:thin:@10.10.4.43:1521:XE" />
+		<property name="username"
+					value="scott3" />
+		<property name="password"
+			value="tiger" />
+	</dataSource>
+
+</environment>
+</environments>
+<mappers>
+	<mapper resource="Board.xml" />
+	<mapper resource="College.xml" />
+	<mapper resource="Dept.xml" />
+	<mapper resource="Customer.xml" />
+	<mapper resource="Comment.xml" />
+</mappers>
+</configuration>
+
+

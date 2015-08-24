@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+		
+<mapper namespace="College">
+	<resultMap type="College" id="CollegeResult">
+		<result property="colno" column="colno" />
+		<result property="colname" column="colname" />
+	</resultMap>
+	<!-- 전체 단과 대학 리스트를 조회
+	 실행할 쿼리
+	 select colno,colname from tb_college
+	
+	-->
+	<select id="selectCollegeList"		
+	 resultMap="CollegeResult">
+	 <![CDATA[
+	       select colno,colname from tb_college	 
+	 ]]>	
+	</select>
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
