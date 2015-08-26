@@ -51,8 +51,12 @@ public class ProjectDAO {
 		return projSeq;
 	}
 	
-	public void insertJoinProject(JoinProject jp){
+	public void insertJoinProject(String projno, String memid, String position){
 		SqlSession session=sqlMapper.openSession(true);
+		JoinProject jp = new JoinProject();
+		jp.setMemid(memid);
+		jp.setProjno(projno);
+		jp.setPosition(position);
 		session.insert("insertJoinProject",jp);
 	}
 }
