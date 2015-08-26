@@ -20,6 +20,8 @@ import com.thoughtworks.xstream.io.xml.DomDriver;
 
 @Controller
 public class CustomerService {
+
+	
 	@RequestMapping(value="addCustomerForm.do")
 	public ModelAndView addCustomerForm () throws Exception{
 	//1.CollegeDAO.selectCollegeList()를 호출해서 리턴된 전체 학과 정보를 List에 저장

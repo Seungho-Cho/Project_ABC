@@ -1,1 +1,1 @@
-<meta http-equiv="refresh" content="0;url=viewBoardList.do"/>
+<meta http-equiv="refresh" content="0;url=login.do"/>
