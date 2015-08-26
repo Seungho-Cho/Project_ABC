@@ -90,7 +90,7 @@ $(document).ready(function() {
 			</p>
 			<p>
 				메일주소
-				<input id="mailaddress" name="mailaddress" readonly="readonly"/>
+				<input id="mailaddress" name="mailaddress" type="mailaddress"/>
 			</p>
 			<p>
 				<input class="submit" type="submit" value="Submit">
