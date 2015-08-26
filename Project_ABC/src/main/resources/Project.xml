@@ -52,7 +52,7 @@
 	<insert id="insertProject" parameterType="Project">
 		<![CDATA[
 			insert into Project (projno,projname,projcont,makedate,managerid)
-			values (project_seq.nextval,#{projname},#{projcont},#{makedate},#{managerid})
+			values (project_seq.nextval,#{projname},#{projcont},sysdate,#{managerid})
 		]]>
 	</insert>
 	
