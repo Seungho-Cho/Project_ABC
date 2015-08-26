@@ -33,10 +33,9 @@ public class LoginService {
 	@RequestMapping(value="signup.do")
 	public ModelAndView signup()throws Exception{
 		
-		//ModelAndView mav=new ModelAndView();
-		//mav.setViewName("/member/signup");		
-		//return mav;
-		System.out.println("signup");
-		return null;
+		ModelAndView mav=new ModelAndView();
+		mav.setViewName("/member/addMemberForm");		
+		return mav;
+		
 	}
 }

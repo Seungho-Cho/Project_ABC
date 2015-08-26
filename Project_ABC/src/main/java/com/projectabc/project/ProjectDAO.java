@@ -39,6 +39,6 @@ public class ProjectDAO {
 	
 	public void insertProject(Project project){
 		SqlSession session=sqlMapper.openSession(true);
-		session.insert("insertProjectr",project);
+		session.insert("insertProject",project);
 	}
 }
