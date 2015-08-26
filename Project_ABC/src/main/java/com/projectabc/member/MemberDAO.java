@@ -1,6 +1,7 @@
 package com.projectabc.member;
 
 import java.io.Reader;
+import java.util.List;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -36,6 +37,12 @@ public class MemberDAO {
 		SqlSession session=sqlMapper.openSession(true);
 		Member member=session.selectOne("selectMemberById",id);
 		return member;
+	}
+	
+	public List<Member> selectMemberByProjno(String projno){
+		SqlSession session=sqlMapper.openSession(true);
+		List<Member> memberList=session.selectList("selectMemberByProjno",projno);
+		return memberList;
 	}
 	
 	public void insertMember(Member member){

@@ -22,6 +22,19 @@
 		]]>
 	</select>
 	
+	<!-- 
+		프로젝트에 소속된 멤버 리스트 조회
+	 -->
+	<select id="selectMemberByProjno" resultMap="MemberResult">
+		<![CDATA[
+			select id,password,name,mailaddress
+			from member
+			where id in (select memid
+						from JoinProject
+						where projno=#{projno})
+		]]>
+	</select>
+	
 	<!--
 		Member 테이블에 회원 정보 추가
 	-->
