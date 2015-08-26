@@ -13,6 +13,9 @@
     <typeAlias type="com.bitacademy.college.College" alias="College"/>
     <typeAlias type="com.bitacademy.customer.Customer" alias="Customer"/>
     <typeAlias type="com.bitacademy.comment.Comment" alias="Comment"/>
+    
+    <typeAlias type="com.projectabc.member.Member" alias="Member"/>
+    <typeAlias type="com.projectabc.project.Project" alias="Project"/>
 </typeAliases>
 	<environments default="development">
 		<environment id="development">
@@ -37,6 +40,9 @@
 	<mapper resource="Dept.xml" />
 	<mapper resource="Customer.xml" />
 	<mapper resource="Comment.xml" />
+	
+	<mapper resource="Member.xml" />
+	<mapper resource="Project.xml" />
 </mappers>
 </configuration>
 

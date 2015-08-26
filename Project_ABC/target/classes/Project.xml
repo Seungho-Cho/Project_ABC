@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+		
+<mapper namespace="Project">	
+	
+    <!-- 조회결과를 Project 클래스의 어떤 속성에 대입할지 설정 -->
+	<resultMap type="Project" id="ProjectResult">
+		<result property="projno" column="projno" />
+		<result property="projname" column="projname" />
+		<result property="projcont" column="projcont" />
+		<result property="makedate" column="makedate" />
+		<result property="managerid" column="managerid" />	
+	</resultMap>
+	<!-- 
+		projno가 일치하는 프로젝트 조회
+	 -->
+	<select id="selectProjectByProjno" resultMap="ProjectResult">
+		<![CDATA[
+			select projno,projname,projcont,makedate,managerid
+			from Project where projno=#{projno}
+		]]>
+	</select>
+	
+	<!-- 
+		매니저아이디가 일치하는 프로젝트 리스트 조회
+	 
+	<select id="selectProjectListByManagerid" resultMap="ProjectResult">
+		<![CDATA[
+			select projno,projname,projcont,makedate,managerid
+			from Project where managerid=#{managerid}
+		]]>
+	</select>
+	-->
+	
+	<!-- Project 테이블에 회원 정보 추가
+	-->
+	<insert id="insertProject" parameterType="Project">
+		<![CDATA[
+			insert into Project (projno,projname,projcont,makedate,managerid)
+			values (project_seq.nextval,#{projname},#{projcont},#{makedate},#{managerid})
+		]]>
+	</insert>
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
