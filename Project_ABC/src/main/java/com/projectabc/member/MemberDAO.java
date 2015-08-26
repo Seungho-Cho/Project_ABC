@@ -1,4 +1,4 @@
-package com.projectabc.project;
+package com.projectabc.member;
 
 import java.io.Reader;
 
@@ -7,7 +7,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
-public class ProjectDAO {
+
+public class MemberDAO {
 	//1.Mybatis 설정이 있는 문서 이름
 	private static   String resource=
 			  "sqlmap-config.xml";
@@ -27,18 +28,26 @@ public class ProjectDAO {
 			new SqlSessionFactoryBuilder().build(
 					sqlReader);
 	
-	public ProjectDAO()throws Exception{
+	public MemberDAO()throws Exception{
 		
 	}
 
-	public Project selectMemberById(String projno){
+	public Member selectMemberById(String id){
 		SqlSession session=sqlMapper.openSession(true);
-		Project project=session.selectOne("selectProjectByProjno",projno);
-		return project;
+		Member member=session.selectOne("selectMemberById",id);
+		return member;
 	}
 	
-	public void insertProject(Project project){
+	public void insertMember(Member member){
 		SqlSession session=sqlMapper.openSession(true);
-		session.insert("insertProjectr",project);
+		session.insert("insertMember",member);
 	}
+
 }
+
+
+
+
+
+
+
