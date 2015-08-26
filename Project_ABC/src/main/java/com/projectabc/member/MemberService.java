@@ -45,7 +45,7 @@ public class MemberService {
 		//2.ModelAndView 객체 생성
 		ModelAndView mav=new ModelAndView();
 		//3. 2객체의 이동할 페이지로 forward:/viewBoardList.do 설정
-		mav.setViewName("forward:/viewBoardList.do");
+		mav.setViewName("forward:/login.do");
 		//4.2객체 리턴
 		return mav;
 	}
