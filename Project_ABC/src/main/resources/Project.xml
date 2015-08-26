@@ -47,12 +47,23 @@
 		]]>
 	</select>
 	
-	<!-- Project 테이블에 회원 정보 추가
+	<!-- 
+		Project 테이블에 프로젝트 정보 추가
 	-->
 	<insert id="insertProject" parameterType="Project">
 		<![CDATA[
 			insert into Project (projno,projname,projcont,makedate,managerid)
 			values (project_seq.nextval,#{projname},#{projcont},sysdate,#{managerid})
+		]]>
+	</insert>
+	
+	<!-- 
+		JoinProject 테이블에 추가
+	-->
+	<insert id="insertJoinProject" parameterType="JoinProject">
+		<![CDATA[
+			insert into JoinProject (memid,projno,position)
+			values (#{memid},#{projno},#{position})
 		]]>
 	</insert>
 	

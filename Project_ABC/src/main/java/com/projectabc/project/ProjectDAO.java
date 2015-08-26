@@ -48,4 +48,9 @@ public class ProjectDAO {
 		SqlSession session=sqlMapper.openSession(true);
 		session.insert("insertProject",project);
 	}
+	
+	public void insertJoinProject(JoinProject jp){
+		SqlSession session=sqlMapper.openSession(true);
+		session.insert("insertJoinProject",jp);
+	}
 }
