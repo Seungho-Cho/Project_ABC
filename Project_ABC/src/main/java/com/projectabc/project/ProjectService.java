@@ -1,11 +1,14 @@
 package com.projectabc.project;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.projectabc.member.Member;
 
 @Controller
 public class ProjectService {
@@ -19,17 +22,13 @@ public class ProjectService {
 	}
 	@RequestMapping(value="makeProject.do")
 	public ModelAndView makeProject(
-			Project project
+			Project project,
+			@RequestParam("id")String memid
 			)throws Exception{
-		
-
-		System.out.println("=====");
-		System.out.println(project.projname);
-		System.out.println(project.projcont);
-		System.out.println(project.managerid);
-		
+			
 		ProjectDAO projDAO = new ProjectDAO();
 		projDAO.insertProject(project);
+		//projDAO.insertJoinProject(projno, memid, 0);
 			
 		ModelAndView mav=new ModelAndView();
 		mav.setViewName("/login/login");		
@@ -44,9 +43,8 @@ public class ProjectService {
 
 		ProjectDAO projDAO = new ProjectDAO();
 		
-		ArrayList<Project> projList = new ArrayList<Project>();
-		//projList = projDAO.selectProjectList(id);
-		
+		List<Project> projList = (List<Project>)
+				projDAO.selectProjectListById(id);
 		
 		ModelAndView mav=new ModelAndView();
 		mav.setViewName("/project/showProjectList");
