@@ -16,6 +16,7 @@ import com.projectabc.member.MemberDAO;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
 
+@Controller
 public class MemberService {
 
 	@RequestMapping("/idcheck.do")
