@@ -1,6 +1,7 @@
 package com.projectabc.project;
 
 import java.io.Reader;
+import java.util.List;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -31,10 +32,16 @@ public class ProjectDAO {
 		
 	}
 
-	public Project selectMemberById(String projno){
+	public Project selectProjectByNo(String projno){
 		SqlSession session=sqlMapper.openSession(true);
-		Project project=session.selectOne("selectProjectByProjno",projno);
+		Project project=session.selectOne("selectProjectByNo",projno);
 		return project;
+	}
+	
+	public List<Project> selectProjectListById(String userid){
+		SqlSession session=sqlMapper.openSession(true);
+		List<Project> projectList=session.selectList("selectProjectListById",userid);
+		return projectList;
 	}
 	
 	public void insertProject(Project project){

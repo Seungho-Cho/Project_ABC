@@ -16,7 +16,7 @@
 	<!-- 
 		projno가 일치하는 프로젝트 조회
 	 -->
-	<select id="selectProjectByProjno" resultMap="ProjectResult">
+	<select id="selectProjectByNo" resultMap="ProjectResult">
 		<![CDATA[
 			select projno,projname,projcont,makedate,managerid
 			from Project where projno=#{projno}
@@ -33,6 +33,19 @@
 		]]>
 	</select>
 	-->
+	
+	<!-- 
+		아이디가 속한 프로젝트 리스트 조회
+	 -->
+	<select id="selectProjectListById" resultMap="ProjectResult">
+		<![CDATA[
+			select projno,projname,projcont,makedate,managerid
+			from Project
+			where projno in (select projno
+							from JoinProject
+							where memid=#{userid})
+		]]>
+	</select>
 	
 	<!-- Project 테이블에 회원 정보 추가
 	-->
