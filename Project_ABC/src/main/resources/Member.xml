@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+		
+<mapper namespace="Member">	
+	
+    <!-- 조회결과를 Member 클래스의 어떤 속성에 대입할지 설정 -->
+	<resultMap type="Member" id="MemberResult">
+		<result property="id" column="id" />
+		<result property="password" column="password" />
+		<result property="name" column="name" />
+		<result property="mailaddress" column="mailaddress" />	
+	</resultMap>
+	<!-- 
+		아이디가 일치하는 회원정보를 조회
+	 -->
+	<select id="selectMemberById" resultMap="MemberResult">
+		<![CDATA[
+			select id,password,name,mailaddress
+			from member where id=#{id}
+		]]>
+	</select>
+	
+	<!--
+		Member 테이블에 회원 정보 추가
+	-->
+	<insert id="insertMember" parameterType="Member">
+		<![CDATA[
+			insert into member (id,password,name,mailaddress)
+			values (#{id},#{password},#{name},#{mailaddress})
+		]]>
+	</insert>
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
