@@ -44,9 +44,11 @@ public class ProjectDAO {
 		return projectList;
 	}
 	
-	public void insertProject(Project project){
+	public String insertProject(Project project){
 		SqlSession session=sqlMapper.openSession(true);
 		session.insert("insertProject",project);
+		String projSeq=session.selectOne("selectProjectSeq");
+		return projSeq;
 	}
 	
 	public void insertJoinProject(JoinProject jp){

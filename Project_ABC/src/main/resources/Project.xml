@@ -48,6 +48,15 @@
 	</select>
 	
 	<!-- 
+		현재 project_seq조회
+	 -->
+	<select id="selectProjectSeq" resultType="String">
+		<![CDATA[
+			select project_seq.currval from dual
+		]]>
+	</select>
+	
+	<!-- 
 		Project 테이블에 프로젝트 정보 추가
 	-->
 	<insert id="insertProject" parameterType="Project">
