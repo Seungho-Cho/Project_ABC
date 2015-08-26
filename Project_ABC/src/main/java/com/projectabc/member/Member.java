@@ -1,11 +1,11 @@
 package com.projectabc.member;
 
 public class Member {
-	String id;
-	String password;
-	String name;
-	String mailaddress;
-	
+	String id;				//ID
+	String password;		//PW
+	String name;			//이름
+	String mailaddress;		//메일주소
+
 	public String getId() {
 		return id;
 	}
@@ -29,5 +29,5 @@ public class Member {
 	}
 	public void setMailaddress(String mailaddress) {
 		this.mailaddress = mailaddress;
-	}		
+	}
 }
