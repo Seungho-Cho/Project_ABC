@@ -17,6 +17,10 @@
     <typeAlias type="com.projectabc.member.Member" alias="Member"/>
     <typeAlias type="com.projectabc.project.Project" alias="Project"/>
     <typeAlias type="com.projectabc.project.JoinProject" alias="JoinProject"/>
+    <typeAlias type="com.projectabc.todo.Todo" alias="Todo"/>
+    <typeAlias type="com.projectabc.todo.TodoList" alias="TodoList"/>
+    <typeAlias type="com.projectabc.todo.JoinTodo" alias="JoinTodo"/>
+    
 </typeAliases>
 	<environments default="development">
 		<environment id="development">
@@ -44,6 +48,8 @@
 	
 	<mapper resource="Member.xml" />
 	<mapper resource="Project.xml" />
+	<mapper resource="Todo.xml" />
+	<mapper resource="TodoList.xml" />
 </mappers>
 </configuration>
 
