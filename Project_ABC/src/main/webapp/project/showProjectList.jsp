@@ -29,7 +29,7 @@
 		%>
 		<tr>
 			<td><%= proj.getProjno()%></td>
-			<td><a href="viewProject.do?num=<%=proj.getProjno()%>"><%=proj.getProjname()%></a></td>
+			<td><a href="projectPage.do?projno=<%=proj.getProjno()%>"><%=proj.getProjname()%></a></td>
 			<td><%= proj.getMakedate() %></td>	
 			<td><%= proj.getManagerid() %></td>			
 		</tr>

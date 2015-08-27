@@ -1,6 +1,5 @@
 package com.projectabc.project;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
@@ -9,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.projectabc.member.Member;
+import com.projectabc.member.MemberDAO;
 
 @Controller
 public class ProjectService {
@@ -49,6 +49,24 @@ public class ProjectService {
 		ModelAndView mav=new ModelAndView();
 		mav.setViewName("/project/showProjectList");
 		mav.addObject("PROJ_LIST",projList);
+		return mav;
+		
+	}
+	
+	@RequestMapping(value="projectPage.do")
+	public ModelAndView projectPage(
+			@RequestParam("projno")String projno
+			)throws Exception{
+
+		ProjectDAO projDAO = new ProjectDAO();
+		Project project=projDAO.selectProjectByNo(projno);
+		MemberDAO memDAO=new MemberDAO();
+		List<Member> memList=memDAO.selectMemberListByProjno(projno);		
+		
+		ModelAndView mav=new ModelAndView();
+		mav.setViewName("/project/projectPage");
+		mav.addObject("PROJECT",project);
+		mav.addObject("MEM_LIST", memList);
 		return mav;
 		
 	}

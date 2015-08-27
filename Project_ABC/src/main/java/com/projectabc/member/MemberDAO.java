@@ -39,9 +39,9 @@ public class MemberDAO {
 		return member;
 	}
 	
-	public List<Member> selectMemberByProjno(String projno){
+	public List<Member> selectMemberListByProjno(String projno){
 		SqlSession session=sqlMapper.openSession(true);
-		List<Member> memberList=session.selectList("selectMemberByProjno",projno);
+		List<Member> memberList=session.selectList("selectMemberListByProjno",projno);
 		return memberList;
 	}
 	
