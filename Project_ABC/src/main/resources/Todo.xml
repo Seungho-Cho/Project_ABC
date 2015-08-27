@@ -41,6 +41,16 @@
 		values (todo_seq.nextval,#{listno},#{todoname},#{todocont})
 	</insert>
 	
+	<!-- 
+		JoinProject 테이블에 추가
+	-->
+	<insert id="insertJoinTodo" parameterType="JoinTodo">
+		<![CDATA[
+			insert into JoinTodo (memid,projno,position)
+			values (#{memid},#{projno},#{position})
+		]]>
+	</insert>
+	
 </mapper>
 
 
