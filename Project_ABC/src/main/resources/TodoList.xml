@@ -16,7 +16,7 @@
     <!-- 
       TodoList 테이블에서 projno가 일치하는 레코드 리스트 조회
      -->		
-	<select id="selectTodolistList" resultMap="todolistResult">
+	<select id="selectTodolistListByProjno" resultMap="todolistResult">
 		<![CDATA[
 			select listno, projno, listname
 			from Todolist where projno=#{projno}
