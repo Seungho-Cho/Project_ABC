@@ -22,8 +22,8 @@ public class ProjectService {
 	}
 	@RequestMapping(value="makeProject.do")
 	public ModelAndView makeProject(
-			Project project,
-			@RequestParam("id")String memid
+			Project project
+			//, @RequestParam("id")String memid
 			)throws Exception{
 			
 		ProjectDAO projDAO = new ProjectDAO();
@@ -31,7 +31,7 @@ public class ProjectService {
 		//projDAO.insertJoinProject(projno, memid, 0);
 			
 		ModelAndView mav=new ModelAndView();
-		mav.setViewName("/login/login");		
+		mav.setViewName("forward:/showProjectList.do?id="+project.getManagerid());		
 		return mav;
 		
 	}
