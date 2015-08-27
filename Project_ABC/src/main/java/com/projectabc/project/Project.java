@@ -1,16 +1,16 @@
 package com.projectabc.project;
 
 public class Project {
-	int projno;			//프로젝트 번호 (자동생성)
+	String projno;			//프로젝트 번호 (자동생성)
 	String projname;	//프로젝트 이름
 	String projcont;	//프로젝트 설명
 	String makedate;	//프로젝트 생성일
 	String managerid;	//프로젝트 매니저 ID
 	
-	public int getProjno() {
+	public String getProjno() {
 		return projno;
 	}
-	public void setProjno(int projno) {
+	public void setProjno(String projno) {
 		this.projno = projno;
 	}
 	public String getProjname() {

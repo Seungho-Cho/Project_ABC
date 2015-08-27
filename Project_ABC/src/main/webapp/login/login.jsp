@@ -18,7 +18,6 @@
 	</p>
 	
 	<p align="center"><a href="signup.do">회원 가입</a>
-	<p align="center"><a href="makeProjectForm.do">프로젝트 생성</a>
 
 </body>
 </html>

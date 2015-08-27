@@ -33,7 +33,12 @@
 			<td><%= proj.getMakedate() %></td>	
 			<td><%= proj.getManagerid() %></td>			
 		</tr>
-		<%}	%>	 	
+		<%}	%>
+		<tr>
+			<td></td>
+			<td><p align="center"><a href="makeProjectForm.do">프로젝트 생성</a></td>
+		</tr>
 	 </table>
+	 
 </body>
 </html>
