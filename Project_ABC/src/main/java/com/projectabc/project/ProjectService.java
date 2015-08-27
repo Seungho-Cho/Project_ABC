@@ -71,4 +71,18 @@ public class ProjectService {
 		
 	}
 	
+	@RequestMapping(value="addProjectMember.do")
+	public ModelAndView addProjectMember(
+			@RequestParam("projno")String projno,
+			@RequestParam("memberid")String memid
+			)throws Exception{
+
+		ProjectDAO projDAO = new ProjectDAO();
+		projDAO.insertJoinProject(projno, memid, "1");
+		
+		ModelAndView mav=new ModelAndView();
+		mav.setViewName("forward:/projectPage.do?projno="+projno);
+		return mav;
+	}
+	
 }
