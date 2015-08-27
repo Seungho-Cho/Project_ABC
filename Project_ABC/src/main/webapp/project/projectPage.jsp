@@ -15,7 +15,7 @@
 <%
 	Project proj = (Project)request.getAttribute("PROJECT");
 	List<Member> memList = (List<Member>)request.getAttribute("MEM_LIST");
-	List<List<Todo>> todoListList = (List<List<Todo>>)request.getAttribute("TODO_LIST_LIST");
+	List<List<Todo>> todo = (List<List<Todo>>)request.getAttribute("TODO");
 	List<TodoList> todoList = (List<TodoList>)request.getAttribute("TODO_LIST");
 %>
 
@@ -68,16 +68,59 @@
 	
 	<section>
 		<table align="center" border="1">
-	 	<tr>
-	 		<td>리스트1</td>
-	 		<td>리스트2</td>
+		<tr>
+		<% 
+		for(int i=0; i<todoList.size(); i++)
+		{
+		%>			
+	 		<td>
+	 			<%= todoList.get(i).getListname() %>	
+	 		</td>
+	 	<%
+		}
+		 %>
 	 		<td>
 	 			<form action="addProjectTodoList.do" method="post" >
-					<input type="text" name="todoListName" size="10"/>           
+					<input type="text" name="listname" size="10"/>           
 					<input type="hidden" name="projno" value=<%=proj.getProjno() %> />
 					<input type="submit" value="추가"/>
 				</form>
 			</td>
+	 	</tr>
+	 	<tr>
+	 		<% 
+			for(int i=0; i<todo.size(); i++)
+			{
+			%>			
+	 		<td>
+	 			<table>
+				 		<% 
+						for(int j=0; j<todo.get(i).size(); j++)
+						{
+						%>
+		 				<tr>
+		 					<td>
+		 						<%=todo.get(i).get(j).getTodoname() %>
+		 					</td>
+						</tr>
+	 					<%
+						}
+						%>
+					<tr>
+						<td>
+				 			<form action="addProjectTodo.do" method="post" >
+								<input type="text" name="todoname" size="10"/>           
+								<input type="hidden" name="listno" value=<%=todoList.get(i).getListno() %> />
+								<input type="hidden" name="projno" value=<%=todoList.get(i).getProjno() %> />
+								<input type="submit" value="추가"/>
+							</form>
+						</td>
+	 				</tr>
+	 			</table>	
+	 		</td>
+		 	<%
+			}
+			%>
 	 	</tr>
 	 	</table>
 	</section>

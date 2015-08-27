@@ -1,5 +1,6 @@
 package com.projectabc.project;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
@@ -9,6 +10,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.projectabc.member.Member;
 import com.projectabc.member.MemberDAO;
+import com.projectabc.todo.Todo;
+import com.projectabc.todo.TodoDAO;
+import com.projectabc.todo.TodoList;
+import com.projectabc.todo.TodoListDAO;
 
 @Controller
 public class ProjectService {
@@ -59,14 +64,30 @@ public class ProjectService {
 			)throws Exception{
 
 		ProjectDAO projDAO = new ProjectDAO();
-		Project project=projDAO.selectProjectByNo(projno);
-		MemberDAO memDAO=new MemberDAO();
-		List<Member> memList=memDAO.selectMemberListByProjno(projno);		
+		MemberDAO memDAO =new MemberDAO();
+		TodoDAO todoDAO = new TodoDAO();
+		TodoListDAO todoListDAO = new TodoListDAO();
+		
+		Project project=projDAO.selectProjectByNo(projno);	
+		List<Member> memList=memDAO.selectMemberListByProjno(projno);	
+		
+		List<TodoList> todoList = 
+				todoListDAO.selectTodolistListByProjno(projno);
+		
+		List<List<Todo>> todo = new ArrayList<List<Todo>>();
+		
+		for(int i=0; i<todoList.size(); i++)
+		{
+			todo.add(todoDAO.selectTodoListByListno(todoList.get(i).getListno()));
+		}
 		
 		ModelAndView mav=new ModelAndView();
 		mav.setViewName("/project/projectPage");
 		mav.addObject("PROJECT",project);
 		mav.addObject("MEM_LIST", memList);
+		mav.addObject("TODO",todo);
+		mav.addObject("TODO_LIST", todoList);
+		
 		return mav;
 		
 	}

@@ -23,7 +23,6 @@
 	 		<td>매니저</td>
 	 	</tr>
 		<% 
-			System.out.println(""+projList.size());
 			for(int i=0;i<projList.size();i++){
 			Project proj=projList.get(i);
 		%>

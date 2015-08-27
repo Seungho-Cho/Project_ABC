@@ -10,11 +10,27 @@ public class TodoService {
 	
 	@RequestMapping(value="addProjectTodoList.do")
 	public ModelAndView addProjectTodoList(
-			@RequestParam("projno")String projno
+			TodoList todoList
 			)throws Exception{
-		
-		// inserttodo
-		
+
+		TodoListDAO todoListDAO = new TodoListDAO();
+		todoListDAO.insertTodolist(todoList);
+			
+		ModelAndView mav=new ModelAndView();
+		mav.setViewName("forward:/projectPage.do");
+		mav.addObject("projno",todoList.getProjno());
+		return mav;
+	}
+	
+	@RequestMapping(value="addProjectTodo.do")
+	public ModelAndView addProjectTodo(
+			Todo todo,
+			@RequestParam(value="projno")String projno
+			)throws Exception{
+
+		TodoDAO todoDAO = new TodoDAO();
+		todoDAO.insertTodo(todo);
+			
 		ModelAndView mav=new ModelAndView();
 		mav.setViewName("forward:/projectPage.do");
 		mav.addObject("projno",projno);
