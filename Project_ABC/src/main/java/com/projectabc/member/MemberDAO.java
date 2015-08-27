@@ -36,18 +36,21 @@ public class MemberDAO {
 	public Member selectMemberById(String id){
 		SqlSession session=sqlMapper.openSession(true);
 		Member member=session.selectOne("selectMemberById",id);
+		session.close();
 		return member;
 	}
 	
 	public List<Member> selectMemberListByProjno(String projno){
 		SqlSession session=sqlMapper.openSession(true);
 		List<Member> memberList=session.selectList("selectMemberListByProjno",projno);
+		session.close();
 		return memberList;
 	}
 	
 	public void insertMember(Member member){
 		SqlSession session=sqlMapper.openSession(true);
 		session.insert("insertMember",member);
+		session.close();
 	}
 
 }

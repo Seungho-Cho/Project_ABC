@@ -27,7 +27,7 @@ public class ProjectService {
 			)throws Exception{
 			
 		ProjectDAO projDAO = new ProjectDAO();
-		projDAO.insertProject(project, "0");
+		projDAO.insertProject(project);
 		//projDAO.insertJoinProject(projno, memid, 0);
 			
 		ModelAndView mav=new ModelAndView();

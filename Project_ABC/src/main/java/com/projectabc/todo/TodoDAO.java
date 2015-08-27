@@ -1,4 +1,4 @@
-package com.projectabc.project;
+package com.projectabc.todo;
 
 import java.io.Reader;
 import java.util.List;
@@ -8,7 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
-public class ProjectDAO {
+public class TodoDAO {
 	//1.Mybatis 설정이 있는 문서 이름
 	private static   String resource=
 			  "sqlmap-config.xml";
@@ -28,39 +28,36 @@ public class ProjectDAO {
 			new SqlSessionFactoryBuilder().build(
 					sqlReader);
 	
-	public ProjectDAO()throws Exception{
+	public TodoDAO()throws Exception{
 		
 	}
 
-	public Project selectProjectByNo(String projno){
+	public Todo selectTodoByTodono(String todono){
 		SqlSession session=sqlMapper.openSession(true);
-		Project project=session.selectOne("selectProjectByNo",projno);
+		Todo todo=session.selectOne("selectTodoByTodono",todono);
 		session.close();
-		return project;
+		return todo;
 	}
 	
-	public List<Project> selectProjectListById(String userid){
+	public List<Todo> selectTodoListByListno(String listno){
 		SqlSession session=sqlMapper.openSession(true);
-		List<Project> projectList=session.selectList("selectProjectListById",userid);
+		List<Todo> todoList=session.selectList("selectTodoListByListno",listno);
 		session.close();
-		return projectList;
+		return todoList;
 	}
 	
-	public void insertProject(Project project){
+	public void insertTodo(Todo todo){
 		SqlSession session=sqlMapper.openSession(true);
-		session.insert("insertProject",project);
-		String projSeq=session.selectOne("selectProjectSeq");
-		insertJoinProject(projSeq, project.managerid, "0");
+		session.insert("insertTodo",todo);
 		session.close();
 	}
 	
-	public void insertJoinProject(String projno, String memid, String position){
+	public void insertJoinTodo(String memid, String todono){
 		SqlSession session=sqlMapper.openSession(true);
-		JoinProject jp = new JoinProject();
-		jp.setMemid(memid);
-		jp.setProjno(projno);
-		jp.setPosition(position);
-		session.insert("insertJoinProject",jp);
+		JoinTodo jt = new JoinTodo();
+		jt.setMemid(memid);
+		jt.setTodono(todono);
+		session.insert("insertJoinTodo",jt);
 		session.close();
 	}
 }
