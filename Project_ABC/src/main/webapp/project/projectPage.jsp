@@ -58,7 +58,7 @@
 		 %>
 		<article> 
 			<form action="addProjectMember.do" method="post" >
-			<input type="text" name="memberid" size="50"/><br/>
+			<input type="text" name="memberid" size="10"/>
 			<input type="hidden" name="projno" value=<%=proj.getProjno() %> />
 			<input type="submit" value="추가"/>
 			</form>
@@ -71,7 +71,13 @@
 	 	<tr>
 	 		<td>리스트1</td>
 	 		<td>리스트2</td>
-	 		<td><a href="addTodoListForm.do">추가</a></td>
+	 		<td>
+	 			<form action="addProjectTodoList.do" method="post" >
+					<input type="text" name="todoListName" size="10"/>           
+					<input type="hidden" name="projno" value=<%=proj.getProjno() %> />
+					<input type="submit" value="추가"/>
+				</form>
+			</td>
 	 	</tr>
 	 	</table>
 	</section>
