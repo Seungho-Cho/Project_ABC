@@ -11,10 +11,10 @@
 <%@ page import="java.util.List"%>
 
 <%
-	//Project proj = (Project)request.getAttribute("PROJECT");
-	//List<Member> memList = (List<Member>)request.getAttribute("MEM_LIST");
-	Project proj = new Project();
-	proj.setProjno("1");
+	Project proj = (Project)request.getAttribute("PROJECT");
+	List<Member> memList = (List<Member>)request.getAttribute("MEM_LIST");
+	//Project proj = new Project();
+	//proj.setProjno("1");
 %>
 
 <style>
@@ -40,8 +40,14 @@
 	</header>
 	
 	<aside> 
-		<article> 멤버1 </article>
-		<article> 멤버2 </article>
+		<% 
+		for(int i=0; i<memList.size(); i++)
+		{
+		%>		
+			<article><a href="멤버정보?.do"><%=memList.get(i).getName()%></a></article>
+		<%
+		}
+		 %>
 		<article> 
 			<form action="addProjectMember.do" method="post" >
 			<input type="text" name="memberid" size="50"/><br/>
