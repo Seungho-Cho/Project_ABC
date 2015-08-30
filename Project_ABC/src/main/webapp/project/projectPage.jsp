@@ -17,6 +17,7 @@
 	List<Member> memList = (List<Member>)request.getAttribute("MEM_LIST");
 	List<List<Todo>> todo = (List<List<Todo>>)request.getAttribute("TODO");
 	List<TodoList> todoList = (List<TodoList>)request.getAttribute("TODO_LIST");
+	Member memeber = (Member) session.getAttribute("MEMBER");
 %>
 
 <style>
@@ -32,6 +33,8 @@
 		footer { background:yellow; border:1px solid blue;margin-top:10px;}
 
 	</style>
+	<script>
+	</script>
 	
 
 </head>
@@ -44,7 +47,17 @@
 			<input type="submit" value="검색"/>
 			</form>
 	</h2>
-		<nav> 회원 메뉴</nav>
+		<nav> 
+			<button id="button_logout">로그아웃</button>
+			<%
+			////////////////////////////////////////
+				//버튼 클릭시 
+				//session.invalidate();
+				//response.sendRedirect("login.jsp");
+				//수행
+			///////////////////////////////////////
+			%>
+		</nav>
 	</header>
 	
 	<aside> 

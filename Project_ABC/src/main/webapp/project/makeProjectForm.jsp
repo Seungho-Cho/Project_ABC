@@ -13,14 +13,8 @@
 
 
 <%
-	Member temp_member = new Member();
-
-	temp_member.setId("user1");
-	temp_member.setName("username");
-	temp_member.setPassword("password");
-	temp_member.setMailaddress("user1@email.com");
-
-    %>
+	Member member = (Member)session.getAttribute("MEMBER");
+ %>
 </head>
 <body>
 
@@ -28,7 +22,7 @@
 		<form action="makeProject.do" method="post" >
 			프로젝트 이름 <input type="text" name="projname" size="50"/><br/>
 			프로젝트 설명 <textarea name="projcont" rows="5" cols="50"></textarea><br/>
-			<input type="hidden" name="managerid" value=<%=temp_member.getId() %> />			
+			<input type="hidden" name="managerid" value=<%=member.getId() %> />			
 			<input type="submit" value="확인"/>
 			<input type="reset" value="취소"/>
 		</form>

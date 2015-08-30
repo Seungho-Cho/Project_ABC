@@ -31,11 +31,41 @@ public class LoginService {
 		//System.out.println(member.getPassword());
 
 		
-		//ModelAndView mav=new ModelAndView();
-		//mav.setViewName("/login/login");		
-		//return mav;
+		ModelAndView mav=new ModelAndView();
+		mav.addObject("id",member.getId());
+		mav.addObject("password",member.getPassword());
+		mav.setViewName("/login/tryLogin");		
+		return mav;
 		
 		
+		
+		/*ProjectDAO projDAO = new ProjectDAO();
+		
+		List<Project> projList = (List<Project>)
+				projDAO.selectProjectListById(member.getId());
+		
+
+		System.out.println(""+projList.size());
+		
+		ModelAndView mav=new ModelAndView();
+		mav.setViewName("/project/showProjectList");
+		mav.addObject("PROJ_LIST",projList);
+		return mav;*/
+		
+	}
+	@RequestMapping(value="signup.do")
+	public ModelAndView signup()throws Exception{
+		
+		ModelAndView mav=new ModelAndView();
+		mav.setViewName("/member/addMemberForm");		
+		return mav;
+		
+	}
+	/*@RequestMapping(value="showProjectList.do")
+	public ModelAndView showProjectList(
+			Member member
+			)throws Exception{
+	
 		
 		ProjectDAO projDAO = new ProjectDAO();
 		
@@ -50,13 +80,5 @@ public class LoginService {
 		mav.addObject("PROJ_LIST",projList);
 		return mav;
 		
-	}
-	@RequestMapping(value="signup.do")
-	public ModelAndView signup()throws Exception{
-		
-		ModelAndView mav=new ModelAndView();
-		mav.setViewName("/member/addMemberForm");		
-		return mav;
-		
-	}
+	}*/
 }

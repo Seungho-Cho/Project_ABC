@@ -1,24 +1,37 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="com.projectabc.member.MemberDAO"%>
+<%@ page import="com.projectabc.member.Member"%>
 <%
-	String id = request.getParameter("ID");
-	String pass = request.getParameter("PASSWORD");
-
-
-	if(id.equals("project") && pass.equals("abc")){	
-		session.setAttribute("loginId", "project");
-		response.sendRedirect("login.jsp");
-		//member가 id와 password를 입력
-		//초기 id: project pw: abc
+	String id = (String)request.getAttribute("id");
+	String pass = (String)request.getAttribute("password");
+	MemberDAO memberDAO = new MemberDAO();
+	Member loginMember =  null;
 	
-	
-	}else{
+	try{
+		loginMember = memberDAO.selectMemberById(id);
+	}
+	catch(Exception e) {
 		%>
-			<script>
-				alert('입력하신 ID나 PASSWORD가 일치하지 않습니다.낫매취');
-				history.go(-1);
-			</script>
+		<script>
+		alert('입력하신 ID가 존재하지 않습니다.');
+		history.go(-1);
+		</script>
 		<%
 	}
-	//member가 입력한 정보와 check - if/else
+	
+	if(loginMember.getPassword().equals(pass))
+	{
+		session.setAttribute("MEMBER", loginMember);
+		response.sendRedirect("showProjectList.do?id="+loginMember.getId());
+	}else{
+		%>
+		<script>
+			alert('입력하신 PASSWORD가 일치하지 않습니다.');
+			history.go(-1);
+		</script>
+		<%
+	}
+	
+
 %>

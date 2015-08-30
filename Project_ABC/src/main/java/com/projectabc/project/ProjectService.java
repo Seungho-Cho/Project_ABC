@@ -97,7 +97,7 @@ public class ProjectService {
 			Project proj,
 			@RequestParam("memberid")String memid
 			)throws Exception{
-
+		
 		ProjectDAO projDAO = new ProjectDAO();
 		projDAO.insertJoinProject(proj.getProjno(), memid, "1");
 		
