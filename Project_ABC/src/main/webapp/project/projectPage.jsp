@@ -17,7 +17,7 @@
 	List<Member> memList = (List<Member>)request.getAttribute("MEM_LIST");
 	List<List<Todo>> todo = (List<List<Todo>>)request.getAttribute("TODO");
 	List<TodoList> todoList = (List<TodoList>)request.getAttribute("TODO_LIST");
-	Member memeber = (Member) session.getAttribute("MEMBER");
+	Member loginmember = (Member) session.getAttribute("MEMBER");
 %>
 
 <style>
@@ -48,6 +48,7 @@
 			</form>
 	</h2>
 		<nav> 
+			<%=loginmember.getName()%>(<%=loginmember.getId() %>)
 			<button id="button_logout">로그아웃</button>
 			<%
 			////////////////////////////////////////
@@ -65,7 +66,7 @@
 		for(int i=0; i<memList.size(); i++)
 		{
 		%>		
-			<article><a href="멤버정보?.do"><%=memList.get(i).getName()%></a></article>
+			<article><a href="멤버정보?.do"><%=memList.get(i).getName()%>(<%=memList.get(i).getId() %>)</a></article>
 		<%
 		}
 		 %>

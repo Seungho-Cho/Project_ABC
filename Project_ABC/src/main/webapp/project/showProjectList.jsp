@@ -12,7 +12,7 @@
 <%
 	List<Project> projList=(List)request.getAttribute("PROJ_LIST");
 	Member loginMember = (Member)session.getAttribute("MEMBER");
-	
+
 %>
 
 </head>
