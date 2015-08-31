@@ -8,18 +8,13 @@
   <setting name="jdbcTypeForNull" value="VARCHAR"/>
 </settings>
 <typeAliases>
-    <typeAlias type="com.bitacademy.board.Board" alias="Board"/>
-    <typeAlias type="com.bitacademy.dept.Dept" alias="Dept"/>
-    <typeAlias type="com.bitacademy.college.College" alias="College"/>
-    <typeAlias type="com.bitacademy.customer.Customer" alias="Customer"/>
-    <typeAlias type="com.bitacademy.comment.Comment" alias="Comment"/>
-    
     <typeAlias type="com.projectabc.member.Member" alias="Member"/>
     <typeAlias type="com.projectabc.project.Project" alias="Project"/>
     <typeAlias type="com.projectabc.project.JoinProject" alias="JoinProject"/>
     <typeAlias type="com.projectabc.todo.Todo" alias="Todo"/>
     <typeAlias type="com.projectabc.todo.TodoList" alias="TodoList"/>
     <typeAlias type="com.projectabc.todo.JoinTodo" alias="JoinTodo"/>
+    <typeAlias type="com.projectabc.todo.TodoComment" alias="TodoComment"/>
     
 </typeAliases>
 	<environments default="development">
@@ -40,16 +35,11 @@
 </environment>
 </environments>
 <mappers>
-	<mapper resource="Board.xml" />
-	<mapper resource="College.xml" />
-	<mapper resource="Dept.xml" />
-	<mapper resource="Customer.xml" />
-	<mapper resource="Comment.xml" />
-	
 	<mapper resource="Member.xml" />
 	<mapper resource="Project.xml" />
 	<mapper resource="Todo.xml" />
 	<mapper resource="TodoList.xml" />
+	<mapper resource="TodoComment.xml" />
 </mappers>
 </configuration>
 
