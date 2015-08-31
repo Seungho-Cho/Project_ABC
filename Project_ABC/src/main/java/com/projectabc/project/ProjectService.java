@@ -3,6 +3,8 @@ package com.projectabc.project;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -43,13 +45,15 @@ public class ProjectService {
 	
 	@RequestMapping(value="showProjectList.do")
 	public ModelAndView showProjectList(
-			@RequestParam("id")String id
+			//@RequestParam("id")String id,
+			HttpSession session
 			)throws Exception{
-
+		
+		Member member = (Member)session.getAttribute("MEMBER");
 		ProjectDAO projDAO = new ProjectDAO();
 		
 		List<Project> projList = (List<Project>)
-				projDAO.selectProjectListById(id);
+				projDAO.selectProjectListById(member.getId());
 		
 		ModelAndView mav=new ModelAndView();
 		mav.setViewName("/project/showProjectList");

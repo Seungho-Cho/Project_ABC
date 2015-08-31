@@ -23,7 +23,7 @@
 	if(loginMember.getPassword().equals(pass))
 	{
 		session.setAttribute("MEMBER", loginMember);
-		response.sendRedirect("showProjectList.do?id="+loginMember.getId());
+		response.sendRedirect("showProjectList.do");
 	}else{
 		%>
 		<script>
