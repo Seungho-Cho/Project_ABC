@@ -15,6 +15,7 @@
     <typeAlias type="com.projectabc.todo.TodoList" alias="TodoList"/>
     <typeAlias type="com.projectabc.todo.JoinTodo" alias="JoinTodo"/>
     <typeAlias type="com.projectabc.todo.TodoComment" alias="TodoComment"/>
+    <typeAlias type="com.projectabc.message.Message" alias="Message"/>
     
 </typeAliases>
 	<environments default="development">
@@ -40,6 +41,7 @@
 	<mapper resource="Todo.xml" />
 	<mapper resource="TodoList.xml" />
 	<mapper resource="TodoComment.xml" />
+	<mapper resource="Message.xml" />
 </mappers>
 </configuration>
 

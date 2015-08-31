@@ -29,7 +29,7 @@
 	-->
 	<insert id="insertTodoComment" parameterType="TodoComment">
 		insert into TodoComment (commno,todono, memid, comm, commdate)
-		values (tdcomm_seq.nextval,#{todono},#{memid},#{comm},#{commdate})
+		values (tdcomm_seq.nextval,#{todono},#{memid},#{comm},sysdate)
 	</insert>
 </mapper>
 
