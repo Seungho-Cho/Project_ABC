@@ -3,8 +3,8 @@
 <head profile="http://gmpg.org/xfn/11">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>Drag Drop Panels - Web Developer Plus Demos</title>
-<script type="text/javascript" src="../js/jquery-1.3.2.js" ></script>
-<script type="text/javascript" src="../js/jquery-ui-1.7.2.custom.min.js" ></script>
+<script type="text/javascript" src="../../js/jquery-1.3.2.js" ></script>
+<script type="text/javascript" src="../../js/jquery-ui-1.7.2.custom.min.js" ></script>
 <link rel="stylesheet" type="text/css" href="styles.css" />
 <script type="text/javascript" >
 $(function(){
@@ -20,9 +20,10 @@ $(function(){
 		}, function(){
 			$(this).find('.configure').css('visibility', 'hidden');
 		})
-		.click(function(){
-			$(this).siblings('.dragbox-content').toggle();
-		})
+		// =========toggle box========
+		//.click(function(){
+		//	$(this).siblings('.dragbox-content').toggle();
+		//})
 		.end()
 		.find('.configure').css('visibility', 'hidden');
 	});
@@ -53,15 +54,16 @@ $(function(){
 <body>
 	<h3>Drag n Drop Panels</h3>
 	
+	<div class="list" id="list">
 	<div class="column" id="column1">
 		<div class="dragbox" id="item1" >
-			<h2>Handle 1</h2>
+			<h2><a href="#" >Handle 1</a></h2>
 			<div class="dragbox-content" >
 				1111111111111
 			</div>
 		</div>
 		<div class="dragbox" id="item2" >
-			<h2><span class="configure" ><a href="#" >Configure</a></span>Handle 2</h2>
+			<h2>Handle 2</h2>
 			<div class="dragbox-content" >
 				222222222222222222222
 			</div>
@@ -73,6 +75,9 @@ $(function(){
 			</div>
 		</div>
 	</div>
+	</div>
+	
+	
 	<div class="column" id="column2" >
 		<div class="dragbox" id="item4" >
 			<h2>Handle 4</h2>
@@ -101,7 +106,9 @@ $(function(){
 			</div>
 		</div>
 	</div>
-	
+	<div class="column" id="column4" >
+		
+	</div>
 	<hr style="clear:both;" />
 
 </body>
