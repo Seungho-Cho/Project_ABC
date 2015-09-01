@@ -19,7 +19,6 @@
 			<input type="reset" value="취소"/>
 		</form>
 	<p align="center"><a href="signup.do">회원가입</a></p>
-
  
 </form>
 </body>
