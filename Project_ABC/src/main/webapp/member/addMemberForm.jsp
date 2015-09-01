@@ -19,7 +19,6 @@ $(document).ready(function() {
 			}
 		});
     });
-  
  });
 </script>
 
@@ -45,7 +44,7 @@ $(document).ready(function() {
 				<input id="mailaddress" name="mailaddress" type="mailaddress"/>
 			</p>
 			<p>
-				<input class="submit" type="submit" value="Submit">
+				<input class="submit" type="submit" value="가입하기">
 			</p>		
 	</form>
 </body>
