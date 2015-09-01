@@ -8,23 +8,9 @@
  src="<%=getServletContext().getContextPath()%>/js/jquery-1.11.3.js"></script>
 <script>
 $(document).ready(function() {
-	<%-- 
-		5-1 아이디를 입력하고 다른 부분을 클릭했을때 호출되는 메서드
-		입력한 아이디를 사용해도 되는지 
-		아이디가 idresult인 객체에 출력
-		ajax2.jsp 를 참조해서 작성할것
-	--%>
 	$("#id").on("change",function(){
-    <%--   	  
-		A. url:/프로젝트명/idcheck.do
-		B. data:{id:id 속성의 값이 id인 객체에서 입력한 값 $("#id").val() }
-		C. 요청 방식:post
-		E. 응답 데이터의 처리
-			i. 서버에서 전달된 데이터를 id 속성의 값이 idresult 인 객체에 출력한다
-  				$("#idresult").html(서버에서 응답한 데이터);
-	--%>
 		$.ajax({
-			url:"/exam_20150817/idcheck.do",
+			url:"/Project_ABC/idcheck.do",
 			type:"post",
 			dataType:"text",
 			data:{id:$("#id").val()},
