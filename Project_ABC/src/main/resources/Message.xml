@@ -28,7 +28,7 @@
 	</select>
 	<!-- 
       Message 테이블에서 recvid가 일치하는 레코드 리스트 조회
-     -->		
+     -->
 	<select id="selectMessageListByRecvid" resultMap="messageResult">
 		<![CDATA[
 			select mesgno,sendid,recvid,mesgtitle,mesgcont,senddate,isread
