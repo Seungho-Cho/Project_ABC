@@ -7,7 +7,91 @@
 <script type="text/javascript" src="../../js/jquery-ui-1.7.2.custom.min.js" ></script>
 <link rel="stylesheet" type="text/css" href="styles.css" />
 <script type="text/javascript" >
+
+//xhr선언
+var xhr1 = null;
+var xmlDoc1 = null;
+
+function getXHR() {//통신객체
+  try {
+	  if (window.XMLHttpRequest) 
+	        return new XMLHttpRequest;
+	  else if (window.ActiveXObject) 
+		  return new ActiveXObject("MSXML2.XMLHTTP");
+	  else 
+		  return new ActiveXObject("Microsoft.XMLHTTP");
+  }catch(e) {
+	 xhr1=null; 
+  }
+ 
+} 
+function serverKaja() { //통신가동
+  xhr1 = getXHR();//new XHR
+  xhr1.onreadystatechange = callback1;////
+  xhr1.open("get", "menu.jsp", true);////
+  xhr1.send(null);////
+  
+}
+function callback1() {
+  //var t1 = document.getElementById("t1");
+   switch (xhr1.readyState) {
+  
+   case 4:
+        //t1.value += "다 옴\n";
+        if(xhr1.status==200){
+        	 //t1.value += "정상으로 옴\n";
+             xmlDoc1=xhr1.responseXML;
+            
+            xsl2=new ActiveXObject("Microsoft.XMLDOM");
+           	xsl2.async=false;
+           	xsl2.load("menu.xsl");
+           	var  rDiv1=document.getElementById("rDiv1");
+           	rDiv.innerHTML=xmlDoc1.transformNode(xsl2);
+            
+        }
+        else
+        	{
+        	  //t1.value += "에러발생\n";
+        	  //t1.value += xhr1.status+"\t"+xhr1.statusText+"\n";
+        	
+        	}
+        break;
+   }
+}
+
+function kajaInsert() {
+	var root=xmlDoc1.documentElement;
+	var menu=xmlDoc1.createElement("menu");
+	var title=xmlDoc1.createElement("title");
+	var price=xmlDoc1.createElement("price");
+	var score=xmlDoc1.createElement("score");
+	
+	menu.appendChild(title);
+	menu.appendChild(price);
+	menu.appendChild(score);
+	
+	title.appendChild(xmlDoc1.createTextNode("짜장"));
+	price.appendChild(xmlDoc1.createTextNode("4000"));
+	score.appendChild(xmlDoc1.createTextNode("굿"));
+	
+	root.insertBefore(menu, root.childNodes[0]);
+	
+	xsl2=new ActiveXObject("Microsoft.XMLDOM");
+   	xsl2.async=false;
+   	xsl2.load("menu.xsl");
+   	var  rDiv1=document.getElementById("rDiv1");
+   	rDiv.innerHTML=xmlDoc1.transformNode(xsl2);
+}
+
+
 $(function(){
+	
+	xhr1 = getXHR();//new XHR
+	xhr1.onreadystatechange = callback1;////
+	//xhr1.open("get", "menu.jsp", true);////
+	xhr1.send(null);////
+
+	
 	$('.dragbox')
 	.each(function(){
 		$(this).hover(function(){
@@ -49,65 +133,54 @@ $(function(){
 	})
 	.disableSelection();
 });
+
+
+
+
+
 </script>
 </head>
+
+
 <body>
+	<div id="rDiv">
+	</div>
+	<br>
+	<h3> AJax Kaja</h3>
+	<br>
+	<input type="button" value="insert" onclick="kajaInsert()">
+	<input type="button" value="서버로가자" onclick="serverKaja()">	
+	
 	<h3>Drag n Drop Panels</h3>
 	
-	<div class="list" id="list">
-	<div class="column" id="column1">
-		<div class="dragbox" id="item1" >
-			<h2><a href="#" >Handle 1</a></h2>
-			<div class="dragbox-content" >
-				1111111111111
+
+		<div class="column" id="column1">
+			<div class="dragbox" id="item1" >
+				<h2><a href="#" >Handle 1</a></h2>
+				<div class="dragbox-content" >
+					1111111111111
+				</div>
 			</div>
 		</div>
-		<div class="dragbox" id="item2" >
-			<h2>Handle 2</h2>
-			<div class="dragbox-content" >
-				222222222222222222222
+
+
+		<div class="column" id="column2" >
+			<div class="dragbox" id="item4" >
+				<h2>Handle 4</h2>
+				<div class="dragbox-content" >
+					444444444
+				</div>
+			</div>
+			<div class="dragbox" id="item5" >
+				<h2>Handle 5</h2>
+				<div class="dragbox-content" >
+					5555555555555555
+				</div>
 			</div>
 		</div>
-		<div class="dragbox" id="item3" >
-			<h2>Handle 3</h2>
-			<div class="dragbox-content" >
-				333333333
-			</div>
-		</div>
-	</div>
-	</div>
+
+ 	
 	
-	
-	<div class="column" id="column2" >
-		<div class="dragbox" id="item4" >
-			<h2>Handle 4</h2>
-			<div class="dragbox-content" >
-				444444444
-			</div>
-		</div>
-		<div class="dragbox" id="item5" >
-			<h2>Handle 5</h2>
-			<div class="dragbox-content" >
-				5555555555555555
-			</div>
-		</div>
-	</div>
-	<div class="column" id="column3" >
-		<div class="dragbox" id="item6" >
-			<h2>Handle 6</h2>
-			<div class="dragbox-content" >
-				666666666
-			</div>
-		</div>
-		<div class="dragbox" id="item7" >
-			<h2>Handle 7</h2>
-			<div class="dragbox-content" >
-				777777777777777
-			</div>
-		</div>
-	</div>
-	<div class="column" id="column4" >
-		
 	</div>
 	<hr style="clear:both;" />
 

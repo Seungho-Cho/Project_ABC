@@ -1,0 +1,103 @@
+	<html>
+	<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+	<title>ajax kaja </title>
+	<script>
+	//xhr선언
+	var xhr1 = null;
+	var xmlDoc1 = null;
+	
+	function getXHR() {//통신객체
+	  try {
+		  if (window.XMLHttpRequest) 
+		        return new XMLHttpRequest;
+		  else if (window.ActiveXObject) 
+			  return new ActiveXObject("MSXML2.XMLHTTP");
+		  else 
+			  return new ActiveXObject("Microsoft.XMLHTTP");
+	  }catch(e) {
+		 xhr1=null; 
+	  }
+	 
+	} 
+	function serverKaja() { //통신가동
+	  xhr1 = getXHR();//new XHR
+	  xhr1.onreadystatechange = callback1;////
+	  xhr1.open("get", "menu.jsp", true);////
+	  xhr1.send(null);////
+	  
+	}
+	function callback1() {
+	  var t1 = document.getElementById("t1");
+	   switch (xhr1.readyState) {
+	  
+	   case 4:
+	        t1.value += "다 옴\n";
+	        if(xhr1.status==200){
+	        	 t1.value += "정상으로 옴\n";
+	             xmlDoc1=xhr1.responseXML;
+	            
+	            xsl2=new ActiveXObject("Microsoft.XMLDOM");
+	           	xsl2.async=false;
+	           	xsl2.load("menu.xsl");
+	           	var  rDiv1=document.getElementById("rDiv1");
+	           	rDiv.innerHTML=xmlDoc1.transformNode(xsl2);
+	            
+	        }
+	        else
+	        	{
+	        	  t1.value += "에러발생\n";
+	        	  t1.value += xhr1.status+"\t"+xhr1.statusText+"\n";
+	        	
+	        	}
+	        break;
+	   }
+	}
+	
+	function kajaInsert() {
+		var root=xmlDoc1.documentElement;
+		var menu=xmlDoc1.createElement("menu");
+		var title=xmlDoc1.createElement("title");
+		var price=xmlDoc1.createElement("price");
+		var score=xmlDoc1.createElement("score");
+		
+		menu.appendChild(title);
+		menu.appendChild(price);
+		menu.appendChild(score);
+		
+		title.appendChild(xmlDoc1.createTextNode("짜장"));
+		price.appendChild(xmlDoc1.createTextNode("4000"));
+		score.appendChild(xmlDoc1.createTextNode("굿"));
+		
+		root.insertBefore(menu, root.childNodes[0]);
+		
+		xsl2=new ActiveXObject("Microsoft.XMLDOM");
+       	xsl2.async=false;
+       	xsl2.load("menu.xsl");
+       	var  rDiv1=document.getElementById("rDiv1");
+       	rDiv.innerHTML=xmlDoc1.transformNode(xsl2);
+	}
+	
+	function clear_kaja() {
+	  var t1 = document.getElementById("t1");
+	  t1.value="";
+	}
+	</script>
+	</head>
+	<body>
+	<br>
+	<div id="rDiv">
+	</div>
+	<br>
+	<h3> AJax Kaja</h3>
+	<br>
+	<textarea rows="20" cols="100" id="t1">
+	</textarea>
+	<br>
+	<input type="button" value="insert" onclick="kajaInsert()">
+	<input type="button" value="서버로가자" onclick="serverKaja()">
+	<input type="button" value="초기화" onclick="clear_kaja()">
+	
+	
+	</body>
+	</html>
