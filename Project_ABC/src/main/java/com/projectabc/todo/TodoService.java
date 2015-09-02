@@ -65,7 +65,7 @@ public class TodoService {
 			//dumpArray(temp);
 			for(int j=0; j<temp.length; j++)
 			{
-				System.out.println(temp[j]);
+				//System.out.println(temp[j]);
 				todoDAO.updateTodoListno(temp[j],todoList.get(i).getListno());
 			}
 		}
