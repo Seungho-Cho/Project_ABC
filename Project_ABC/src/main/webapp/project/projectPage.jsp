@@ -23,6 +23,7 @@
 	Member loginmember = (Member) session.getAttribute("MEMBER");
 	
 	String todoString = (String)request.getAttribute("TODO_STRING");
+	String todoListString = (String)request.getAttribute("TODO_LIST_STRING");
 %>
 
 <style>
@@ -54,7 +55,7 @@
 	</h2>
 		<nav> 
 			<%=loginmember.getName()%>(<%=loginmember.getId() %>)
-			<button id="button_logout">로그아웃</button>
+			<button id="button_logout" onclick="location.href='tryLogout.do'">로그아웃</button>
 			<%
 			////////////////////////////////////////
 				//버튼 클릭시 
@@ -168,22 +169,35 @@
 
 $(document).ready(function(){
 	
-	renderItems('<%=todoString%>');
+	//TodoString 가져와서 동적 생성
+	renderItems('<%=todoString%>');		
 	
+	// todoList 찾아서 드래그앤 드랍 설정
 	$('#todoList .sortable-list').sortable({
 		connectWith: '#todoList .sortable-list',
 		placeholder: 'placeholder',
+		
+		//항목 이동시 작동
+		update: function(){
+			updateTodo(getItems('#todoList'));
+			//alert(getItems('#todoList'));
+		}
 	});
-	
-	
 
 });
 
+
+// Todo 항목들 가져와서 동적 추가
 function renderItems(items)
 {
 	var html = '';
 
-	var columns = items.split('|');
+	var columns = items.split(':'); // List로 쪼개기
+	
+	///////////////////////////////////
+	//???var temp = <%=todoListString%>;
+	//???var lists = temp.split(':');
+	/////////////////////////////////////////
 	
 	for ( var c in columns )
 	{
@@ -198,22 +212,56 @@ function renderItems(items)
 
 		if ( columns[c] != '' )
 		{
-			var items = columns[c].split(',');
+			var items = columns[c].split(','); // Todo로 쪼개기
 
 			for ( var i in items )
 			{
-				var itemColumns = items[i].split('@');
+				var itemColumns = items[i].split('@'); // Todono, Todoname 쪼개기
 				html += '<li class="sortable-item" id="' + itemColumns[0] + 
 				'"> <a href="showTodo.do?todono='+ itemColumns[0] +'">' + 
 				itemColumns[1] + '</a></li>';
 			}
-		}
-
-		html += '</ul></div>';
+		}	
+		html +='</ul>';
+		html +='<form action="addProjectTodo.do" method="post" >'
+			+'<input type="text" name="todoname" size="10"/>'
+			+'<input type="hidden" name="projno" value='+<%=proj.getProjno()%>+'/>'
+			+'<input type="submit" value="추가"/>'
+			+'</form>';
+		html +='</div>';
 	}
 	html += '<br>';
 
 	$('#todoList').html(html);
+}
+
+//Get items
+function getItems(exampleNr)
+{
+	var columns = [];
+
+	$(exampleNr + ' ul.sortable-list').each(function(){
+		columns.push($(this).sortable('toArray').join(','));				
+	});
+
+	return columns.join(':');
+}
+
+// Todo 업데이트 Post
+function updateTodo(items){
+	$.ajax({
+		url: "updateTodo.do",
+		data: {
+			todoString: items,
+			projno: <%=proj.getProjno()%>
+		},
+		dataType:"text",
+		type:"POST",
+		success:function(){
+		},
+		error:function() {
+		}
+	})
 }
 
 $('#btn-load-example').click(function(){

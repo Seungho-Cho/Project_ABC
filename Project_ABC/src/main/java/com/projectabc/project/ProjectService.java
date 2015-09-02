@@ -72,7 +72,7 @@ public class ProjectService {
 		TodoDAO todoDAO = new TodoDAO();
 		TodoListDAO todoListDAO = new TodoListDAO();
 		
-		String todoString = "";
+		
 		
 		Project project=projDAO.selectProjectByNo(projno);	
 		List<Member> memList=memDAO.selectMemberListByProjno(projno);	
@@ -81,6 +81,15 @@ public class ProjectService {
 				todoListDAO.selectTodolistListByProjno(projno);
 		
 		List<List<Todo>> todo = new ArrayList<List<Todo>>();
+		
+		String todoString = "";
+		String todoListString = "";
+		
+		for(int i=0; i<todoList.size(); i++)
+		{
+			todoListString += todoList.get(i);
+			if(i+1!=todoList.size()) todoListString += ":";
+		}
 		
 		for(int i=0; i<todoList.size(); i++)
 		{
@@ -96,7 +105,7 @@ public class ProjectService {
 				
 				if(j+1!=todo.get(i).size()) todoString += ",";
 			}
-			if(i+1!=todo.size()) todoString += "|";
+			if(i+1!=todo.size()) todoString += ":";
 		}
 		
 		ModelAndView mav=new ModelAndView();
@@ -106,6 +115,7 @@ public class ProjectService {
 		mav.addObject("TODO",todo);
 		mav.addObject("TODO_LIST", todoList);
 		mav.addObject("TODO_STRING",todoString);
+		mav.addObject("TODO_LIST_STRING",todoListString);
 		
 		return mav;
 		
