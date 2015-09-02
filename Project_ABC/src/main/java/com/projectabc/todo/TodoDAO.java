@@ -46,6 +46,20 @@ public class TodoDAO {
 		return todoList;
 	}
 	
+	public void updateTodo(Todo todo) {
+		SqlSession session=sqlMapper.openSession(true);
+		session.update("updateTodo",todo);
+		session.close();
+	}
+	
+	public void updateTodoListno(String todono, String listno) {
+		SqlSession session=sqlMapper.openSession(true);
+		Todo todo=session.selectOne("selectTodoByTodono", todono);
+		todo.setListno(listno);
+		session.update("updateTodo",todo);
+		session.close();
+	}
+	
 	public void insertTodo(Todo todo){
 		SqlSession session=sqlMapper.openSession(true);
 		session.insert("insertTodo",todo);
