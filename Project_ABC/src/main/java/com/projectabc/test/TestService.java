@@ -38,17 +38,32 @@ public class TestService {
 		
 		List<List<Todo>> todo = new ArrayList<List<Todo>>();
 		
+		String todoString = "";
+		
 		for(int i=0; i<todoList.size(); i++)
 		{
 			todo.add(todoDAO.selectTodoListByListno(todoList.get(i).getListno()));
 		}
 		
+		for(int i=0; i<todo.size(); i++)
+		{
+			for(int j=0; j<todo.get(i).size(); j++)
+			{
+				todoString += todo.get(i).get(j).getTodono()
+						+"@"+todo.get(i).get(j).getTodoname();
+				
+				if(j+1!=todo.get(i).size()) todoString += ",";
+			}
+			if(i+1!=todo.size()) todoString += "|";
+		}
+		
 		ModelAndView mav=new ModelAndView();
-		mav.setViewName("/example/csh/test/1/test");
+		mav.setViewName("/example/csh/test/1/projectPage");
 		mav.addObject("PROJECT",project);
 		mav.addObject("MEM_LIST", memList);
 		mav.addObject("TODO",todo);
 		mav.addObject("TODO_LIST", todoList);
+		mav.addObject("TODO_STRING",todoString);
 		
 		return mav;
 	
