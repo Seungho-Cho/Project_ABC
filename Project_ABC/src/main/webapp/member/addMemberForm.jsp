@@ -41,7 +41,7 @@ $(document).ready(function() {
 			</p>
 			<p>
 				메일주소
-				<input id="mailaddress" name="mailaddress" type="mailaddress"/>
+				<input id="mailaddress" name="mailaddress" type="text"/>
 			</p>
 			<p>
 				<input class="submit" type="submit" value="가입하기">

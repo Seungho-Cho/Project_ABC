@@ -259,6 +259,7 @@ $(document).ready(function(){
 		connectWith: '#example-2-3 .sortable-list',
 		update: function(){
 			$.cookie('cookie-b', getItems('#example-2-3'));
+			alert(getItems('#example-2-3'));
 		}
 	});
 

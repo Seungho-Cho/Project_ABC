@@ -2,6 +2,8 @@ package com.projectabc.login;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -53,6 +55,19 @@ public class LoginService {
 		return mav;*/
 		
 	}
+	
+	@RequestMapping(value="tryLogout.do")
+	public ModelAndView tryLogout(
+			HttpSession session
+			)throws Exception{
+		
+		session.invalidate();
+		
+		ModelAndView mav=new ModelAndView();
+		mav.setViewName("/login/login");		
+		return mav;
+	}
+	
 	@RequestMapping(value="signup.do")
 	public ModelAndView signup()throws Exception{
 		

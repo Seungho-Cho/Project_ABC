@@ -31,6 +31,13 @@ public class MessageDAO {
 	public MessageDAO()throws Exception{
 		
 	}
+	
+	public Message selectMessageByNo(String mesgno){
+		SqlSession session=sqlMapper.openSession(true);
+		Message message=session.selectOne("selectMessageByNo",mesgno);
+		session.close();
+		return message;
+	}
 
 	public List<Message> selectMessageListBySendid(String sendid){
 		SqlSession session=sqlMapper.openSession(true);
