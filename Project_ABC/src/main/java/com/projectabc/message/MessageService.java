@@ -22,8 +22,23 @@ public class MessageService {
 		ModelAndView mav=new ModelAndView();
 		mav.setViewName("/message/sendMessageForm");		
 		return mav;
-		
 	}
+	
+	@RequestMapping(value="sendMessgeForm.do")
+	public ModelAndView replyForm(
+			@RequestParam("mesgno")String mesgno
+			)throws Exception{
+		
+		MessageDAO mesDAO = new MessageDAO();
+
+		Message message=mesDAO.selectMessageByNo(mesgno);	
+		
+		ModelAndView mav=new ModelAndView();
+		mav.setViewName("/message/sendMessageForm");		
+		mav.addObject("MESSAGE",message);
+		return mav;
+	}
+	
 	@RequestMapping(value="sendMessage.do")
 	public ModelAndView sendMessage(
 			Message message
@@ -40,7 +55,7 @@ public class MessageService {
 	}
 	
 	@RequestMapping(value="showMessageList.do")
-	public ModelAndView showReceiveMessageList(
+	public ModelAndView showMessageList(
 			//@RequestParam("id")String id,
 			HttpSession session
 			)throws Exception{
@@ -57,40 +72,23 @@ public class MessageService {
 		return mav;
 		
 	}
-/*
+
 	@RequestMapping(value="messagePage.do")
 	public ModelAndView messagePage(
-			@RequestParam("mesno")String mesno
+			@RequestParam("mesgno")String mesgno,
+			HttpSession session
 			)throws Exception{
+		
+		Member member = (Member)session.getAttribute("MEMBER");
+		MessageDAO mesDAO = new MessageDAO();
 
-		MessageDAO projDAO = new MessageDAO();
-		MemberDAO memDAO =new MemberDAO();
-		TodoDAO todoDAO = new TodoDAO();
-		TodoListDAO todoListDAO = new TodoListDAO();
-		
-		Project project=projDAO.selectProjectByNo(projno);	
-		List<Member> memList=memDAO.selectMemberListByProjno(projno);	
-		
-		List<TodoList> todoList = 
-				todoListDAO.selectTodolistListByProjno(projno);
-		
-		List<List<Todo>> todo = new ArrayList<List<Todo>>();
-		
-		for(int i=0; i<todoList.size(); i++)
-		{
-			todo.add(todoDAO.selectTodoListByListno(todoList.get(i).getListno()));
-		}
+		Message message=mesDAO.selectMessageByNo(mesgno);	
 		
 		ModelAndView mav=new ModelAndView();
-		mav.setViewName("/project/projectPage");
-		mav.addObject("PROJECT",project);
-		mav.addObject("MEM_LIST", memList);
-		mav.addObject("TODO",todo);
-		mav.addObject("TODO_LIST", todoList);
-		
+		mav.setViewName("/message/messagePage");
+		mav.addObject("MESSAGE",message);
 		return mav;
 		
 	}
-*/	
 
 }

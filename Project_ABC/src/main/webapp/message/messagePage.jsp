@@ -10,30 +10,26 @@
 <%@ page import="java.util.List"%>
 
 <%
-	List<Message> mesList=(List)request.getAttribute("MESSAGE_LIST");
+	Message mes = (Message)request.getAttribute("MESSAGE");
 	Member loginMember = (Member)session.getAttribute("MEMBER");
-
 %>
 
 </head>
 <body>
  <table align="center" border="1">
-	 	<tr>
-	 		<td width="150">보낸사람</td>
-	 		<td width="350">제목</td>
-	 		<td>날짜</td>
+ 	 	<tr>
+	 		<td>보낸사람</td>
+	 		<td><%=mes.getSendid() %></td>
 	 	</tr>
-		<% 
-			for(int i=0;i<mesList.size();i++){
-			Message mes=mesList.get(i);
-		%>
-		<tr>
-			<td><%= mes.getSendid()%></td>
-			<td><a href="MessagePage.do?mesgno=<%=mes.getMesgno()%>"><%=mes.getMesgtitle()%></a></td>
-			<td><%= mes.getSenddate() %></td>			
-		</tr>
-		<%}	%>
+	 	<tr>
+	 		<td>제목</td>
+	 		<td><%=mes.getMesgtitle() %></td>
+	 	</tr>
+	 	<tr>	
+	 		<td>내용</td>
+	 		<td><%=mes.getMesgcont() %></td>
+	 	</tr>
 	 </table>
-	 <a href="sendMessgeForm.do">메세지 보내기</a>
+	 <a href="replyForm.do?mesgno=<%=mes.getMesgno()%>">답장 보내기</a>
 </body>
 </html>

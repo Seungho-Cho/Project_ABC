@@ -64,7 +64,7 @@
 				//수행
 			///////////////////////////////////////
 			%>
-			<input type="button" value="새 메세지" onclick="window.open('/message/showMessageList.jsp','window팝업','width=600, height=600, menubar=no, status=no, toolbar=no');">
+			<input type="button" value="새 메세지" onclick="window.open('showMessageList.do','window팝업','width=600, height=600, menubar=no, status=no, toolbar=no');">
 		</nav>
 	</header>
 	

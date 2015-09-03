@@ -13,6 +13,7 @@
 
 
 <%
+	Message mes = (Message)request.getAttribute("MESSAGE");
 	Member member = (Member)session.getAttribute("MEMBER");
  %>
 </head>
@@ -20,10 +21,10 @@
 
 <p align=center>
 		<form action="sendMessage.do" method="post" >
-			받는 사람 <input type="text" name="recvid" size="50"/><br/>
 			제목 <input type="text" name="mesgtitle" size="50"/><br/>
 			내용 <textarea name="mesgcont" rows="5" cols="50"></textarea><br/>
 			<input type="hidden" name="sendid" value=<%=member.getId() %> />
+			<input type="hidden" name="recvid" value=<%=mes.getRecvid()%>/>
 			<input type="hidden" name="isread"	 value=0 />
 			<input type="submit" value="확인"/>
 			<input type="reset" value="취소"/>
