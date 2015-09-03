@@ -47,6 +47,19 @@ public class MemberDAO {
 		return memberList;
 	}
 	
+	public void updateMember(Member member) {
+		SqlSession session=sqlMapper.openSession(true);
+		session.update("updateMember",member);
+		session.close();
+		
+	}
+	
+	public void deleteMember (String id) {
+		SqlSession session=sqlMapper.openSession(true);
+		session.delete("deleteMember",id);
+		session.close();
+	}
+	
 	public void insertMember(Member member){
 		SqlSession session=sqlMapper.openSession(true);
 		session.insert("insertMember",member);

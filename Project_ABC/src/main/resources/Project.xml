@@ -13,6 +13,7 @@
 		<result property="makedate" column="makedate" />
 		<result property="managerid" column="managerid" />	
 	</resultMap>
+	
 	<!-- 
 		projno가 일치하는 프로젝트 조회
 	 -->
@@ -55,6 +56,54 @@
 			select project_seq.currval from dual
 		]]>
 	</select>
+	
+	<!-- Project 테이블의 
+	   projno가일치하는  레코드의 컬럼 값을
+	   Project객체의 속성으로 수정하는 쿼리
+      -->
+	<update id="updateProject"  parameterType="Project">
+		<![CDATA[
+			update Project
+			set projname=#{projname},
+				projcont=#{projcont},
+				managerid=#{managerid}
+			where projno=#{projno}	
+		]]>
+	</update>	
+	
+	<!-- 
+		Project 테이블에서
+      projno가 일치하는  레코드를 삭제하는 쿼리
+     -->
+	<delete id="deleteProject"  parameterType="string">
+		<![CDATA[
+			delete from Project where projno=#{projno}
+		]]>
+	</delete>
+	
+	<!-- JoinProject 테이블의 
+	   projno와 memid가일치하는  레코드의 컬럼 값을
+	   JoinProject객체의 속성으로 수정하는 쿼리
+      -->
+	<update id="updateJoinProject"  parameterType="JoinProject">
+		<![CDATA[
+			update JoinProject
+			set position=#{position}
+			where projno=#{projno} and
+				memid=#{memid}
+		]]>
+	</update>	
+	
+	<!-- 
+		JoinProject 테이블에서
+      projno와 memid가 일치하는  레코드를 삭제하는 쿼리
+     -->
+	<delete id="deleteJoinProject"  parameterType="JoinProject">
+		<![CDATA[
+			delete from JoinProject
+			where projno=#{projno} and memid=#{memid}
+		]]>
+	</delete>
 	
 	<!-- 
 		Project 테이블에 프로젝트 정보 추가

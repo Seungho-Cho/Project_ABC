@@ -32,6 +32,24 @@
 		]]>
 	</select>
 	
+	<update id="updateTodolist"  parameterType="TodoList">
+		<![CDATA[
+			update TodoList
+			set listname=#{listname}
+			where listno=#{listno}	
+		]]>
+	</update>	
+	
+	<!-- 
+		Member 테이블에서
+      id가 일치하는  레코드를 삭제하는 쿼리
+     -->
+	<delete id="deleteTodolist"  parameterType="string">
+		<![CDATA[
+			delete from TodoList where listno=#{listno}
+		]]>
+	</delete>
+	
 	<!-- 
 		Todolist 테이블에 Todolist 정보 추가
 	-->

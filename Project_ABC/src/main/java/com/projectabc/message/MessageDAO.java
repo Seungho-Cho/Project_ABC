@@ -53,6 +53,19 @@ public class MessageDAO {
 		return mesgList;
 	}
 	
+	public void updateMessage(Message message) {
+		SqlSession session=sqlMapper.openSession(true);
+		session.update("updateMessage",message);
+		session.close();
+		
+	}
+	
+	public void deleteMessage (String mesgno) {
+		SqlSession session=sqlMapper.openSession(true);
+		session.delete("deleteMessage",mesgno);
+		session.close();
+	}
+	
 	public void insertMessage(Message message){
 		SqlSession session=sqlMapper.openSession(true);
 		session.insert("insertMessage",message);

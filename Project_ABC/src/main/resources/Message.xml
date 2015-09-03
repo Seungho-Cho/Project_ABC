@@ -35,6 +35,29 @@
 			from Message where recvid=#{recvid}
 		]]>
 	</select>
+	
+	<!-- Message 테이블의 
+	   mesgno가일치하는  레코드의 컬럼 값을
+	   Member객체의 속성으로 수정하는 쿼리
+      -->
+	<update id="updateMessage"  parameterType="Message">
+		<![CDATA[
+			update Message
+			set isread=#{isread}
+			where mesgno=#{mesgno}	
+		]]>
+	</update>	
+	
+	<!-- 
+		Message 테이블에서
+      mesgno가 일치하는  레코드를 삭제하는 쿼리
+     -->
+	<delete id="deleteMessage"  parameterType="string">
+		<![CDATA[
+			delete from Message where mesgno=#{mesgno}
+		]]>
+	</delete>
+	
 	<!-- 
 		Message 테이블에 Message 정보 추가
 	-->

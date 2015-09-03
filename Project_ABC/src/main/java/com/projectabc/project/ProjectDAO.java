@@ -46,6 +46,31 @@ public class ProjectDAO {
 		return projectList;
 	}
 	
+	public void updateProject(Project project) {
+		SqlSession session=sqlMapper.openSession(true);
+		session.update("updateProject",project);
+		session.close();
+		
+	}
+	
+	public void deleteProject (String projno) {
+		SqlSession session=sqlMapper.openSession(true);
+		session.delete("deleteProject",projno);
+		session.close();
+	}
+	
+	public void updateJoinProject(JoinProject joinproject) {
+		SqlSession session=sqlMapper.openSession(true);
+		session.update("updateJoinProject",joinproject);
+		session.close();
+	}
+	
+	public void deleteJoinProject (JoinProject joinproject) {
+		SqlSession session=sqlMapper.openSession(true);
+		session.delete("deleteJoinProject",joinproject);
+		session.close();
+	}
+	
 	public void insertProject(Project project){
 		SqlSession session=sqlMapper.openSession(true);
 		session.insert("insertProject",project);

@@ -39,6 +39,12 @@ public class TodoCommentDAO {
 		return todocommentList;
 	}
 	
+	public void deleteTodoComment (String commno) {
+		SqlSession session=sqlMapper.openSession(true);
+		session.delete("deleteTodoComment",commno);
+		session.close();
+	}
+	
 	public void insertTodoComment(TodoComment todocomment){
 		SqlSession session=sqlMapper.openSession(true);
 		session.insert("insertTodoComment",todocomment);

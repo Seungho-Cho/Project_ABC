@@ -35,6 +35,30 @@
 		]]>
 	</select>
 	
+	<!-- Member 테이블의 
+	   id가일치하는  레코드의 컬럼 값을
+	   Member객체의 속성으로 수정하는 쿼리
+      -->
+	<update id="updateMember"  parameterType="Member">
+		<![CDATA[
+			update Member
+			set password=#{password},
+				name=#{name},
+				mailaddress=#{mailaddress}
+			where id=#{id}	
+		]]>
+	</update>	
+	
+	<!-- 
+		Member 테이블에서
+      id가 일치하는  레코드를 삭제하는 쿼리
+     -->
+	<delete id="deleteMember"  parameterType="string">
+		<![CDATA[
+			delete from Member where id=#{id}
+		]]>
+	</delete>
+	
 	<!--
 		Member 테이블에 회원 정보 추가
 	-->
@@ -43,7 +67,7 @@
 			insert into member (id,password,name,mailaddress)
 			values (#{id},#{password},#{name},#{mailaddress})
 		]]>
-	</insert>
+	</insert>	
 	
 </mapper>
 

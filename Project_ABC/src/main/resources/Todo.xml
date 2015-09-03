@@ -34,13 +34,8 @@
 	</select>
 	
 	<!-- Todo 테이블의 
-	   todono가일치하는  레코드의  todono, listno, todoname, todocont 컬럼값을
+	   todono가일치하는  레코드의 컬럼 값을
 	   Todo객체의 속성으로 수정하는 쿼리
-	   
-	   학과번호는 Professor객체의 dept속성의 deptno속성에 있으므로
-         dept.deptno로 사용해야함
-         
-         교재 209 페이지 참조
       -->
 	<update id="updateTodo"  parameterType="Todo">
 		<![CDATA[
@@ -50,7 +45,29 @@
 				todocont=#{todocont}
 			where todono=#{todono}	
 		]]>
-	</update>	
+	</update>
+	
+	<!-- 
+		Todo 테이블에서
+      todono가 일치하는  레코드를 삭제하는 쿼리
+     -->
+	<delete id="deleteTodo"  parameterType="string">
+		<![CDATA[
+			delete from Todo where todono=#{todono}
+		]]>
+	</delete>
+	
+	<!-- 
+		Member 테이블에서
+      todono와 memid가 일치하는  레코드를 삭제하는 쿼리
+     -->
+	<delete id="deleteJoinTodo"  parameterType="JoinTodo">
+		<![CDATA[
+			delete from JoinTodo
+			where todono=#{todono} and
+				memid=#{memid}
+		]]>
+	</delete>
 	
 	<!-- 
 		Todolist 테이블에 Todolist 정보 추가
@@ -65,8 +82,8 @@
 	-->
 	<insert id="insertJoinTodo" parameterType="JoinTodo">
 		<![CDATA[
-			insert into JoinTodo (memid,projno,position)
-			values (#{memid},#{projno},#{position})
+			insert into JoinTodo (memid,todono)
+			values (#{memid},#{todono})
 		]]>
 	</insert>
 	

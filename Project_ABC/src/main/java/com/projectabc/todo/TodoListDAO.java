@@ -46,6 +46,19 @@ public class TodoListDAO {
 		return todolist;
 	}
 	
+	public void updateTodolist(TodoList todolist) {
+		SqlSession session=sqlMapper.openSession(true);
+		session.update("updateTodolist",todolist);
+		session.close();
+		
+	}
+	
+	public void deleteTodolist (String listno) {
+		SqlSession session=sqlMapper.openSession(true);
+		session.delete("deleteTodolist",listno);
+		session.close();
+	}
+	
 	public void insertTodolist(TodoList todoList){
 		SqlSession session=sqlMapper.openSession(true);
 		session.insert("insertTodolist",todoList);

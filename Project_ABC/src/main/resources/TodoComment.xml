@@ -24,6 +24,17 @@
 			from TodoComment where todono=#{todono}
 		]]>
 	</select>
+	
+	<!-- 
+		TodoComment 테이블에서
+      commno가 일치하는  레코드를 삭제하는 쿼리
+     -->
+	<delete id="deleteTodoComment"  parameterType="string">
+		<![CDATA[
+			delete from TodoComment where commno=#{commno}
+		]]>
+	</delete>
+	
 	<!-- 
 		TodoComment 테이블에 TodoComment 정보 추가
 	-->
