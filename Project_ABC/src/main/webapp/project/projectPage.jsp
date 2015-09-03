@@ -24,6 +24,7 @@
 	
 	String todoString = (String)request.getAttribute("TODO_STRING");
 	String todoListString = (String)request.getAttribute("TODO_LIST_STRING");
+	
 %>
 
 <style>
@@ -32,7 +33,7 @@
 		nav { background:lime; border:1px solid red;position:absolute;
 			right:5px;bottom:2px;width:300px; }
 		section { padding:10px;maring:10px;border:1px solid black;
-			background:lightgray;width:70%; height:100%}
+			background:lightgray;width:80%; height:100%}
 		article { padding:20px;margin:10px;border:1px solid black;
 			border-radius:8px;background:beige; }
 		aside { float:right;width:20%;background:orange;padding:10px; }
@@ -68,7 +69,7 @@
 		</nav>
 	</header>
 	
-	<aside> 
+	<aside>  
 		<% 
 		for(int i=0; i<memList.size(); i++)
 		{
@@ -88,76 +89,16 @@
 	
 	
 	<section>
-		<table align="center" border="1">
-		<tr>
-		<% 
-		for(int i=0; i<todoList.size(); i++)
-		{
-		%>			
-	 		<td>
-	 			<%= todoList.get(i).getListname() %>	
-	 		</td>
-	 	<%
-		}
-		 %>
-	 		<td>
-	 			<form action="addProjectTodoList.do" method="post" >
-					<input type="text" name="listname" size="10"/>           
-					<input type="hidden" name="projno" value=<%=proj.getProjno() %> />
-					<input type="submit" value="추가"/>
-				</form>
-			</td>
-	 	</tr>
-	 	<tr>
-	 		<% 
-			for(int i=0; i<todo.size(); i++)
-			{
-			%>			
-	 		<td>
-	 			<table>
-				 		<% 
-						for(int j=0; j<todo.get(i).size(); j++)
-						{
-						%>
-		 				<tr>
-		 					<td>
-		 						<%=todo.get(i).get(j).getTodoname() %>
-		 					</td>
-						</tr>
-	 					<%
-						}
-						%>
-					<tr>
-						<td>
-				 			<form action="addProjectTodo.do" method="post" >
-								<input type="text" name="todoname" size="10"/>           
-								<input type="hidden" name="listno" value=<%=todoList.get(i).getListno() %> />
-								<input type="hidden" name="projno" value=<%=todoList.get(i).getProjno() %> />
-								<input type="submit" value="추가"/>
-							</form>
-						</td>
-	 				</tr>
-	 			</table>	
-	 		</td>
-		 	<%
-			}
-			%>
-	 	</tr>
-	 	</table>
-	</section>
-	<footer> 
 		<div id="center-wrapper">
 			<div class="dhe-example-section-content">
 				<div id="todoList">
 				</div>
-	
-				<!-- END: XHTML for example 1.3 -->
 				<p>
-				<input type="submit" class="input-button" id="btn-load-example" value="Insert List" /> &nbsp; 
-				
-	
 			</div>
 		</div>
+	</section>
+	
+	<footer> 
 	</footer>
 
  
@@ -196,12 +137,15 @@ function renderItems(items)
 	var columns = items.split(':'); // List로 쪼개기
 	
 	///////////////////////////////////
-	//???var temp = <%=todoListString%>;
-	//???var lists = temp.split(':');
+	var temp = '<%=todoListString%>';
+	var lists = temp.split(',');
 	/////////////////////////////////////////
 	
 	for ( var c in columns )
 	{
+		var listClass = lists[c].split('@');
+		var listno = listClass[0];
+		var listname = listClass[1];
 		html += '<div class="column left';
 
 		if ( c == 0 )
@@ -209,7 +153,9 @@ function renderItems(items)
 			html += ' first';
 		}
 
-		html += '"><ul class="sortable-list">';
+		html += '">'
+				+'<a>'+listname+'</a>'
+				+'<ul class="sortable-list">';
 
 		if ( columns[c] != '' )
 		{
@@ -226,13 +172,21 @@ function renderItems(items)
 		html +='</ul>';
 		html +='<form action="addProjectTodo.do" method="post" >'
 			+'<input type="text" name="todoname" size="10"/>'
-			+'<input type="hidden" name="projno" value='+<%=proj.getProjno()%>+'/>'
+			+'<input type="hidden" name="listno" value='+listno+' />'
+			+'<input type="hidden" name="projno" value='+<%=proj.getProjno()%>+' />'
 			+'<input type="submit" value="추가"/>'
 			+'</form>';
 		html +='</div>';
 	}
 	html += '<br>';
-
+	html +='<td>'
+		+'<form action="addProjectTodoList.do" method="post" >'
+		+'<input type="text" name="listname" size="10"/>'           
+		+'<input type="hidden" name="projno" value='+<%=proj.getProjno() %>+' />'
+		+'<input type="submit" value="추가"/>'
+		+'</form>'
+		+'</td>';
+		
 	$('#todoList').html(html);
 }
 

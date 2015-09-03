@@ -87,8 +87,9 @@ public class ProjectService {
 		
 		for(int i=0; i<todoList.size(); i++)
 		{
-			todoListString += todoList.get(i);
-			if(i+1!=todoList.size()) todoListString += ":";
+			todoListString += todoList.get(i).getListno()+"@";
+			todoListString += todoList.get(i).getListname();
+			if(i+1!=todoList.size()) todoListString += ",";
 		}
 		
 		for(int i=0; i<todoList.size(); i++)

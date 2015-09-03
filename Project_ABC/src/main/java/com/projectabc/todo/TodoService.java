@@ -32,6 +32,7 @@ public class TodoService {
 			@RequestParam(value="projno")String projno
 			)throws Exception{
 
+		System.out.println("list no:"+todo.getListno());
 		TodoDAO todoDAO = new TodoDAO();
 		todoDAO.insertTodo(todo);
 			
