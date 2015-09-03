@@ -18,16 +18,16 @@
 <body>
  <table align="center" border="1">
  	 	<tr>
-	 		<td>보낸사람</td>
-	 		<td><%=mes.getSendid() %></td>
+	 		<td width="150">보낸사람</td>
+	 		<td width="350"><%=mes.getSendid() %></td>
 	 	</tr>
 	 	<tr>
-	 		<td>제목</td>
-	 		<td><%=mes.getMesgtitle() %></td>
+	 		<td width="150">제목</td>
+	 		<td width="350"><%=mes.getMesgtitle() %></td>
 	 	</tr>
 	 	<tr>	
-	 		<td>내용</td>
-	 		<td><%=mes.getMesgcont() %></td>
+	 		<td width="150">내용</td>
+	 		<td width="350" height="300"><%=mes.getMesgcont() %></td>
 	 	</tr>
 	 </table>
 	 <a href="replyForm.do?mesgno=<%=mes.getMesgno()%>">답장 보내기</a>

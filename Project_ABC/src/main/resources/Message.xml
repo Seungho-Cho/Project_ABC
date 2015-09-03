@@ -17,6 +17,16 @@
 	     <result property="senddate" column="senddate" />
 	     <result property="isread" column="isread" />
 	</resultMap>
+	<!-- 
+		mesgno가 일치하는 메세지 조회
+	 -->
+	<select id="selectMessageByNo" resultMap="messageResult">
+		<![CDATA[
+			select mesgno,sendid,recvid,mesgtitle,mesgcont,senddate,isread
+			from Message where mesgno=#{mesgno}
+		]]>
+	</select>
+	
     <!-- 
       Message 테이블에서 sendid가 일치하는 레코드 리스트 조회
      -->		

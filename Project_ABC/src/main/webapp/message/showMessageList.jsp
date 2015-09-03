@@ -29,7 +29,7 @@
 		%>
 		<tr>
 			<td><%= mes.getSendid()%></td>
-			<td><a href="MessagePage.do?mesgno=<%=mes.getMesgno()%>"><%=mes.getMesgtitle()%></a></td>
+			<td><a href="messagePage.do?mesgno=<%=mes.getMesgno()%>"><%=mes.getMesgtitle()%></a></td>
 			<td><%= mes.getSenddate() %></td>			
 		</tr>
 		<%}	%>

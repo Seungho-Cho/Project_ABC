@@ -24,17 +24,17 @@ public class MessageService {
 		return mav;
 	}
 	
-	@RequestMapping(value="sendMessgeForm.do")
+	@RequestMapping(value="replyForm.do")
 	public ModelAndView replyForm(
 			@RequestParam("mesgno")String mesgno
 			)throws Exception{
 		
 		MessageDAO mesDAO = new MessageDAO();
 
-		Message message=mesDAO.selectMessageByNo(mesgno);	
+		Message message=mesDAO.selectMessageByNo(mesgno);
 		
 		ModelAndView mav=new ModelAndView();
-		mav.setViewName("/message/sendMessageForm");		
+		mav.setViewName("/message/replyForm");
 		mav.addObject("MESSAGE",message);
 		return mav;
 	}
