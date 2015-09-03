@@ -72,6 +72,8 @@ public class ProjectService {
 		TodoDAO todoDAO = new TodoDAO();
 		TodoListDAO todoListDAO = new TodoListDAO();
 		
+		
+		
 		Project project=projDAO.selectProjectByNo(projno);	
 		List<Member> memList=memDAO.selectMemberListByProjno(projno);	
 		
@@ -80,9 +82,30 @@ public class ProjectService {
 		
 		List<List<Todo>> todo = new ArrayList<List<Todo>>();
 		
+		String todoString = "";
+		String todoListString = "";
+		
+		for(int i=0; i<todoList.size(); i++)
+		{
+			todoListString += todoList.get(i);
+			if(i+1!=todoList.size()) todoListString += ":";
+		}
+		
 		for(int i=0; i<todoList.size(); i++)
 		{
 			todo.add(todoDAO.selectTodoListByListno(todoList.get(i).getListno()));
+		}
+		
+		for(int i=0; i<todo.size(); i++)
+		{
+			for(int j=0; j<todo.get(i).size(); j++)
+			{
+				todoString += todo.get(i).get(j).getTodono()
+						+"@"+todo.get(i).get(j).getTodoname();
+				
+				if(j+1!=todo.get(i).size()) todoString += ",";
+			}
+			if(i+1!=todo.size()) todoString += ":";
 		}
 		
 		ModelAndView mav=new ModelAndView();
@@ -91,6 +114,8 @@ public class ProjectService {
 		mav.addObject("MEM_LIST", memList);
 		mav.addObject("TODO",todo);
 		mav.addObject("TODO_LIST", todoList);
+		mav.addObject("TODO_STRING",todoString);
+		mav.addObject("TODO_LIST_STRING",todoListString);
 		
 		return mav;
 		
