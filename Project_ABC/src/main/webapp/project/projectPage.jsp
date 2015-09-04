@@ -33,10 +33,10 @@
 		nav { background:lime; border:1px solid red;position:absolute;
 			right:5px;bottom:2px;width:300px; }
 		section { padding:10px;maring:10px;border:1px solid black;
-			background:lightgray;width:80%; height:100%}
-		article { padding:20px;margin:10px;border:1px solid black;
+			background:lightgray;width:90%; height:100%}
+		article { padding:10px;margin:5px;border:1px solid black;
 			border-radius:8px;background:beige; }
-		aside { float:right;width:20%;background:orange;padding:10px; }
+		aside { float:right;width:10%;background:orange;padding:10px; }
 		footer { background:yellow; border:1px solid blue;margin-top:10px;}
 
 	</style>
@@ -80,7 +80,7 @@
 		 %>
 		<article> 
 			<form action="addProjectMember.do" method="post" >
-			<input type="text" name="memberid" size="10"/>
+			<input type="text" name="memberid" size="5"/>
 			<input type="hidden" name="projno" value=<%=proj.getProjno() %> />
 			<input type="submit" value="추가"/>
 			</form>
