@@ -48,6 +48,14 @@
 		]]>
 	</select>
 	
+	<select id="selectPositionByJoinProject" parameterType="JoinProject" resultType="String">
+		<![CDATA[
+			select position
+			from JoinProject
+			where projno=#{projno} and memid=#{memid}
+		]]>
+	</select>
+	
 	<!-- 
 		현재 project_seq조회
 	 -->

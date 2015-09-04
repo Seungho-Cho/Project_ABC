@@ -46,6 +46,13 @@ public class ProjectDAO {
 		return projectList;
 	}
 	
+	public String selectPositionByJoinProject(JoinProject jp) {
+		SqlSession session=sqlMapper.openSession(true);
+		String position=session.selectOne("selectPositionByJoinProject",jp);
+		session.close();		
+		return position;
+	}
+	
 	public void updateProject(Project project) {
 		SqlSession session=sqlMapper.openSession(true);
 		session.update("updateProject",project);
