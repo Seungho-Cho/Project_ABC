@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.projectabc.member.Member;
+import com.projectabc.member.MemberDAO;
+
 @Controller
 public class TodoService {
 	
@@ -80,11 +83,20 @@ public class TodoService {
 			)throws Exception{
 		
 		TodoDAO todoDAO = new TodoDAO();
+		MemberDAO memDAO = new MemberDAO();
+		TodoCommentDAO commDAO = new TodoCommentDAO();
 		todo = todoDAO.selectTodoByTodono(todo.getTodono());
 		
+		List<Member> memList = 
+				memDAO.selectMemberListByTodono(todo.getTodono());
+		List<TodoComment> commList = 
+				commDAO.selectTodoCommentListByTodono(todo.getTodono());
+		
 		ModelAndView mav=new ModelAndView();
-		mav.setViewName("forward:/projectPage.do");
+		mav.setViewName("todo/showTodo");
 		mav.addObject("TODO",todo);
+		mav.addObject("TODO_MEM_LIST",memList);
+		mav.addObject("TODO_COMM_LIST",commList);
 		return mav;	
 	}
 	

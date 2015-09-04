@@ -40,11 +40,8 @@
 			border-radius:8px;background:beige; }
 		aside { float:right;width:10%;background:orange;padding:10px; }
 		footer { background:yellow; border:1px solid blue;margin-top:10px;}
+</style>
 
-	</style>
-	<script>
-	</script>
-	
 
 </head>
 <body class="dhe-body">
@@ -174,8 +171,8 @@ function renderItems(items)
 			{
 				var itemColumns = items[i].split('@'); // Todono, Todoname 쪼개기
 				html += '<li class="sortable-item" id="' + itemColumns[0] + 
-				'"> <a href="showTodo.do?todono='+ itemColumns[0] +'">' + 
-				itemColumns[1] + '</a></li>';
+				'"onClick="window.open(\'showTodo.do?todono='+itemColumns[0]+'\',\'window팝업\',\'width=600, height=600, menubar=no, status=no, toolbar=no\');">' + 
+				itemColumns[1] + '</li>';
 			}
 		}	
 		html +='</ul>';
