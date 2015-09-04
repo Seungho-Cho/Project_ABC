@@ -17,8 +17,14 @@ import com.projectabc.member.MemberDAO;
 @Controller
 public class MessageService {
 	@RequestMapping(value="sendMessgeForm.do")
-	public ModelAndView sendMessageForm()throws Exception{
+	public ModelAndView sendMessageForm(
+			HttpSession session
+			)throws Exception{
+		System.out.println("sendMessageForm.do");
 		
+		Member member = (Member)session.getAttribute("MEMBER");
+		System.out.println("1.member - " + member);
+		System.out.println("2.member.getId() - "+member.getId());
 		ModelAndView mav=new ModelAndView();
 		mav.setViewName("/message/sendMessageForm");		
 		return mav;
@@ -44,7 +50,8 @@ public class MessageService {
 			Message message
 			//, @RequestParam("id")String memid
 			)throws Exception{
-			
+			//
+		System.out.println("4.sendMessage-message - "+message);
 		MessageDAO mesDAO = new MessageDAO();
 		mesDAO.insertMessage(message);
 			
@@ -54,18 +61,19 @@ public class MessageService {
 		
 	}
 	
-	@RequestMapping(value="showMessageList.do")
+	@RequestMapping(value="showMessageList.do") // 1
 	public ModelAndView showMessageList(
 			//@RequestParam("id")String id,
 			HttpSession session
 			)throws Exception{
 		
 		Member member = (Member)session.getAttribute("MEMBER");
+		System.out.println("1.member - " + member);
 		MessageDAO mesDAO = new MessageDAO();
-		
+		System.out.println("2.member.getId() - "+member.getId());
 		List<Message> mesList = (List<Message>)
 				mesDAO. selectMessageListByRecvid(member.getId());
-		
+		System.out.println("3.mesList -"+mesList);//3
 		ModelAndView mav=new ModelAndView();
 		mav.setViewName("/message/showMessageList");
 		mav.addObject("MESSAGE_LIST",mesList);

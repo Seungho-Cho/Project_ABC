@@ -11,8 +11,9 @@
 
 <%
 	List<Message> mesList=(List)request.getAttribute("MESSAGE_LIST");
+out.println("showMessageList- mesList - "+mesList);
 	Member loginMember = (Member)session.getAttribute("MEMBER");
-
+	out.println("showMessageList- loginMember - "+loginMember);
 %>
 
 </head>

@@ -54,9 +54,10 @@ public class MessageDAO {
 	}
 	
 	public void insertMessage(Message message){
+		System.out.println("MessageDAO-insertMessage - message - "+message);
 		SqlSession session=sqlMapper.openSession(true);
 		session.insert("insertMessage",message);
-		session.close();
+		//session.close(); - ¼¼¼Ç test
 	}
 	
 }
