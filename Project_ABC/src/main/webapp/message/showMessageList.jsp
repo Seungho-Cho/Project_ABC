@@ -11,9 +11,7 @@
 
 <%
 	List<Message> mesList=(List)request.getAttribute("MESSAGE_LIST");
-out.println("showMessageList- mesList - "+mesList);
 	Member loginMember = (Member)session.getAttribute("MEMBER");
-	out.println("showMessageList- loginMember - "+loginMember);
 %>
 
 </head>
@@ -35,6 +33,6 @@ out.println("showMessageList- mesList - "+mesList);
 		</tr>
 		<%}	%>
 	 </table>
-	 <a href="sendMessgeForm.do">메세지 보내기</a>
+	 <a href="sendMessageForm.do">메세지 보내기</a>
 </body>
 </html>
