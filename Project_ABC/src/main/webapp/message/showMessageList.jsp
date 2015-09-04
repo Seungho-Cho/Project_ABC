@@ -11,8 +11,9 @@
 
 <%
 	List<Message> mesList=(List)request.getAttribute("MESSAGE_LIST");
+out.println("showMessageList- mesList - "+mesList);
 	Member loginMember = (Member)session.getAttribute("MEMBER");
-
+	out.println("showMessageList- loginMember - "+loginMember);
 %>
 
 </head>
@@ -29,7 +30,7 @@
 		%>
 		<tr>
 			<td><%= mes.getSendid()%></td>
-			<td><a href="MessagePage.do?mesgno=<%=mes.getMesgno()%>"><%=mes.getMesgtitle()%></a></td>
+			<td><a href="messagePage.do?mesgno=<%=mes.getMesgno()%>"><%=mes.getMesgtitle()%></a></td>
 			<td><%= mes.getSenddate() %></td>			
 		</tr>
 		<%}	%>
