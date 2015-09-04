@@ -13,15 +13,10 @@
 	List<Message> mesList=(List)request.getAttribute("MESSAGE_LIST");
 	Member loginMember = (Member)session.getAttribute("MEMBER");
 %>
-<style>
-#a{
-	
-	
-}
-</style>
+
 </head>
 <body>
- <table id="a" align="center" border="1">
+ <table align="center" border="1">
 	 	<tr>
 	 		<td width="150">보낸사람</td>
 	 		<td width="350">제목</td>
@@ -30,27 +25,14 @@
 		<% 
 			for(int i=0;i<mesList.size();i++){
 			Message mes=mesList.get(i);
-			if("0".equals(mes.getIsread())){
 		%>
 		
 		<tr>
-			<h1>
-			<td><font color="red"><%= mes.getSendid()%></font></td>
-			<td ><font color="red"><a href="messagePage.do?mesgno=<%=mes.getMesgno()%>"><%=mes.getMesgtitle()%></a></font></td>
-			<td><font color="red"><%= mes.getSenddate() %></font></td>
-			</h1>			
+			<td><%= mes.getSendid()%></td>
+			<td><a href="messagePage.do?mesgno=<%=mes.getMesgno()%>"><%=mes.getMesgtitle()%></a></td>
+			<td><%= mes.getSenddate() %></td>			
 		</tr>
-		<%} else {
-			%>
-		
-		<tr style="color:black">
-			<h2>
-			<td><font color="black"><%= mes.getSendid()%></font></td>
-			<td><font color="black"><a href="messagePage.do?mesgno=<%=mes.getMesgno()%>"><%=mes.getMesgtitle()%></a></font></td>
-			<td><font color="black"><%= mes.getSenddate() %></font></td>
-			</h2>			
-		</tr>
-			<%}	}%>
+		<%}	%>
 	 </table>
 	 <a href="sendMessageForm.do">메세지 보내기</a>
 </body>

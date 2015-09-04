@@ -85,8 +85,11 @@ public class MessageService {
 			)throws Exception{
 		
 		MessageDAO mesDAO = new MessageDAO();
-
-		Message message=mesDAO.selectMessageByNo(mesgno);	
+		
+		Message mesg=mesDAO.selectMessageByNo(mesgno);
+		mesg.setIsread("1");
+		mesDAO.updateMessage(mesg);
+		Message message=mesDAO.selectMessageByNo(mesgno);
 		
 		ModelAndView mav=new ModelAndView();
 		mav.setViewName("/message/messagePage");
