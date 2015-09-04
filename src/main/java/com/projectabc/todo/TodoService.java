@@ -74,8 +74,16 @@ public class TodoService {
 	
 	}
 	
-	 public static void dumpArray(String[] array) {
-		    for (int i = 0; i < array.length; i++)
-		      System.out.format("array[%d] = %s%n", i, array[i]);
-		  }
+	@RequestMapping(value="showTodo.do")
+	public void showTodo (
+			Todo todo
+			)throws Exception{
+		TodoDAO todoDAO = new TodoDAO();
+		MemberDAO memDAO = new MemberDAO();
+		todo = todoDAO.selectTodoByTodono(todo.getTodono());
+		
+		List<Member> memList = 
+		
+	}
+	
 }

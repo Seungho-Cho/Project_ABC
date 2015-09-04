@@ -39,10 +39,8 @@
 		aside { float:right;width:20%;background:orange;padding:10px; }
 		footer { background:yellow; border:1px solid blue;margin-top:10px;}
 
-	</style>
-	<script>
-	</script>
-	
+</style>
+
 
 </head>
 <body class="dhe-body">
