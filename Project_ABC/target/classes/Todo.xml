@@ -32,7 +32,7 @@
 			from Todo where todono=#{todono}
 		]]>
 	</select>
-	
+		
 	<!-- Todo 테이블의 
 	   todono가일치하는  레코드의 컬럼 값을
 	   Todo객체의 속성으로 수정하는 쿼리

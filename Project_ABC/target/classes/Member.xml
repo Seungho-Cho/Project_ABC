@@ -34,6 +34,19 @@
 						where projno=#{projno})
 		]]>
 	</select>
+		
+	<!-- 
+		Todo가 속한 Member 리스트 조회
+	 -->
+	<select id="selectMemberListByTodono" resultMap="MemberResult">
+		<![CDATA[
+			select id,password,name,mailaddress
+			from Member
+			where id in (select memid
+							from JoinTodo
+							where todono=#{todono})
+		]]>
+	</select>
 	
 	<!-- Member 테이블의 
 	   id가일치하는  레코드의 컬럼 값을

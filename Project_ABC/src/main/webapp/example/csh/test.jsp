@@ -21,7 +21,7 @@
 		$(function(){
 			$("#btn").click(function(){
 				$.blockUI({
-					message: //MESSAGE HERE!!!
+					message: test//MESSAGE HERE!!!
 					,css:{
 						width:'300px'
 					}

@@ -47,6 +47,13 @@ public class MemberDAO {
 		return memberList;
 	}
 	
+	public List<Member> selectMemberListByTodono(String todono){
+		SqlSession session=sqlMapper.openSession(true);
+		List<Member> memberList=session.selectList("selectMemberListByTodono",todono);
+		session.close();
+		return memberList;
+	}	
+	
 	public void updateMember(Member member) {
 		SqlSession session=sqlMapper.openSession(true);
 		session.update("updateMember",member);
