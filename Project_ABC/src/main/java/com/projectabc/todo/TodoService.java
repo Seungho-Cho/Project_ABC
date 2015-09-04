@@ -74,6 +74,20 @@ public class TodoService {
 	
 	}
 	
+	@RequestMapping(value="showTodo.do")
+	public ModelAndView showTodo(
+			Todo todo
+			)throws Exception{
+		
+		TodoDAO todoDAO = new TodoDAO();
+		todo = todoDAO.selectTodoByTodono(todo.getTodono());
+		
+		ModelAndView mav=new ModelAndView();
+		mav.setViewName("forward:/projectPage.do");
+		mav.addObject("TODO",todo);
+		return mav;	
+	}
+	
 	 public static void dumpArray(String[] array) {
 		    for (int i = 0; i < array.length; i++)
 		      System.out.format("array[%d] = %s%n", i, array[i]);

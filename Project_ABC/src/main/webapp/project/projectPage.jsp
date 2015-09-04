@@ -20,7 +20,9 @@
 	List<Member> memList = (List<Member>)request.getAttribute("MEM_LIST");
 	List<List<Todo>> todo = (List<List<Todo>>)request.getAttribute("TODO");
 	List<TodoList> todoList = (List<TodoList>)request.getAttribute("TODO_LIST");
+	
 	Member loginmember = (Member) session.getAttribute("MEMBER");
+	String position = (String)session.getAttribute("POSITION");
 	
 	String todoString = (String)request.getAttribute("TODO_STRING");
 	String todoListString = (String)request.getAttribute("TODO_LIST_STRING");
@@ -78,6 +80,10 @@
 		<%
 		}
 		 %>
+		 
+		<%if("0".equals(position))
+		{
+		%>
 		<article> 
 			<form action="addProjectMember.do" method="post" >
 			<input type="text" name="memberid" size="5"/>
@@ -85,6 +91,9 @@
 			<input type="submit" value="추가"/>
 			</form>
 		</article>
+		<%
+		} 
+		%>
 	</aside>
 	
 	
