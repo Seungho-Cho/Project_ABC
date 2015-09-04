@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+		
+<mapper namespace="Todo">	
+	<resultMap type="Todo" id="todoResult">
+	    <!-- Todo 테이블의 
+	    조회결과에서
+	    어떤 컬럼의 값이 어떤 속성에 저장되야 하는지 설정
+	     -->
+	     <result property="todono" column="todono" />
+	     <result property="listno" column="listno" />
+	     <result property="todoname" column="todoname" />
+	     <result property="todocont" column="todocont" />
+	</resultMap>
+    <!-- 
+      Todo 테이블에서 listno가 일치하는 레코드 리스트 조회
+     -->		
+	<select id="selectTodoListByListno" resultMap="todoResult">
+		<![CDATA[
+			select todono, listno, todoname, todocont
+			from Todo where listno=#{listno}
+		]]>
+	</select>
+  	<!-- 
+      Todo 테이블에서 todono가 일치하는 레코드 조회
+    -->
+	<select id="selectTodoByTodono" resultMap="todoResult" >
+		<![CDATA[
+			select todono, listno, todoname, todocont
+			from Todo where todono=#{todono}
+		]]>
+	</select>
+	
+	<!-- Todo 테이블의 
+	   todono가일치하는  레코드의 컬럼 값을
+	   Todo객체의 속성으로 수정하는 쿼리
+      -->
+	<update id="updateTodo"  parameterType="Todo">
+		<![CDATA[
+			update Todo
+			set listno=#{listno},
+				todoname=#{todoname},
+				todocont=#{todocont}
+			where todono=#{todono}	
+		]]>
+	</update>
+	
+	<!-- 
+		Todo 테이블에서
+      todono가 일치하는  레코드를 삭제하는 쿼리
+     -->
+	<delete id="deleteTodo"  parameterType="string">
+		<![CDATA[
+			delete from Todo where todono=#{todono}
+		]]>
+	</delete>
+	
+	<!-- 
+		Member 테이블에서
+      todono와 memid가 일치하는  레코드를 삭제하는 쿼리
+     -->
+	<delete id="deleteJoinTodo"  parameterType="JoinTodo">
+		<![CDATA[
+			delete from JoinTodo
+			where todono=#{todono} and
+				memid=#{memid}
+		]]>
+	</delete>
+	
+	<!-- 
+		Todolist 테이블에 Todolist 정보 추가
+	-->
+	<insert id="insertTodo" parameterType="Todo">
+		insert into Todo (todono,listno,todoname,todocont)
+		values (todo_seq.nextval,#{listno},#{todoname},#{todocont})
+	</insert>
+	
+	<!-- 
+		JoinProject 테이블에 추가
+	-->
+	<insert id="insertJoinTodo" parameterType="JoinTodo">
+		<![CDATA[
+			insert into JoinTodo (memid,todono)
+			values (#{memid},#{todono})
+		]]>
+	</insert>
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+

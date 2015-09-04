@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+	PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-config.dtd">
+		
+<configuration>
+<settings>
+  <setting name="jdbcTypeForNull" value="VARCHAR"/>
+</settings>
+<typeAliases>
+    <typeAlias type="com.projectabc.member.Member" alias="Member"/>
+    <typeAlias type="com.projectabc.project.Project" alias="Project"/>
+    <typeAlias type="com.projectabc.project.JoinProject" alias="JoinProject"/>
+    <typeAlias type="com.projectabc.todo.Todo" alias="Todo"/>
+    <typeAlias type="com.projectabc.todo.TodoList" alias="TodoList"/>
+    <typeAlias type="com.projectabc.todo.JoinTodo" alias="JoinTodo"/>
+    <typeAlias type="com.projectabc.todo.TodoComment" alias="TodoComment"/>
+    <typeAlias type="com.projectabc.message.Message" alias="Message"/>
+    
+</typeAliases>
+	<environments default="development">
+		<environment id="development">
+			
+	<transactionManager type="JDBC"/>
+	<dataSource type="POOLED">
+		<property name="driver"
+			value="oracle.jdbc.driver.OracleDriver" />
+		<property name="url"
+				value="jdbc:oracle:thin:@52.69.113.145:1521:XE" />
+		<property name="username"
+					value="scott" />
+		<property name="password"
+			value="tiger" />
+	</dataSource>
+
+</environment>
+</environments>
+<mappers>
+	<mapper resource="Member.xml" />
+	<mapper resource="Project.xml" />
+	<mapper resource="Todo.xml" />
+	<mapper resource="TodoList.xml" />
+	<mapper resource="TodoComment.xml" />
+	<mapper resource="Message.xml" />
+</mappers>
+</configuration>
+
+

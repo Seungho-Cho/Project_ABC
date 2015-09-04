@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+		
+<mapper namespace="Member">	
+	
+    <!-- 조회결과를 Member 클래스의 어떤 속성에 대입할지 설정 -->
+	<resultMap type="Member" id="MemberResult">
+		<result property="id" column="id" />
+		<result property="password" column="password" />
+		<result property="name" column="name" />
+		<result property="mailaddress" column="mailaddress" />	
+	</resultMap>
+	<!-- 
+		아이디가 일치하는 회원정보를 조회
+	 -->
+	<select id="selectMemberById" resultMap="MemberResult">
+		<![CDATA[
+			select id,password,name,mailaddress
+			from member where id=#{id}
+		]]>
+	</select>
+	
+	<!-- 
+		프로젝트에 소속된 멤버 리스트 조회
+	 -->
+	<select id="selectMemberListByProjno" resultMap="MemberResult">
+		<![CDATA[
+			select id,password,name,mailaddress
+			from member
+			where id in (select memid
+						from JoinProject
+						where projno=#{projno})
+		]]>
+	</select>
+	
+	<!-- Member 테이블의 
+	   id가일치하는  레코드의 컬럼 값을
+	   Member객체의 속성으로 수정하는 쿼리
+      -->
+	<update id="updateMember"  parameterType="Member">
+		<![CDATA[
+			update Member
+			set password=#{password},
+				name=#{name},
+				mailaddress=#{mailaddress}
+			where id=#{id}	
+		]]>
+	</update>	
+	
+	<!-- 
+		Member 테이블에서
+      id가 일치하는  레코드를 삭제하는 쿼리
+     -->
+	<delete id="deleteMember"  parameterType="string">
+		<![CDATA[
+			delete from Member where id=#{id}
+		]]>
+	</delete>
+	
+	<!--
+		Member 테이블에 회원 정보 추가
+	-->
+	<insert id="insertMember" parameterType="Member">
+		<![CDATA[
+			insert into member (id,password,name,mailaddress)
+			values (#{id},#{password},#{name},#{mailaddress})
+		]]>
+	</insert>	
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
