@@ -64,7 +64,8 @@ public class ProjectService {
 	
 	@RequestMapping(value="projectPage.do")
 	public ModelAndView projectPage(
-			@RequestParam("projno")String projno
+			@RequestParam("projno")String projno,
+			HttpSession session
 			)throws Exception{
 
 		ProjectDAO projDAO = new ProjectDAO();
@@ -72,6 +73,8 @@ public class ProjectService {
 		TodoDAO todoDAO = new TodoDAO();
 		TodoListDAO todoListDAO = new TodoListDAO();
 		
+		
+		session.setAttribute("POSITION",);
 		
 		
 		Project project=projDAO.selectProjectByNo(projno);	
