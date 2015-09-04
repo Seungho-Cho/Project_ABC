@@ -75,11 +75,9 @@ public class MessageService {
 
 	@RequestMapping(value="messagePage.do")
 	public ModelAndView messagePage(
-			@RequestParam("mesgno")String mesgno,
-			HttpSession session
+			@RequestParam("mesgno")String mesgno
 			)throws Exception{
 		
-		Member member = (Member)session.getAttribute("MEMBER");
 		MessageDAO mesDAO = new MessageDAO();
 
 		Message message=mesDAO.selectMessageByNo(mesgno);	
