@@ -17,7 +17,7 @@
 				<div><input type="text" placeholder="UserID" id="userID"></div>
 				<div><input type="password" placeholder="Password" id="password"></div>
 				<div>
-					<input type="submit" value="Login" />
+					<input type="submit" value="Login"/>
 					<a href="#">ID/PW찾기</a>
 					<a href="signup.do">회원가입</a>
 				</div>

@@ -138,7 +138,30 @@ form:after {
 	z-index: -2;
 }
 #content form { margin: 0 20px; position: relative }
-#content form input[type="text"],
+#content form input[type="text"]{
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	-ms-border-radius: 3px;
+	-o-border-radius: 3px;
+	border-radius: 3px;
+	-webkit-box-shadow: 0 1px 0 #fff, 0 -2px 5px rgba(0,0,0,0.08) inset;
+	-moz-box-shadow: 0 1px 0 #fff, 0 -2px 5px rgba(0,0,0,0.08) inset;
+	-ms-box-shadow: 0 1px 0 #fff, 0 -2px 5px rgba(0,0,0,0.08) inset;
+	-o-box-shadow: 0 1px 0 #fff, 0 -2px 5px rgba(0,0,0,0.08) inset;
+	box-shadow: 0 1px 0 #fff, 0 -2px 5px rgba(0,0,0,0.08) inset;
+	-webkit-transition: all 0.5s ease;
+	-moz-transition: all 0.5s ease;
+	-ms-transition: all 0.5s ease;
+	-o-transition: all 0.5s ease;
+	transition: all 0.5s ease;
+	background: #eae7e7 url(/Project_ABC/img/userid.png) no-repeat;
+	border: 1px solid #c8c8c8;
+	color: #777;
+	font: 13px Helvetica, Arial, sans-serif;
+	margin: 0 0 10px;
+	padding: 15px 10px 15px 40px;
+	width: 80%;
+}
 #content form input[type="password"] {
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
@@ -155,7 +178,7 @@ form:after {
 	-ms-transition: all 0.5s ease;
 	-o-transition: all 0.5s ease;
 	transition: all 0.5s ease;
-	background: #eae7e7 url(/Project_ABC/img/icons.png) no-repeat;
+	background: #eae7e7 url(/Project_ABC/img/password.png) no-repeat;
 	border: 1px solid #c8c8c8;
 	color: #777;
 	font: 13px Helvetica, Arial, sans-serif;
@@ -163,7 +186,16 @@ form:after {
 	padding: 15px 10px 15px 40px;
 	width: 80%;
 }
-#content form input[type="text"]:focus,
+#content form input[type="text"]:focus{
+	-webkit-box-shadow: 0 0 2px #ed1c24 inset;
+	-moz-box-shadow: 0 0 2px #ed1c24 inset;
+	-ms-box-shadow: 0 0 2px #ed1c24 inset;
+	-o-box-shadow: 0 0 2px #ed1c24 inset;
+	box-shadow: 0 0 2px #ed1c24 inset;
+	background-color: #fff;
+	border: 1px solid #ed1c24;
+	outline: none;
+}
 #content form input[type="password"]:focus {
 	-webkit-box-shadow: 0 0 2px #ed1c24 inset;
 	-moz-box-shadow: 0 0 2px #ed1c24 inset;
@@ -175,7 +207,8 @@ form:after {
 	outline: none;
 }
 #username { background-position: 10px 10px !important }
-#password { background-position: 10px -53px !important }
+#password { background-position: 10px 10px !important }
+
 #content form input[type="submit"] {
 	background: rgb(254,231,154);
 	background: -moz-linear-gradient(top,  rgba(254,231,154,1) 0%, rgba(254,193,81,1) 100%);
