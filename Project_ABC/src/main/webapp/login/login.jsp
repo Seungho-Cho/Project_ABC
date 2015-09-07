@@ -7,7 +7,8 @@
 
 <meta charset="UTF-8">
 <title>Login</title>
-<link type="text/css" rel="stylesheet" href="/Project_ABC/src/main/webapp/login/style.css" />
+<link type="text/css" rel="stylesheet"  href="style.css"/>
+
 </head>
 <body>
 

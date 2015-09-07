@@ -17,7 +17,7 @@ table, caption, tbody, tfoot, thead, tr, th, td {
 	background: transparent;
 }
 body {
-	background: #DCDDDF url(/Project_ABC/src/main/webapp/login/img/bg.png);
+	background: #DCDDDF url(/img/bg.png);
 	color: #000;
 	font: 14px Arial;
 	margin: 0 auto;
@@ -155,7 +155,7 @@ form:after {
 	-ms-transition: all 0.5s ease;
 	-o-transition: all 0.5s ease;
 	transition: all 0.5s ease;
-	background: #eae7e7 url(/Project_ABC/src/main/webapp/login/img/icons.png) no-repeat;
+	background: #eae7e7 url(/Project_ABC/img/icons.png) no-repeat;
 	border: 1px solid #c8c8c8;
 	color: #777;
 	font: 13px Helvetica, Arial, sans-serif;
@@ -243,7 +243,7 @@ form:after {
 	padding: 15px 0;
 }
 .button a {
-	background: url(/Project_ABC/src/main/webapp/login/img/icons.png) 0 -112px no-repeat;
+	background: url(/Project_ABC/img/icons.png) 0 -112px no-repeat;
 	color: #7E7E7E;
 	font-size: 17px;
 	padding: 2px 0 2px 40px;
