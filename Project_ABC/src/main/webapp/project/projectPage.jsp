@@ -6,8 +6,9 @@
 <head>
 <meta charset="UTF-8">
 <title>JSP</title>
-	<link rel="stylesheet" type="text/css" href="/Project_ABC/project/style.css" media="screen" />
+	<link rel="stylesheet" type="text/css" href="/Project_ABC/project/dragStyle.css" media="screen" />
 	<link rel="stylesheet" type="text/css" href="/Project_ABC/project/devheart-examples.css" media="screen" />
+	<link type="text/css" rel="stylesheet" href="/Project_ABC/css/style.css" />
 	
 <%@ page import="com.projectabc.project.Project"%>
 <%@ page import="com.projectabc.member.Member"%>
@@ -30,30 +31,51 @@
 %>
 
 <style>
-		header { background:yellow; border:2px solid blue;position:relative;
-			margin-bottom:10px;}
-		nav { background:lime; border:1px solid red;position:absolute;
-			right:5px;bottom:2px;width:300px; }
-		section { padding:10px;maring:10px;border:1px solid black;
-			background:lightgray;width:90%; height:100%}
-		article { padding:10px;margin:5px;border:1px solid black;
-			border-radius:8px;background:beige; }
-		aside { float:right;width:10%;background:orange;padding:10px; }
-		footer { background:yellow; border:1px solid blue;margin-top:10px;}
-</style>
+      #jb-container {
+        width: 0px auto;
+        margin: 0px auto;
+        padding: 20px;
+        border: 1px solid #bcbcbc;
+      }
+      #jb-header {
+        padding: 20px;
+        margin-bottom: 20px;
+        border: 1px solid #bcbcbc;
+      }
+      #jb-content {
+        width: 80%;
+        padding: 20px;
+        margin-bottom: 20px;
+        float: left;
+        border: 1px solid #bcbcbc;
+      }
+      #jb-sidebar {
+        width: 10%;
+        padding: 20px;
+        margin-bottom: 20px;
+        float: right;
+        border: 1px solid #bcbcbc;
+      }
+      #jb-footer {
+        clear: both;
+        padding: 20px;
+        border: 1px solid #bcbcbc;
+      }
+    </style>
 
 
 </head>
-<body class="dhe-body">
-<header> 
-	<h2>
-		<form action="-----Todo 검색 -----.do" method="post" >
-			<input type="text" name="searchKeyword" size="50"/>           
-			<input type="hidden" name="projno" value=<%=proj.getProjno() %> />
-			<input type="submit" value="검색"/>
+<body>
+<div id="jb-container">
+	<div id="jb-header">
+		<h2>
+			<form action="-----Todo 검색 -----.do" method="post" >
+				<input type="text" name="searchKeyword" size="50"/>           
+				<input type="hidden" name="projno" value=<%=proj.getProjno() %> />
+				<input type="submit" value="검색"/>
 			</form>
-	</h2>
-		<nav> 
+		</h2>
+		<div> 
 			<%=loginmember.getName()%>(<%=loginmember.getId() %>)
 			<button id="button_logout" onclick="location.href='tryLogout.do'">로그아웃</button>
 			<%
@@ -65,15 +87,15 @@
 			///////////////////////////////////////
 			%>
 			<input type="button" value="새 메세지" onclick="window.open('showMessageList.do','window팝업','width=600, height=600, menubar=no, status=no, toolbar=no');">
-		</nav>
-	</header>
-	
-	<aside>  
+		</div>
+	</div>
+		
+	<div id="jb-sidebar">  
 		<% 
 		for(int i=0; i<memList.size(); i++)
 		{
 		%>		
-			<article><a href="멤버정보?.do"><%=memList.get(i).getName()%>(<%=memList.get(i).getId() %>)</a></article>
+			<div><a href="멤버정보?.do"><%=memList.get(i).getName()%>(<%=memList.get(i).getId() %>)</a></div>
 		<%
 		}
 		 %>
@@ -81,32 +103,33 @@
 		<%if("0".equals(position))
 		{
 		%>
-		<article> 
+		<div> 
 			<form action="addProjectMember.do" method="post" >
 			<input type="text" name="memberid" size="5"/>
 			<input type="hidden" name="projno" value=<%=proj.getProjno() %> />
 			<input type="submit" value="추가"/>
 			</form>
-		</article>
+		</div>
 		<%
 		} 
 		%>
-	</aside>
-	
-	
-	<section>
-		<div id="center-wrapper">
-			<div class="dhe-example-section-content">
+	</div>
+		
+		
+	<div id="jb-content">
+		<div id="center-wrapper" style="overflow:scroll; white-space:nowrap;">
+			<div class="dhe-example-section-content" >
 				<div id="todoList">
 				</div>
 				<p>
 			</div>
 		</div>
-	</section>
+	</div>
 	
-	<footer> 
-	</footer>
-
+	<div id="jb-footer">
+	</div>
+	
+</div>
  
 <!-- Example JavaScript files -->
 <script type="text/javascript" src="/Project_ABC/js/jquery-1.4.2.min.js"></script>

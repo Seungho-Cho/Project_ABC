@@ -8,7 +8,7 @@
 </head>
 <style>
       #jb-container {
-        width: 900px;
+        width: 0px auto;
         margin: 0px auto;
         padding: 20px;
         border: 1px solid #bcbcbc;
@@ -19,7 +19,7 @@
         border: 1px solid #bcbcbc;
       }
       #jb-content {
-        width: 500px;
+        width: auto;
         padding: 20px;
         margin-bottom: 20px;
         float: left;
@@ -37,14 +37,14 @@
         padding: 20px;
         border: 1px solid #bcbcbc;
       }
-    </style>
+</style>
 <body>
 <div id="jb-container">
       <div id="jb-header">
       <div style="overflow:scroll; white-space:nowrap;">
         <h2>상단Header</h2>
         <p>상단헤더에 스크롤바 적용해보기</p>
-        <p>가능한가여?</p>
+        <p>가능</p>
         <p>가능하네여</p>
         <p>ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ이렇게 길게텍스트를쓰면 아마 스크롤바가 밑에도 생길듯</p>
       </div>
