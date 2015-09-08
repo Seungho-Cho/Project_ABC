@@ -28,8 +28,9 @@
         	title: '이름 입력'
         });
         $('#username').on('save',function(e, params) {
-        	
-          
+            
+            updateTodo(params.newValue+'');
+            alert('Saved value');
         });
         
         $('#textare').editable({
@@ -56,16 +57,22 @@
         });
     });
     
-    function updateTodo(val){
+    $('#btn').click(function(){
+    	alert('c');
+    });
+    
+    function updateTodo(){
+    	alert('c');
     	$.ajax({
-    		url: "login.do?test="+val,
+    		url: "todoTest.do",
+    		data:{
+    			test='test!!!!!'
+    		}
     		dataType:"text",
     		type:"POST",
-    		success:function(){
-    			alert(val);
+    		success:function(){   			
     		},
     		error:function() {
-    			alert(fuckyou);
     		}
     	})
     }
@@ -92,7 +99,8 @@
         <span>Status:</span>
         <textarea id="textare"></textarea>
       </div>
-
+		
+	<button id="btn" >test</button>
       
     </div>
 
