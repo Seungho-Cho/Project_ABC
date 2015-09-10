@@ -23,26 +23,50 @@
 <head>
 
 <style>
-		header { background:yellow; border:2px solid blue;position:relative;
-			margin-bottom:10px;}
-		nav { background:lime; border:1px solid red;position:absolute;
-			right:5px;bottom:2px;width:300px; }
-		section { padding:10px;maring:10px;border:1px solid black;
-			background:lightgray;width:90%; height:100%}
-		article { padding:10px;margin:5px;border:1px solid black;
-			border-radius:8px;background:beige; }
-		aside { float:right;width:10%;background:orange;padding:10px; }
-		footer { background:yellow; border:1px solid blue;margin-top:10px;}
+      #jb-container {
+        width: 0px auto;
+        margin: 0px auto;
+        padding: 20px;
+        border: 1px solid #bcbcbc;
+      }
+      #jb-header {
+        padding: 20px;
+        margin-bottom: 20px;
+        border: 1px solid #bcbcbc;
+      }
+      #jb-content {
+        width: 60%;
+        height:auto;
+        padding: 20px;
+        margin-bottom: 20px;
+        float: left;
+        border: 1px solid #bcbcbc;
+      }
+      #jb-sidebar {
+        width: 20%;
+        padding: 20px;
+        margin-bottom: 20px;
+        float: right;
+        border: 1px solid #bcbcbc;
+      }
+      #jb-footer {
+        clear: both;
+        padding: 20px;
+        border: 1px solid #bcbcbc;
+      }
 </style>
+      
 
 <meta charset="UTF-8">
 <title>JSP</title>
 </head>
 <body>
-<header><%=todo.getTodoname()%>
-<nav></nav>
-<section><%=todo.getTodocont()%></section>
-<aside>
+<div id="jb-container">
+<div id="jb-header">
+<span id="todoName"><%=todo.getTodoname()%></span>
+</div>
+<div id="jb-content"><%=todo.getTodocont()%></div>
+<div id="jb-sidebar">
 		<% 
 		for(int i=0; i<memList.size(); i++)
 		{
@@ -66,8 +90,10 @@
 		} 
 		%>
 
-</aside>
-</header>
-<footer></footer>
+</div>
+
+  <div id="jb-footer"></div>
+
+</div>
 </body>
 </html>
