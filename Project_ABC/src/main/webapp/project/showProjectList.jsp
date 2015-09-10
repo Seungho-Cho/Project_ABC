@@ -78,10 +78,17 @@
 			<td><p align="center"><a href="makeProjectForm.do">프로젝트 생성</a></td>
 		</tr>
 	 </table>
+<<<<<<< HEAD
+	 <br/>
+	 <a href="#">파일 업로드</a>
+	 <br/>
+	 <a href="listTest.do">List Test</a>
+=======
 </div>
 <div id="jb-sidebar"></div>
 <div id="jb-footer"></div>
 	 
 </div>
+>>>>>>> branch 'master' of https://github.com/Seungho-Cho/Project_ABC
 </body>
 </html>
