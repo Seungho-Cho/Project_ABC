@@ -1,8 +1,8 @@
-package com.projectabc.storageboard;
+package com.projectabc.storage;
 
 public class StorageBoard {
 	String boardno;
-	String writeid;
+	String memid;
 	String title;
 	String content;
 	String filename;
@@ -15,11 +15,11 @@ public class StorageBoard {
 	public void setBoardno(String boardno) {
 		this.boardno = boardno;
 	}
-	public String getWriteid() {
-		return writeid;
+	public String getMemid() {
+		return memid;
 	}
-	public void setWriteid(String writeid) {
-		this.writeid = writeid;
+	public void setMemid(String memid) {
+		this.memid = memid;
 	}
 	public String getTitle() {
 		return title;

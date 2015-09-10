@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+		
+<mapper namespace="StorageBoard">	
+	<resultMap type="StorageBoard" id="StorageBoardResult">
+	     <result property="boardno" column="boardno" />
+	     <result property="memid" column="memid" />
+	     <result property="title" column="title" />
+	     <result property="content" column="content" />
+	     <result property="filename" column="filename" />
+	     <result property="realfilename" column="realfilename" />
+	     <result property="writedate" column="writedate" />
+	</resultMap>
+	<!-- 
+		boardno가 일치하는 게시글 조회
+	 -->
+	<select id="selectStorageBoardByNo" resultMap="StorageBoardResult">
+		<![CDATA[
+			select boardno, memid, title, content, filename, realfilename, writedate
+			from StorageBoard where boardno=#{boardno}
+		]]>
+	</select>
+	
+    <!-- 
+      StorageBoard 테이블에서 모든 레코드 리스트 조회
+     -->		
+	<select id="selectStorageBoardList" resultMap="StorageBoardResult" >
+		<![CDATA[
+			select boardno, memid, title, content, filename, realfilename, writedate
+			from StorageBoard
+		]]>
+	</select>
+	
+	<!-- 
+		StorageBoard 전체 게시글 개수 조회
+	 -->
+	<select id="selectStorageBoardCount" resultType="int">
+	    select count(*) from StorageBoard
+	</select>
+	
+	<!-- 
+      StorageBoard 테이블에서 레코드 검색
+     -->
+	<select id="searchStorageBoardList" 
+	     parameterType="StorageBoard" resultMap="StorageBoardResult">
+		select boardno, memid, title, content, filename, realfilename, writedate
+       from StorageBoard  
+       <where>
+			<if test="title != null">
+				title LIKE '%' || #{title} || '%'
+		  	</if>
+	        <if test="content != null">
+				content LIKE '%' || #{content} || '%'
+			</if>
+			<if test="filename != null">
+				filename LIKE '%' || #{filename} || '%'
+			</if>
+			<if test="memid != null">
+				memid LIKE '%' || #{memid} || '%'
+			</if>
+       </where>
+	</select>
+	
+	<!-- 
+      StorageBoard 테이블에서 레코드 검색해서 조건에 일치하는 레코드의 수를 리턴
+      -->
+	<select id="searchStorageBoardCount" 	
+	     parameterType="StorageBoard" resultType="int">
+		select count(*)
+		from StorageBoard  
+		<where>
+			<if test="title != null">
+				title LIKE '%' || #{title} || '%'
+			</if>
+			<if test="content != null">
+				content LIKE '%' || #{content} || '%'
+			</if>
+			<if test="filename != null">
+				filename LIKE '%' || #{filename} || '%'
+			</if>
+			<if test="memid != null">
+				memid LIKE '%' || #{memid} || '%'
+			</if>
+		</where>
+	</select>
+	
+	<!-- StorageBoard 수정
+	 -->
+	<update id="updateStorageBoard"  parameterType="StorageBoard">
+		<![CDATA[
+			update StorageBoard
+			set title=#{title},
+				content=#{content},
+				filename=#{filename},
+				realfilename=#{realfilename}
+			where boardno=#{boardno}
+		]]>
+	</update>	
+	
+	<!-- 
+		StorageBoard 테이블에서
+      boardno가 일치하는  레코드를 삭제하는 쿼리
+     -->
+	<delete id="deleteStorageBoard"  parameterType="string">
+		<![CDATA[
+			delete from StorageBoard where boardno=#{boardno}
+		]]>
+	</delete>
+	
+	<!-- 
+		StorageBoard 테이블에 StorageBoard 정보 추가
+	-->
+	<insert id="insertStorageBoard" parameterType="StorageBoard">
+	<![CDATA[
+		insert into StorageBoard (boardno, memid, title, content, filename, realfilename, writedate)
+		values (stgboard_seq.nextval,#{memid},#{title},#{content},#{filename},#{realfilename},sysdate)
+		]]>
+	</insert>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+

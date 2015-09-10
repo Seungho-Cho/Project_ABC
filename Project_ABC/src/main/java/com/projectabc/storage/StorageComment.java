@@ -1,22 +1,22 @@
-package com.projectabc.storagecomment;
+package com.projectabc.storage;
 
 public class StorageComment {
 	String commno;
-	String writeid;
+	String memid;
 	String comm;
 	String writedate;
-	String num;
+	String boardno;
 	public String getCommno() {
 		return commno;
 	}
 	public void setCommno(String commno) {
 		this.commno = commno;
 	}
-	public String getWriteid() {
-		return writeid;
+	public String getMemid() {
+		return memid;
 	}
-	public void setWriteid(String writeid) {
-		this.writeid = writeid;
+	public void setMemid(String memid) {
+		this.memid = memid;
 	}
 	public String getComm() {
 		return comm;
@@ -30,10 +30,10 @@ public class StorageComment {
 	public void setWritedate(String writedate) {
 		this.writedate = writedate;
 	}
-	public String getNum() {
-		return num;
+	public String getBoardno() {
+		return boardno;
 	}
-	public void setNum(String num) {
-		this.num = num;
+	public void setBoardno(String boardno) {
+		this.boardno = boardno;
 	}
 }

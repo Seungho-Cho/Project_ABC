@@ -5,7 +5,7 @@
 		
 <mapper namespace="Message">	
 	<resultMap type="Message" id="MessageResult">
-	    <!-- TodoComment 테이블의 
+	    <!-- Message 테이블의 
 	    조회결과에서
 	    어떤 컬럼의 값이 어떤 속성에 저장되야 하는지 설정
 	     -->

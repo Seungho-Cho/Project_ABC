@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+		
+<mapper namespace="StorageComment">	
+	<resultMap type="StorageComment" id="StorageCommentResult">
+	    <!-- StorageComment 테이블의 
+	    조회결과에서
+	    어떤 컬럼의 값이 어떤 속성에 저장되야 하는지 설정
+	     -->
+	     <result property="commno" column="commno" />
+	     <result property="memid" column="memid" />
+	     <result property="comm" column="comm" />
+	     <result property="writedate" column="writedate" />
+	     <result property="boardno" column="boardno" />
+	</resultMap>
+    <!-- 
+      StorageComment 테이블에서 boardno가 일치하는 레코드 리스트 조회
+     -->		
+	<select id="selectStorageCommentListByBoardno" resultMap="StorageCommentResult">
+		<![CDATA[
+			select commno,boardno, memid, comm, writedate
+			from StorageComment where boardno=#{boardno}
+		]]>
+	</select>
+	
+	<!-- 
+		StorageComment 테이블에서
+      commno가 일치하는  레코드를 삭제하는 쿼리
+     -->
+	<delete id="deleteStorageComment"  parameterType="string">
+		<![CDATA[
+			delete from StorageComment where commno=#{commno}
+		]]>
+	</delete>
+	
+	<!-- 
+		StorageComment 테이블에 StorageComment 정보 추가
+	-->
+	<insert id="insertStorageComment" parameterType="StorageComment">
+		insert into StorageComment (commno,boardno, memid, comm, writedate)
+		values (tdcomm_seq.nextval,#{boardno},#{memid},#{comm},sysdate)
+	</insert>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
