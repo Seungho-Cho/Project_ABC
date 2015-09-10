@@ -22,6 +22,61 @@
 <html>
 <head>
 
+<script src="/Project_ABC/js/jquery-1.11.3.js"></script>
+
+<!-- bootstrap -->
+<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+<script src="http://code.jquery.com/jquery-2.0.3.min.js"></script> 
+<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>  
+
+<!-- x-editable (bootstrap version) -->
+<link href="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.4.6/bootstrap-editable/css/bootstrap-editable.css" rel="stylesheet"/>
+<script src="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.4.6/bootstrap-editable/js/bootstrap-editable.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        //toggle `popup` / `inline` mode
+        $.fn.editable.defaults.mode = 'inline';     
+        
+        //make username editable
+        $('#todoName').editable({
+        	success: function(response, newValue) {
+                postTest(newValue);
+            }
+        });
+        
+        //make status editable
+        $('#todoCont').editable({
+            type: 'textarea',
+            success: function(response, newValue) {
+                postTest(newValue);
+            }
+        });
+    });
+    
+    
+    function postTest(value)
+    {
+    	alert(value);
+    }
+</script>
+
+
+<style type="text/css">
+      #main {
+        width: 800px;
+      }
+      p.editable, span.editable {
+        background-color : #FFA;
+        padding : 3px;
+      }
+      input.editable {
+      }
+      div {
+        margin : 15px;
+      }
+</style>
+
 <style>
       #jb-container {
         width: 0px auto;
@@ -37,15 +92,15 @@
       #jb-content {
         width: 60%;
         height:auto;
-        padding: 20px;
-        margin-bottom: 20px;
+        padding: 10px;
+        margin-bottom: 10px;
         float: left;
         border: 1px solid #bcbcbc;
       }
       #jb-sidebar {
-        width: 20%;
-        padding: 20px;
-        margin-bottom: 20px;
+        width: 30%;
+        padding: 5px;
+        margin-bottom: 5px;
         float: right;
         border: 1px solid #bcbcbc;
       }
@@ -63,9 +118,11 @@
 <body>
 <div id="jb-container">
 <div id="jb-header">
-<span id="todoName"><%=todo.getTodoname()%></span>
+	<a href="#" id="todoName" data-type="text" data-placement="center" data-title="제목 변경"><%=todo.getTodoname()%></a>	     
 </div>
-<div id="jb-content"><%=todo.getTodocont()%></div>
+<div id="jb-content">
+	<a href="#" id="todoCont" data-type="textarea" data-placement="center" data-title="내용 변경"><%=todo.getTodocont()%></a>				        		
+</div>
 <div id="jb-sidebar">
 		<% 
 		for(int i=0; i<memList.size(); i++)
@@ -82,7 +139,7 @@
 		<article> 
 			<form action="addTodoMember.do" method="post" >
 			<input type="text" name="memberid" size="5"/>
-			<input type="hidden" name="todono" value=<%=todo.getTodono() %> />
+			<input type="hidden" name="todono" value=<%=todo.getTodono()%>/>
 			<input type="submit" value="추가"/>
 			</form>
 		</article>
@@ -92,7 +149,28 @@
 
 </div>
 
-  <div id="jb-footer"></div>
+  <div id="jb-footer">
+  	<table>
+  	<% for(int i=0; i<commList.size(); i++)
+	{
+  		TodoComment comm = commList.get(i);
+	%>
+		<tr>
+			<td><%= comm.getMemid() %></td>
+			<td><%= comm.getCommdate() %></td>
+			<td><%= comm.getComm() %></td>
+		</tr>
+	<%
+	}
+	%>
+	<form action="addTodoComm.do" method="post" >
+		<input type="text" name="comm" size="40"/>
+		<input type="hidden" name="todono" value=<%=todo.getTodono()%> />
+		<input type="hidden" name="memid" value=<%=loginmember.getId()%> />
+		<input type="submit" value="추가"/>	
+	</form>
+  	</table>
+ </div>
 
 </div>
 </body>

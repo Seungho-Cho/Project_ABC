@@ -4,8 +4,7 @@
 <head>
 <meta http-equiv="Content-Language" content="ko" >
 
-<script type="text/javascript" 
- src="<%=getServletContext().getContextPath()%>/js/jquery-1.11.3.js"></script>
+<script type="text/javascript" src="/Project_ABC/js/jquery-1.11.3.js"></script>
 <script>
 $(document).ready(function() {
 	$("#id").on("change",function(){

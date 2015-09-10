@@ -100,6 +100,21 @@ public class TodoService {
 		return mav;	
 	}
 	
+	@RequestMapping(value="addTodoComm.do")
+	public ModelAndView addTodoComm(
+			TodoComment comm,
+			Todo todo
+			)throws Exception{
+		TodoCommentDAO todoCommDAO = new TodoCommentDAO();
+		todoCommDAO.insertTodoComment(comm);
+		
+		ModelAndView mav=new ModelAndView();
+		mav.setViewName("forward:/showTodo.do");
+		mav.addObject("TODO",todo);
+		return mav;
+	}
+	
+	
 	 public static void dumpArray(String[] array) {
 		    for (int i = 0; i < array.length; i++)
 		      System.out.format("array[%d] = %s%n", i, array[i]);

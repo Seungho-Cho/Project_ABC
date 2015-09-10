@@ -13,42 +13,23 @@
     <!-- x-editable (bootstrap version) -->
     <link href="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.4.6/bootstrap-editable/css/bootstrap-editable.css" rel="stylesheet"/>
     <script src="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.4.6/bootstrap-editable/js/bootstrap-editable.min.js"></script>
-    <!-- 참고할것 -> https://vitalets.github.io/x-editable/docs.html -->
     
-
+    <!-- main.js -->
     <script>
     $(document).ready(function() {
-	
         //toggle `popup` / `inline` mode
-        $.fn.editable.defaults.mode = 'inline';     
+        $.fn.editable.defaults.mode = 'popup';     
         
         //make username editable
         $('#username').editable({
-        	type: 'text',
-        	title: '이름 입력'
-        });
-        $('#username').on('save',function(e, params) {
-            
-            updateTodo(params.newValue+'');
-            alert('Saved value');
-        });
-        
-        $('#textare').editable({
-        	type: 'textarea',
-        	title: '이름 입력'
+        	success: function(response, newValue) {
+                postTest(newValue);
+            }
         });
         
         //make status editable
         $('#status').editable({
-            type: 'select',
-            title: 'Select status',
-            placement: 'right',
-            value: 2,
-            source: [
-                {value: 1, text: 'status 1'},
-                {value: 2, text: 'status 2'},
-                {value: 3, text: 'status 3'}
-            ]
+            type: 'textarea',
             /*
             //uncomment these lines to send data on server
             ,pk: 1
@@ -57,24 +38,10 @@
         });
     });
     
-    $('#btn').click(function(){
-    	alert('c');
-    });
     
-    function updateTodo(){
-    	alert('c');
-    	$.ajax({
-    		url: "todoTest.do",
-    		data:{
-    			test='test!!!!!'
-    		}
-    		dataType:"text",
-    		type:"POST",
-    		success:function(){   			
-    		},
-    		error:function() {
-    		}
-    	})
+    function postTest(value)
+    {
+    	alert(value);
     }
     </script>
   </head>
@@ -94,13 +61,7 @@
         <span>Status:</span>
         <a href="#" id="status"></a>
       </div>
-      
-      <div>
-        <span>Status:</span>
-        <textarea id="textare"></textarea>
-      </div>
-		
-	<button id="btn" >test</button>
+
       
     </div>
 
