@@ -25,7 +25,7 @@ span.editable input
 {
 	border: none;
 	border-bottom: 1px solid #bbbbbb;
-	width: 120px;
+	width: 60px;
 	background: none;
 }
 .editable textarea
