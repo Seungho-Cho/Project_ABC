@@ -41,7 +41,8 @@
         //make username editable
         $('#todoName').editable({
         	success: function(response, newValue) {
-                postTest(newValue);
+        		//updateTodoElement('name',newval);
+        		//alert(newval);
             }
         });
         
@@ -49,15 +50,83 @@
         $('#todoCont').editable({
             type: 'textarea',
             success: function(response, newValue) {
-                postTest(newValue);
+                //postTest(newValue);
             }
         });
     });
     
     
-    function postTest(value)
-    {
-    	alert(value);
+
+    function updateTodoElement(e,val){
+   	
+    	switch(e)
+    	{
+ 
+    	case 'name':
+	    	$.ajax({
+	    		url: "changeTodo.do",
+	    		data: {
+	    			todono: <%=todo.getTodono()%>,
+	    			todoname: val
+	    		},
+	    		dataType:"text",
+	    		type:"POST",
+	    		success:function(){
+	    		},
+	    		error:function() {
+	    		}
+	    	})
+	    	break;
+	    	
+    	case 'cont':
+	    	$.ajax({
+	    		url: "changeTodo.do",
+	    		data: {
+	    			todono: <%=todo.getTodono()%>,
+	    			todocont: val
+	    		},
+	    		dataType:"text",
+	    		type:"POST",
+	    		success:function(){
+	    		},
+	    		error:function() {
+	    		}
+	    	})
+	    	break;
+	    	
+    	case 'start':
+	    	$.ajax({
+	    		url: "changeTodo.do",
+	    		data: {
+	    			todono: <%=todo.getTodono()%>,
+	    			startdate: val
+	    		},
+	    		dataType:"text",
+	    		type:"POST",
+	    		success:function(){
+	    		},
+	    		error:function() {
+	    		}
+	    	})
+	    	break;
+	    	
+    	case 'end':
+	    	$.ajax({
+	    		url: "changeTodo.do",
+	    		data: {
+	    			todono: <%=todo.getTodono()%>,
+	    			enddate: val
+	    		},
+	    		dataType:"text",
+	    		type:"POST",
+	    		success:function(){
+	    		},
+	    		error:function() {
+	    		}
+	    	})
+	    	break;
+    	
+    	}
     }
 </script>
 

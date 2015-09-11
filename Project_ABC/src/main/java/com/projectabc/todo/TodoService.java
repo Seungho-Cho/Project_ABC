@@ -113,6 +113,15 @@ public class TodoService {
 		return mav;
 	}
 	
+	@RequestMapping(value="changeTodo.do")
+	public void changeTodo(
+			Todo todo
+			)throws Exception{
+		
+		return;
+	
+	}
+	
 	
 	 public static void dumpArray(String[] array) {
 		    for (int i = 0; i < array.length; i++)
