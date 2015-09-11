@@ -80,7 +80,7 @@
 	 </table>
 <<<<<<< HEAD
 	 <br/>
-	 <a href="#">파일 업로드</a>
+	 <a href="viewStorageBoardList.do">파일 업로드</a>
 	 <br/>
 	 <a href="listTest.do">List Test</a>
 =======
