@@ -5,21 +5,24 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Login</title>
+<link type="text/css" rel="stylesheet" href="/Project_ABC/css/style.css" />
+
 </head>
 <body>
-
-<p align="center">Login!</p>
+<div class="container">
+		<section id="content">
 	<!--로그인하기전 화면은 tryLogin.jsp-->
-	
-	<p align=center>
-		<form action="tryLogin.do" method="post" enctype="multipart/form-data">
-			ID <input type="text" name="id" size="50"/><br/>
-			PASSWORD <input type="password" name="password" size="50"/><br/>
-			<input type="submit" value="로그인"/>
-			<input type="reset" value="취소"/>
+	<form action="tryLogin.do" method="post" enctype="multipart/form-data">
+			<h1>Project_ABC</h1>
+				<div><input type="text" placeholder="UserID" name="id"></div>
+				<div><input type="password" placeholder="Password" name="password"></div>
+				<div>
+					<input type="submit" value="Login"/>
+					<a href="#">ID/PW찾기</a>
+					<a href="signup.do">회원가입</a>
+				</div>
 		</form>
-	<p align="center"><a href="signup.do">회원가입</a></p>
- 
-</form>
-</body>
+		</section>
+		</div>
+		</body>
 </html>

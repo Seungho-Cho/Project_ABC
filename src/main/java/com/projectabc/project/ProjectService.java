@@ -74,7 +74,7 @@ public class ProjectService {
 		TodoListDAO todoListDAO = new TodoListDAO();
 		
 		
-		session.setAttribute("POSITION",);
+		session.setAttribute("POSITION", null);
 		
 		
 		Project project=projDAO.selectProjectByNo(projno);	
