@@ -19,7 +19,7 @@ $(document).ready(function() {
     });
  });
 </script>
-<link type="text/css" rel="stylesheet" href="/Project_ABC/webapp/css/addMemberFormStyle.css" />
+<link type="text/css" rel="stylesheet" href="/Project_ABC/css/addMemberFormStyle.css" />
 </head>
 
 
