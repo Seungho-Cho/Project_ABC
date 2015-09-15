@@ -82,6 +82,16 @@ public class StorageBoardDAO {
 	  session.close();
 	  return boardCount;
   }
+  
+  public List<StorageBoard> selectStorageBoardListBySuperboard(String superboard)
+   throws Exception{
+		SqlSession session=sqlMapper.openSession(true);
+		List<StorageBoard> boardList=
+		session.selectList("selectStorageBoardListBySuperboard",superboard);
+		session.close();
+		return boardList;
+  }
+  
   public void updateStorageBoard(StorageBoard sb) {
 		SqlSession session=sqlMapper.openSession(true);
 		session.update("updateStorageBoard",sb);

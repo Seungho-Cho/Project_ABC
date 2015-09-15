@@ -12,13 +12,14 @@
 	     <result property="filename" column="filename" />
 	     <result property="realfilename" column="realfilename" />
 	     <result property="writedate" column="writedate" />
+	     <result property="superboard" column="superboard" />
 	</resultMap>
 	<!-- 
 		boardno가 일치하는 게시글 조회
 	 -->
 	<select id="selectStorageBoardByNo" resultMap="StorageBoardResult">
 		<![CDATA[
-			select boardno, memid, title, content, filename, realfilename, writedate
+			select boardno, memid, title, content, filename, realfilename, writedate, superboard
 			from StorageBoard where boardno=#{boardno}
 		]]>
 	</select>
@@ -28,7 +29,7 @@
      -->		
 	<select id="selectStorageBoardList" resultMap="StorageBoardResult" >
 		<![CDATA[
-			select boardno, memid, title, content, filename, realfilename, writedate
+			select boardno, memid, title, content, filename, realfilename, writedate, superboard
 			from StorageBoard
 		]]>
 	</select>
@@ -45,7 +46,7 @@
      -->
 	<select id="searchStorageBoardList" 
 	     parameterType="StorageBoard" resultMap="StorageBoardResult">
-		select boardno, memid, title, content, filename, realfilename, writedate
+		select boardno, memid, title, content, filename, realfilename, writedate, superboard
        from StorageBoard  
        <where>
 			<if test="title != null">
@@ -86,6 +87,17 @@
 		</where>
 	</select>
 	
+	<!--
+		StorageBoard 테이블에서  superboard가 일치하는 보드 리스트 조회
+	 -->
+	 <select id="selectStorageBoardListBySuperboard" resultMap="StorageBoardResult">
+		<![CDATA[
+			select boardno, memid, title, content, filename, realfilename, writedate, superboard
+			from StorageBoard
+			where superboard=#{superboard}
+		]]>
+	</select>
+	
 	<!-- StorageBoard 수정
 	 -->
 	<update id="updateStorageBoard"  parameterType="StorageBoard">
@@ -94,10 +106,11 @@
 			set title=#{title},
 				content=#{content},
 				filename=#{filename},
-				realfilename=#{realfilename}
+				realfilename=#{realfilename},
+				superboard=#{superboard}
 			where boardno=#{boardno}
 		]]>
-	</update>	
+	</update>
 	
 	<!-- 
 		StorageBoard 테이블에서
@@ -117,8 +130,8 @@
 	  select stgboard_seq.nextval from dual
 	</selectKey>
 	<![CDATA[
-		insert into StorageBoard (boardno, memid, title, content, filename, realfilename, writedate)
-		values (#{boardno},#{memid},#{title},#{content},#{filename},#{realfilename},sysdate)
+		insert into StorageBoard (boardno, memid, title, content, filename, realfilename, writedate, superboard)
+		values (#{boardno},#{memid},#{title},#{content},#{filename},#{realfilename},sysdate,#{superboard})
 		]]>
 	</insert>
 </mapper>

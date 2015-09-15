@@ -8,7 +8,14 @@ public class StorageBoard {
 	String filename;
 	String realfilename;
 	String writedate;
+	String superboard;
 	
+	public String getSuperboard() {
+		return superboard;
+	}
+	public void setSuperboard(String superboard) {
+		this.superboard = superboard;
+	}
 	public String getBoardno() {
 		return boardno;
 	}
