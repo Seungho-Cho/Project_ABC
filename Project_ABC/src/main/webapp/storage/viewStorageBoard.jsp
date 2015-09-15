@@ -47,9 +47,9 @@
 	</table>
 	<br/>
 	<p align="center">
-		<form action="addComment.do"  method="post">
+		<form action="addStorageComment.do"  method="post">
 			<textarea name="comm" rows="5" cols="80"></textarea>
-			<input type="hidden"  name="num"  value="<%=storageBoard.getBoardno()%>"/>
+			<input type="hidden"  name="boardno"  value="<%=storageBoard.getBoardno()%>"/>
 			<input type="submit"  value="확인"/>
 		</form>
 	</p>

@@ -154,7 +154,7 @@ public class StorageBoardService {
 		StorageBoard storageBoard=storageBoardDAO.selectStorageBoardByNo(num);
 		response.setContentType("text/html;charset=UTF-8");
 		response.setHeader("Content-Disposition", "attachment; filename="+storageBoard.getFilename());
-		File downFile=new File("c:/download/"+storageBoard.getRealfilename());
+		File downFile=new File("c:/upload/"+storageBoard.getRealfilename());
 		FileCopyUtils.copy(new FileInputStream(downFile), response.getOutputStream());
 		response.flushBuffer();
 	}

@@ -37,7 +37,7 @@
 		%>
 		<tr>
 			<td><%=storageboard.getBoardno()%></td>
-			<td><a href="viewBoard.do?num=<%=storageboard.getBoardno()%>"><%=storageboard.getTitle()%></a></td>
+			<td><a href="viewStorageBoard.do?num=<%=storageboard.getBoardno()%>"><%=storageboard.getTitle()%></a></td>
 			<td><% if(storageboard.getFilename()!=null) {%>
 				<%=storageboard.getFilename()%> <%} %></td>			
 		</tr>

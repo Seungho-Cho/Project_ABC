@@ -113,9 +113,12 @@
 		StorageBoard 테이블에 StorageBoard 정보 추가
 	-->
 	<insert id="insertStorageBoard" parameterType="StorageBoard">
+	<selectKey resultType="string"   keyProperty="boardno"   order="BEFORE">
+	  select stgboard_seq.nextval from dual
+	</selectKey>
 	<![CDATA[
 		insert into StorageBoard (boardno, memid, title, content, filename, realfilename, writedate)
-		values (stgboard_seq.nextval,#{memid},#{title},#{content},#{filename},#{realfilename},sysdate)
+		values (#{boardno},#{memid},#{title},#{content},#{filename},#{realfilename},sysdate)
 		]]>
 	</insert>
 </mapper>
