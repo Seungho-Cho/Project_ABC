@@ -117,6 +117,21 @@ public class TodoService {
 	public void changeTodo(
 			Todo todo
 			)throws Exception{
+
+		TodoDAO todoDAO = new TodoDAO();
+		Todo tempTodo = todoDAO.selectTodoByTodono(todo.getTodono());
+		
+		if(todo.getTodoname() == null) todo.setTodoname(tempTodo.getTodoname());
+		if(todo.getTodocont() == null) todo.setTodocont(tempTodo.getTodocont());
+		if(todo.getStartdate() == null){
+			todo.setStartdate(tempTodo.getStartdate().substring(0,10));
+		}
+		if(todo.getEnddate() == null){
+			todo.setEnddate(tempTodo.getEnddate().substring(0,10));
+		}
+		todo.setListno(tempTodo.getListno());
+
+		todoDAO.updateTodo(todo);
 		
 		return;
 	

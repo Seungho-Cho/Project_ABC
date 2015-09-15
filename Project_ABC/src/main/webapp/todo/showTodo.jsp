@@ -9,7 +9,7 @@
 <%@ page import="java.util.List"%>
 
 <%
-	Project proj = (Project)request.getAttribute("PROJECT");
+	//Project proj = (Project)request.getAttribute("PROJECT");
 	List<Member> memList = (List<Member>)request.getAttribute("TODO_MEM_LIST");
 	List<TodoComment> commList = (List<TodoComment>)request.getAttribute("TODO_COMM_LIST");
 	Todo todo = (Todo)request.getAttribute("TODO");
@@ -21,9 +21,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-
-<script src="/Project_ABC/js/jquery-1.11.3.js"></script>
-
+<meta charset="UTF-8">
 <!-- bootstrap -->
 <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
 <script src="http://code.jquery.com/jquery-2.0.3.min.js"></script> 
@@ -33,16 +31,21 @@
 <link href="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.4.6/bootstrap-editable/css/bootstrap-editable.css" rel="stylesheet"/>
 <script src="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.4.6/bootstrap-editable/js/bootstrap-editable.min.js"></script>
 
+<script src="/Project_ABC/js/moment-with-locales.js"></script>
+
+<!-- Example jQuery code (JavaScript)  -->
 <script>
+
     $(document).ready(function() {
         //toggle `popup` / `inline` mode
-        $.fn.editable.defaults.mode = 'inline';     
+        
+        $.fn.editable.defaults.mode = 'popup';   
+        moment.locale('ko-KO');
         
         //make username editable
         $('#todoName').editable({
         	success: function(response, newValue) {
-        		//updateTodoElement('name',newval);
-        		//alert(newval);
+        		updateTodoElement('name',newValue);
             }
         });
         
@@ -50,84 +53,116 @@
         $('#todoCont').editable({
             type: 'textarea',
             success: function(response, newValue) {
-                //postTest(newValue);
+            	updateTodoElement('cont',newValue);
             }
         });
+        
+        $('#startDate').editable({
+            format: 'YYYY-MM-DD',    
+            viewformat: 'YYYY-MM-DD',    
+            template: 'YYYY / MMMM / D',    
+            combodate: {
+                    minYear: 2000,
+                    maxYear: 2020,
+                    minuteStep: 1
+               },
+            success: function(response, newValue) {
+            	var input = newValue.format('YYYY-MM-DD');
+            	updateTodoElement('start',input);
+            }
+        });
+        
+        $('#endDate').editable({
+            format: 'YYYY-MM-DD',    
+            viewformat: 'YYYY-MM-DD',    
+            template: 'YYYY / MMMM / D',    
+            combodate: {
+                    minYear: 2000,
+                    maxYear: 2020,
+                    minuteStep: 1
+               },
+	        success: function(response, newValue) {
+	        	var input = newValue.format('YYYY-MM-DD');
+            	updateTodoElement('end',input);
+	        }
+        });
     });
-    
-    
 
-    function updateTodoElement(e,val){
-   	
-    	switch(e)
-    	{
- 
-    	case 'name':
-	    	$.ajax({
-	    		url: "changeTodo.do",
-	    		data: {
-	    			todono: <%=todo.getTodono()%>,
-	    			todoname: val
-	    		},
-	    		dataType:"text",
-	    		type:"POST",
-	    		success:function(){
-	    		},
-	    		error:function() {
-	    		}
-	    	})
-	    	break;
-	    	
-    	case 'cont':
-	    	$.ajax({
-	    		url: "changeTodo.do",
-	    		data: {
-	    			todono: <%=todo.getTodono()%>,
-	    			todocont: val
-	    		},
-	    		dataType:"text",
-	    		type:"POST",
-	    		success:function(){
-	    		},
-	    		error:function() {
-	    		}
-	    	})
-	    	break;
-	    	
-    	case 'start':
-	    	$.ajax({
-	    		url: "changeTodo.do",
-	    		data: {
-	    			todono: <%=todo.getTodono()%>,
-	    			startdate: val
-	    		},
-	    		dataType:"text",
-	    		type:"POST",
-	    		success:function(){
-	    		},
-	    		error:function() {
-	    		}
-	    	})
-	    	break;
-	    	
-    	case 'end':
-	    	$.ajax({
-	    		url: "changeTodo.do",
-	    		data: {
-	    			todono: <%=todo.getTodono()%>,
-	    			enddate: val
-	    		},
-	    		dataType:"text",
-	    		type:"POST",
-	    		success:function(){
-	    		},
-	    		error:function() {
-	    		}
-	    	})
-	    	break;
+</script>  
+
+<!-- Example jQuery code (JavaScript)  -->
+<script type="text/javascript">
+function updateTodoElement(e,val){
+	
+	switch(e)
+	{
+
+	case 'name':
+    	$.ajax({
+    		url: "changeTodo.do",
+    		data: {
+    			todono: <%=todo.getTodono()%>,
+    			todoname: val
+    		},
+    		dataType:"text",
+    		type:"POST",
+    		success:function(){
+    		},
+    		error:function() {
+    		}
+    	})
+    	break;
     	
-    	}
-    }
+	case 'cont':
+    	$.ajax({
+    		url: "changeTodo.do",
+    		data: {
+    			todono: <%=todo.getTodono()%>,
+    			todocont: val
+    		},
+    		dataType:"text",
+    		type:"POST",
+    		success:function(){
+    		},
+    		error:function() {
+    		}
+    	})
+    	break;
+    	
+	case 'start':
+    	$.ajax({
+    		url: "changeTodo.do",
+    		data: {
+    			todono: <%=todo.getTodono()%>,
+    			startdate: val
+    		},
+    		dataType:"text",
+    		type:"POST",
+    		success:function(){
+    		},
+    		error:function() {
+    		}
+    	})
+    	break;
+    	
+	case 'end':
+    	$.ajax({
+    		url: "changeTodo.do",
+    		data: {
+    			todono: <%=todo.getTodono()%>,
+    			enddate: val
+    		},
+    		dataType:"text",
+    		type:"POST",
+    		success:function(){
+    		},
+    		error:function() {
+    		}
+    	})
+    	break;
+	
+	}
+}
 </script>
 
 
@@ -151,7 +186,8 @@
         width: 0px auto;
         margin: 0px auto;
         padding: 20px;
-        border: 1px solid #bcbcbc;
+        bo
+        rder: 1px solid #bcbcbc;
       }
       #jb-header {
         padding: 20px;
@@ -159,7 +195,7 @@
         border: 1px solid #bcbcbc;
       }
       #jb-content {
-        width: 60%;
+        width: 40%;
         height:auto;
         padding: 10px;
         margin-bottom: 10px;
@@ -188,6 +224,9 @@
 <div id="jb-container">
 <div id="jb-header">
 	<a href="#" id="todoName" data-type="text" data-placement="center" data-title="제목 변경"><%=todo.getTodoname()%></a>	     
+	<br>
+	<a href="#" id="startDate" data-type="combodate" data-pk="1" data-value=<%=todo.getStartdate()%> data-title="Select date"></a>
+	<span> ~ </span><a href="#" id="endDate" data-type="combodate" data-pk="1" data-value=<%=todo.getEnddate()%> data-title="Select date"></a>
 </div>
 <div id="jb-content">
 	<a href="#" id="todoCont" data-type="textarea" data-placement="center" data-title="내용 변경"><%=todo.getTodocont()%></a>				        		

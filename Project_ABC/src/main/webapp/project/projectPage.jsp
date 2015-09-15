@@ -119,11 +119,6 @@
 		
 	<div id="jb-content">
 		<div id="center-wrapper" style="overflow:scroll; white-space:nowrap;">
-			<div class="dhe-example-section-content" >
-				<div id="todoList">
-				</div>
-				<p>
-			</div>
 		</div>
 	</div>
 	
@@ -145,13 +140,13 @@ $(document).ready(function(){
 	renderItems('<%=todoString%>');		
 	
 	// todoList 찾아서 드래그앤 드랍 설정
-	$('#todoList .sortable-list').sortable({
-		connectWith: '#todoList .sortable-list',
+	$('#center-wrapper .sortable-list').sortable({
+		connectWith: '#center-wrapper .sortable-list',
 		placeholder: 'placeholder',
 		
 		//항목 이동시 작동
 		update: function(){
-			updateTodo(getItems('#todoList'));
+			updateTodo(getItems('#center-wrapper'));
 			//alert(getItems('#todoList'));
 		}
 	});
@@ -217,7 +212,7 @@ function renderItems(items)
 		+'</form>'
 		+'</td>';
 		
-	$('#todoList').html(html);
+	$('#center-wrapper').html(html);
 }
 
 //Get items
