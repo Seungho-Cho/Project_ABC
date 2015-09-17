@@ -23,13 +23,13 @@
 <head>
 <meta charset="UTF-8">
 <!-- bootstrap -->
-<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
-<script src="http://code.jquery.com/jquery-2.0.3.min.js"></script> 
-<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>  
+<link href="/Project_ABC/todo/bootstrap-combined.min.css" rel="stylesheet">
+<script src="/Project_ABC/js/jquery-2.0.3.min.js"></script> 
+<script src="/Project_ABC/js/bootstrap.min.js"></script>  
 
 <!-- x-editable (bootstrap version) -->
-<link href="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.4.6/bootstrap-editable/css/bootstrap-editable.css" rel="stylesheet"/>
-<script src="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.4.6/bootstrap-editable/js/bootstrap-editable.min.js"></script>
+<link href="/Project_ABC/todo/bootstrap-editable.css" rel="stylesheet"/>
+<script src="/Project_ABC/js/bootstrap-editable.min.js"></script>
 
 <script src="/Project_ABC/js/moment-with-locales.js"></script>
 
@@ -246,8 +246,8 @@ function updateTodoElement(e,val){
 		%>
 		<article> 
 			<form action="addTodoMember.do" method="post" >
-			<input type="text" name="memberid" size="5"/>
-			<input type="hidden" name="todono" value=<%=todo.getTodono()%>/>
+			<input type="text" name="id" size="5"/>
+			<input type="hidden" name="todono" value=<%=todo.getTodono()%> />
 			<input type="submit" value="추가"/>
 			</form>
 		</article>

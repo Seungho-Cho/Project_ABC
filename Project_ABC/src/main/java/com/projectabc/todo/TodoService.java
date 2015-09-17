@@ -137,11 +137,46 @@ public class TodoService {
 	
 	}
 	
+	@RequestMapping(value="addTodoMember.do")
+	public ModelAndView addTodoMember(
+			Todo todo,
+			Member member
+			){
+		TodoDAO todoDAO = null;
+		try{
+		todoDAO = new TodoDAO();
+		MemberDAO memberDAO = new MemberDAO();
+		
+			Member test = memberDAO.selectMemberById(member.getId());
+		}
+		catch(Exception e){
+			// 없는 ID일때
+			return null;
+		}
+		
+		todoDAO.insertJoinTodo(member.getId(), todo.getTodono());	
+		
+		ModelAndView mav=new ModelAndView();
+		mav.setViewName("forward:/showTodo.do");
+		mav.addObject("todono",todo.getTodono());
+		return mav;
+	}
 	
-	 public static void dumpArray(String[] array) {
-		    for (int i = 0; i < array.length; i++)
-		      System.out.format("array[%d] = %s%n", i, array[i]);
-		  }
-	 
+	@RequestMapping(value="changeTodoList.do")
+	public ModelAndView changeTodoList(
+			TodoList todoList
+			)throws Exception{
+		TodoListDAO tlDAO = new TodoListDAO();
+		TodoList getList = tlDAO.selectTodolistByListno(todoList.getListno());
+		getList.setListname(todoList.getListname());
+		tlDAO.updateTodolist(getList);
+		
+		ModelAndView mav=new ModelAndView();
+		mav.setViewName("forward:/projectPage.do");
+		mav.addObject("projno",getList.getProjno());
+		return mav;
+	}
+	
+	
 	 
 }

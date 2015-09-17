@@ -1,0 +1,23 @@
+<html>
+<head>
+<script language="javascript">
+    var testCnt = 5;
+    var pop = new Array();
+    function openChild() {
+        for (var i = 0 ; i < testCnt ; i++) {
+            pop[i] = window.open("", "ch"+i, "height=200,width=200");
+        }
+    }
+    function closeChild() {
+        for (var i = 0 ; i < pop.length ; i++) {
+            if (pop[i] && pop[i].open && !pop[i].closed) {
+                pop[i].close();
+            }
+        }
+    }
+</script>
+</head>
+<body onUnload="closeChild();">
+    <input type="button" value="¿ÀÇÂ" onclick="openChild();" />
+</body>
+</html>

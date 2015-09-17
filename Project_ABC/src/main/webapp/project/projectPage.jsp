@@ -6,9 +6,25 @@
 <head>
 <meta charset="UTF-8">
 <title>JSP</title>
-	<link rel="stylesheet" type="text/css" href="/Project_ABC/project/dragStyle.css" media="screen" />
-	<link rel="stylesheet" type="text/css" href="/Project_ABC/project/devheart-examples.css" media="screen" />
-	<link type="text/css" rel="stylesheet" href="/Project_ABC/css/style.css" />
+
+
+
+<!-- x-editable (bootstrap version) -->
+<link href="/Project_ABC/todo/bootstrap-combined.min.css" rel="stylesheet">
+<script src="/Project_ABC/js/jquery-2.0.3.min.js"></script> 
+<script src="/Project_ABC/js/bootstrap.min.js"></script>
+<link href="/Project_ABC/todo/bootstrap-editable.css" rel="stylesheet"/>
+<script src="/Project_ABC/js/bootstrap-editable.min.js"></script>
+	
+
+
+<link rel="stylesheet" type="text/css" href="/Project_ABC/project/dragStyle.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="/Project_ABC/project/devheart-examples.css" media="screen" />
+<link type="text/css" rel="stylesheet" href="/Project_ABC/css/style.css" />
+
+
+
+	
 	
 <%@ page import="com.projectabc.project.Project"%>
 <%@ page import="com.projectabc.member.Member"%>
@@ -127,11 +143,11 @@
 	
 </div>
  
-<!-- Example JavaScript files -->
+<!-- DragList JavaScript files -->
 <script type="text/javascript" src="/Project_ABC/js/jquery-1.4.2.min.js"></script>
 <script type="text/javascript" src="/Project_ABC/js/jquery-ui-1.8.custom.min.js"></script>
 
-<!-- Example jQuery code (JavaScript)  -->
+<!-- DragList jQuery code (JavaScript)  -->
 <script type="text/javascript">
 
 $(document).ready(function(){
@@ -190,25 +206,26 @@ function renderItems(items)
 			{
 				var itemColumns = items[i].split('@'); // Todono, Todoname 쪼개기
 				html += '<li class="sortable-item" id="' + itemColumns[0] + 
-				'"onClick="window.open(\'showTodo.do?todono='+itemColumns[0]+'\',\'window팝업\',\'width=600, height=600, menubar=no, status=no, toolbar=no\');">' + 
+				'"onClick="go_todo('+itemColumns[0]+') >' + 
 				itemColumns[1] + '</li>';
 			}
+			html += '<li>hi</li>';
 		}	
 		html +='</ul>';
 		html +='<form action="addProjectTodo.do" method="post" >'
-			+'<input type="text" name="todoname" size="10"/>'
+			+'<input type="hidden" name="todoname" size="10" vluae="새 할일" />'
 			+'<input type="hidden" name="listno" value='+listno+' />'
 			+'<input type="hidden" name="projno" value='+<%=proj.getProjno()%>+' />'
-			+'<input type="submit" value="추가"/>'
+			+'<input type="submit" value="할일 추가"/>'
 			+'</form>';
 		html +='</div>';
 	}
-	html += '<br>';
+	//html += '<br>';
 	html +='<td>'
 		+'<form action="addProjectTodoList.do" method="post" >'
-		+'<input type="text" name="listname" size="10"/>'           
+		+'<input type="hidden" name="listname" size="10" value="새 리스트" />'           
 		+'<input type="hidden" name="projno" value='+<%=proj.getProjno() %>+' />'
-		+'<input type="submit" value="추가"/>'
+		+'<input type="submit" value="리스트 추가"/>'
 		+'</form>'
 		+'</td>';
 		
@@ -244,9 +261,16 @@ function updateTodo(items){
 	})
 }
 
-$('#btn-load-example').click(function(){
-	alert('<%=todoString%>');
-});
+function go_todo(todono){
+	
+	window._childwin = 
+		window.open("showTodo.do?todono="+todono,
+			"new",
+			"width=600, height=800, resizable=no, scrollbars=no, status=no, location=no, directories=no;");
+	//팝업창 닫을때 이벤트 추가
+	
+	
+}
 
 </script>
 </body>
