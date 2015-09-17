@@ -6,9 +6,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Calendar Test</title>
-<link href='/Project_ABC/example/cal/fullcalendar.css' rel='stylesheet' />
-<link href='/Project_ABC/example/cal/fullcalendar.print.css' rel='stylesheet' media='print' />
+<title>달력</title>
+<link href='/Project_ABC/css/fullcalendar.css' rel='stylesheet' />
+<link href='/Project_ABC/css/fullcalendar.print.css' rel='stylesheet' media='print' />
 
 <%@ page import="com.projectabc.todo.Todo"%>
 <%@ page import="java.util.List"%>
@@ -16,9 +16,9 @@
 	List<Todo> todoList=(List<Todo>)request.getAttribute("TODO_LIST");
 %>
 
-<script src='/Project_ABC/example/cal/lib/moment.min.js'></script>
-<script src='/Project_ABC/example/cal/lib/jquery.min.js'></script>
-<script src='/Project_ABC/example/cal/fullcalendar.min.js'></script>
+<script src='/Project_ABC/js/moment.js'></script>
+<script src='/Project_ABC/js/jquery-1.7.1.min.js'></script>
+<script src='/Project_ABC/js/fullcalendar.min.js'></script>
 <script>
 
 	$(document).ready(function() {
