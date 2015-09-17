@@ -91,7 +91,7 @@
 				<input type="submit" value="검색"/>
 			</form>
 		</h2>
-		<a href='calTest.do?projno=<%=proj.getProjno()%>'>달력</a>
+		<a href='calendar.do?projno=<%=proj.getProjno()%>'>달력</a>
 		<div> 
 			<%=loginmember.getName()%>(<%=loginmember.getId() %>)
 			<button id="button_logout" onclick="location.href='tryLogout.do'">로그아웃</button>
