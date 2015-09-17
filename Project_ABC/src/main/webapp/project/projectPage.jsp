@@ -215,12 +215,12 @@ function renderItems(items)
 		html +='<form action="addProjectTodo.do" method="post" >'
 			+'<input type="hidden" name="todoname" size="10" vluae="새 할일" />'
 			+'<input type="hidden" name="listno" value='+listno+' />'
-			+'<input type="hidden" name="projno" value='+<%=proj.getProjno()%>+' />'
+		    +'<input type="hidden" name="projno" value='+<%=proj.getProjno()%>+' />'
 			+'<input type="submit" value="할일 추가"/>'
 			+'</form>';
 		html +='</div>';
 	}
-	//html += '<br>';
+	html += '<br>';
 	html +='<td>'
 		+'<form action="addProjectTodoList.do" method="post" >'
 		+'<input type="hidden" name="listname" size="10" value="새 리스트" />'           
