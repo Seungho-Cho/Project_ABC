@@ -33,6 +33,18 @@
 
 <script src="/Project_ABC/js/moment-with-locales.js"></script>
 
+
+
+ <!-- color picker -->
+  <link rel="stylesheet" href="/Project_ABC/css/bootstrap.css">
+  <link rel="stylesheet" href="/Project_ABC/css/font-awesome.css">
+  <link rel="stylesheet" href="/Project_ABC/css/jquery.simplecolorpicker.css">
+  <link rel="stylesheet" href="/Project_ABC/css/jquery.simplecolorpicker-regularfont.css">
+  <link rel="stylesheet" href="/Project_ABC/css/jquery.simplecolorpicker-glyphicons.css">
+  <link rel="stylesheet" href="/Project_ABC/css/jquery.simplecolorpicker-fontawesome.css">
+
+<script src="/Project_ABC/js/jquery.simplecolorpicker.js"></script>
+
 <!-- Example jQuery code (JavaScript)  -->
 <script>
 
@@ -86,6 +98,15 @@
             	updateTodoElement('end',input);
 	        }
         });
+        
+        $('select[name="colorpicker-picker-longlist"]').simplecolorpicker({
+  		  picker: true,
+  		  theme: 'glyphicons'
+  		}).on('change', function() {
+  			var color = $('select[name="colorpicker-picker-longlist"]').val();
+  		  alert(color);
+  		  
+  		});
     });
 
 </script>  
@@ -224,9 +245,41 @@ function updateTodoElement(e,val){
 <div id="jb-container">
 <div id="jb-header">
 	<a href="#" id="todoName" data-type="text" data-placement="center" data-title="제목 변경"><%=todo.getTodoname()%></a>	     
+	<form action="deleteTodo.do" method="post" >
+		<input type="hidden" name="todono" value=<%=todo.getTodono()%> />
+		<input type="submit" value="삭제"/>
+	</form>
 	<br>
 	<a href="#" id="startDate" data-type="combodate" data-pk="1" data-value=<%=todo.getStartdate()%> data-title="Select date"></a>
 	<span> ~ </span><a href="#" id="endDate" data-type="combodate" data-pk="1" data-value=<%=todo.getEnddate()%> data-title="Select date"></a>
+			
+	<select name="colorpicker-picker-longlist">
+	  <option value="#ac725e">#ac725e</option>
+	  <option value="#d06b64">#d06b64</option>
+	  <option value="#f83a22">#f83a22</option>
+	  <option value="#fa573c">#fa573c</option>
+	  <option value="#ff7537">#ff7537</option>
+	  <option value="#ffad46">#ffad46</option>
+	  <option value="#42d692">#42d692</option>
+	  <option value="#16a765">#16a765</option>
+	  <option value="#7bd148">#7bd148</option>
+	  <option value="#b3dc6c">#b3dc6c</option>
+	  <option value="#fbe983">#fbe983</option>
+	  <option value="#fad165">#fad165</option>
+	  <option value="#92e1c0">#92e1c0</option>
+	  <option value="#9fe1e7">#9fe1e7</option>
+	  <option value="#9fc6e7">#9fc6e7</option>
+	  <option value="#4986e7">#4986e7</option>
+	  <option value="#9a9cff">#9a9cff</option>
+	  <option value="#b99aff">#b99aff</option>
+	  <option value="#c2c2c2">#c2c2c2</option>
+	  <option value="#cabdbf">#cabdbf</option>
+	  <option value="#cca6ac">#cca6ac</option>
+	  <option value="#f691b2">#f691b2</option>
+	  <option value="#cd74e6">#cd74e6</option>
+	  <option value="#a47ae2">#a47ae2</option>
+	</select>
+
 </div>
 <div id="jb-content">
 	<a href="#" id="todoCont" data-type="textarea" data-placement="center" data-title="내용 변경"><%=todo.getTodocont()%></a>				        		
