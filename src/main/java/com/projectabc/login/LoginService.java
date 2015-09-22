@@ -26,13 +26,13 @@ public class LoginService {
 	
 	@RequestMapping(value="tryLogin.do")
 	public ModelAndView tryLogin(
-			Member member
+			Member member,HttpSession session
 			)throws Exception{
 		
 		//System.out.println(member.getId());
 		//System.out.println(member.getPassword());
-
 		
+		session.setAttribute("LOGIN_MEMBER", member);
 		ModelAndView mav=new ModelAndView();
 		mav.addObject("id",member.getId());
 		mav.addObject("password",member.getPassword());

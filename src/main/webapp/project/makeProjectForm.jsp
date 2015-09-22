@@ -10,7 +10,7 @@
 
 <%@ page import="com.projectabc.project.Project"%>
 <%@ page import="com.projectabc.member.Member"%>
-
+<link type="text/css" rel="stylesheet" href="/Project_ABC/css/style.css" />
 
 <%
 	Member member = (Member)session.getAttribute("MEMBER");
@@ -26,9 +26,7 @@
 			<input type="submit" value="확인"/>
 			<input type="reset" value="취소"/>
 		</form>
-	</p>
-	
-		<p align="center"><a href="signup.do">회원 가입</a>
-	
+</p>
+
 </body>
 </html>

@@ -6,8 +6,25 @@
 <head>
 <meta charset="UTF-8">
 <title>JSP</title>
-	<link rel="stylesheet" type="text/css" href="/Project_ABC/project/style.css" media="screen" />
-	<link rel="stylesheet" type="text/css" href="/Project_ABC/project/devheart-examples.css" media="screen" />
+
+
+
+<!-- x-editable (bootstrap version) -->
+<link href="/Project_ABC/todo/bootstrap-combined.min.css" rel="stylesheet">
+<script src="/Project_ABC/js/jquery-2.0.3.min.js"></script> 
+<script src="/Project_ABC/js/bootstrap.min.js"></script>
+<link href="/Project_ABC/todo/bootstrap-editable.css" rel="stylesheet"/>
+<script src="/Project_ABC/js/bootstrap-editable.min.js"></script>
+	
+
+
+<link rel="stylesheet" type="text/css" href="/Project_ABC/project/dragStyle.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="/Project_ABC/project/devheart-examples.css" media="screen" />
+<link type="text/css" rel="stylesheet" href="/Project_ABC/css/style.css" />
+
+
+
+	
 	
 <%@ page import="com.projectabc.project.Project"%>
 <%@ page import="com.projectabc.member.Member"%>
@@ -20,7 +37,9 @@
 	List<Member> memList = (List<Member>)request.getAttribute("MEM_LIST");
 	List<List<Todo>> todo = (List<List<Todo>>)request.getAttribute("TODO");
 	List<TodoList> todoList = (List<TodoList>)request.getAttribute("TODO_LIST");
+	
 	Member loginmember = (Member) session.getAttribute("MEMBER");
+	String position = (String)session.getAttribute("POSITION");
 	
 	String todoString = (String)request.getAttribute("TODO_STRING");
 	String todoListString = (String)request.getAttribute("TODO_LIST_STRING");
@@ -28,31 +47,52 @@
 %>
 
 <style>
-		header { background:yellow; border:2px solid blue;position:relative;
-			margin-bottom:10px;}
-		nav { background:lime; border:1px solid red;position:absolute;
-			right:5px;bottom:2px;width:300px; }
-		section { padding:10px;maring:10px;border:1px solid black;
-			background:lightgray;width:90%; height:100%}
-		article { padding:10px;margin:5px;border:1px solid black;
-			border-radius:8px;background:beige; }
-		aside { float:right;width:10%;background:orange;padding:10px; }
-		footer { background:yellow; border:1px solid blue;margin-top:10px;}
+      #jb-container {
+        width: 0px auto;
+        margin: 0px auto;
+        padding: 20px;
+        border: 1px solid #bcbcbc;
+      }
+      #jb-header {
+        padding: 20px;
+        margin-bottom: 20px;
+        border: 1px solid #bcbcbc;
+      }
+      #jb-content {
+        width: 80%;
+        padding: 20px;
+        margin-bottom: 20px;
+        float: left;
+        border: 1px solid #bcbcbc;
+      }
+      #jb-sidebar {
+        width: 10%;
+        padding: 20px;
+        margin-bottom: 20px;
+        float: right;
+        border: 1px solid #bcbcbc;
+      }
+      #jb-footer {
+        clear: both;
+        padding: 20px;
+        border: 1px solid #bcbcbc;
+      }
+    </style>
 
-</style>
 
 </head>
-<body class="dhe-body">
-<header> 
-	<h2>
-		<form action="-----Todo 검색 -----.do" method="post" >
-			<input type="text" name="searchKeyword" size="50"/>           
-			<input type="hidden" name="projno" value=<%=proj.getProjno() %> />
-			<input type="submit" value="검색"/>
+<body>
+<div id="jb-container">
+	<div id="jb-header">
+		<h2>
+			<form action="-----Todo 검색 -----.do" method="post" >
+				<input type="text" name="searchKeyword" size="50"/>           
+				<input type="hidden" name="projno" value=<%=proj.getProjno() %> />
+				<input type="submit" value="검색"/>
 			</form>
-	</h2>
-		<nav> 
-			<!-- 멤버 메뉴 -->
+		</h2>
+		<a href='calendar.do?projno=<%=proj.getProjno()%>'>달력</a>
+		<div> 
 			<%=loginmember.getName()%>(<%=loginmember.getId() %>)
 			<button id="button_logout" onclick="location.href='tryLogout.do'">로그아웃</button>
 			<%
@@ -64,50 +104,50 @@
 			///////////////////////////////////////
 			%>
 			<input type="button" value="새 메세지" onclick="window.open('showMessageList.do','window팝업','width=600, height=600, menubar=no, status=no, toolbar=no');">
-		</nav>
-	</header>
-	
-	<aside>  
-		<!-- 참여 멤버 목록 -->
+		</div>
+	</div>
+		
+	<div id="jb-sidebar">  
 		<% 
 		for(int i=0; i<memList.size(); i++)
 		{
 		%>		
-			<article><a href="멤버정보?.do"><%=memList.get(i).getName()%>(<%=memList.get(i).getId() %>)</a></article>
+			<div><a href="멤버정보?.do"><%=memList.get(i).getName()%>(<%=memList.get(i).getId() %>)</a></div>
 		<%
 		}
 		 %>
-		
-		<% %>
-		<article> 
+		 
+		<%if("0".equals(position))
+		{
+		%>
+		<div> 
 			<form action="addProjectMember.do" method="post" >
-			<input type="text" name="memberid" size="8"/>
+			<input type="text" name="memberid" size="5"/>
 			<input type="hidden" name="projno" value=<%=proj.getProjno() %> />
 			<input type="submit" value="추가"/>
 			</form>
-		</article>
-	</aside>
-	
-	
-	<section>
-		<div id="center-wrapper">
-			<div class="dhe-example-section-content">
-				<div id="todoList">
-				</div>
-				<p>
-			</div>
 		</div>
-	</section>
+		<%
+		} 
+		%>
+	</div>
+		
+		
+	<div id="jb-content">
+		<div id="center-wrapper" style="overflow:scroll; white-space:nowrap;">
+		</div>
+	</div>
 	
-	<footer> 
-	</footer>
-
+	<div id="jb-footer">
+	</div>
+	
+</div>
  
-<!-- Example JavaScript files -->
+<!-- DragList JavaScript files -->
 <script type="text/javascript" src="/Project_ABC/js/jquery-1.4.2.min.js"></script>
 <script type="text/javascript" src="/Project_ABC/js/jquery-ui-1.8.custom.min.js"></script>
 
-<!-- Example jQuery code (JavaScript)  -->
+<!-- DragList jQuery code (JavaScript)  -->
 <script type="text/javascript">
 
 $(document).ready(function(){
@@ -116,25 +156,22 @@ $(document).ready(function(){
 	renderItems('<%=todoString%>');		
 	
 	// todoList 찾아서 드래그앤 드랍 설정
-	$('#todoList .sortable-list').sortable({
-		connectWith: '#todoList .sortable-list',
+	$('#center-wrapper .sortable-list').sortable({
+		connectWith: '#center-wrapper .sortable-list',
 		placeholder: 'placeholder',
 		
 		//항목 이동시 작동
 		update: function(){
-			updateTodo(getItems('#todoList'));
+			updateTodo(getItems('#center-wrapper'));
 			//alert(getItems('#todoList'));
 		}
 	});
 
 });
 
-
-// Todo 항목들 가져와서 동적 추가
 function renderItems(items)
 {
 	var html = '';
-
 	var columns = items.split(':'); // List로 쪼개기
 	
 	///////////////////////////////////
@@ -148,47 +185,55 @@ function renderItems(items)
 		var listno = listClass[0];
 		var listname = listClass[1];
 		html += '<div class="column left';
-
 		if ( c == 0 )
 		{
 			html += ' first';
 		}
-
-		html += '">'
-				+'<a>'+listname+'</a>'
-				+'<ul class="sortable-list">';
-
+		html += '">'+'<ul>'
+		+'<form action="deleteTodoList.do" method="post" >'
+		+'<input type="hidden" name="todolistno" value="'+listno+'"/>'
+		+'<a>'+listname+'</a><input type="submit" value="삭제"/>'
+		+'</form>';
+		html +='<ul>';
+		html +='<form action="addProjectTodo.do" method="post" >'
+			+'<input type="hidden" name="todoname" value="새 할일"/>'
+			+'<input type="hidden" name="listno" value='+listno+' />'
+			+'<input type="hidden" name="projno" value='+<%=proj.getProjno()%>+' />'
+			+'<input type="submit" value="할일 추가"/>'
+			+'</form>';
+		html +='</ul>';
+		html +='<ul class="sortable-list">';
 		if ( columns[c] != '' )
 		{
 			var items = columns[c].split(','); // Todo로 쪼개기
-
 			for ( var i in items )
 			{
 				var itemColumns = items[i].split('@'); // Todono, Todoname 쪼개기
 				html += '<li class="sortable-item" id="' + itemColumns[0] + 
-				'"onclick="window.open(\'showTodo.do?todono='+itemColumns[0]+'\',\'window팝업\',\'width=600, height=600, menubar=no, status=no, toolbar=no\');">' + 
-				itemColumns[1]+'</li>';
+				'"onClick="window.open(\'showTodo.do?todono='+itemColumns[0]+'\',\'window팝업\',\'width=600, height=600, menubar=no, status=no, toolbar=no\');">' + 
+				itemColumns[1] + '</li>';
+				
+				var itemColumns = items[i].split('@'); // Todono, Todoname 쪼개기
+				html += '<li class="sortable-item" id="' + itemColumns[0] + 
+				'"onClick="go_todo('+itemColumns[0]+')" >' + 
+				itemColumns[1] + '</li>';
 			}
 		}	
 		html +='</ul>';
-		html +='<form action="addProjectTodo.do" method="post" >'
-			+'<input type="text" name="todoname" size="10"/>'
-			+'<input type="hidden" name="listno" value='+listno+' />'
-			+'<input type="hidden" name="projno" value='+<%=proj.getProjno()%>+' />'
-			+'<input type="submit" value="추가"/>'
-			+'</form>';
+		
+		
+		
 		html +='</div>';
 	}
-	html += '<br>';
 	html +='<td>'
 		+'<form action="addProjectTodoList.do" method="post" >'
-		+'<input type="text" name="listname" size="10"/>'           
+		+'<input type="hidden" name="listname" value="새 리스트"/>'           
 		+'<input type="hidden" name="projno" value='+<%=proj.getProjno() %>+' />'
-		+'<input type="submit" value="추가"/>'
+		+'<input type="submit" value="리스트 추가"/>'
 		+'</form>'
 		+'</td>';
 		
-	$('#todoList').html(html);
+	$('#center-wrapper').html(html);
 }
 
 //Get items
@@ -220,9 +265,16 @@ function updateTodo(items){
 	})
 }
 
-$('#btn-load-example').click(function(){
-	alert('<%=todoString%>');
-});
+function go_todo(todono){
+	
+	window._childwin = 
+		window.open("showTodo.do?todono="+todono,
+			"new",
+			"width=600, height=800, resizable=no, scrollbars=no, status=no, location=no, directories=no;");
+	//팝업창 닫을때 이벤트 추가
+	
+	
+}
 
 </script>
 </body>

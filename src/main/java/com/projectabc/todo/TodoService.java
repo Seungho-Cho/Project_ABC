@@ -2,7 +2,6 @@ package com.projectabc.todo;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.StringTokenizer;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -78,36 +77,106 @@ public class TodoService {
 	}
 	
 	@RequestMapping(value="showTodo.do")
-	public ModelAndView showTodo (
+	public ModelAndView showTodo(
 			Todo todo
 			)throws Exception{
+		
 		TodoDAO todoDAO = new TodoDAO();
 		MemberDAO memDAO = new MemberDAO();
 		TodoCommentDAO commDAO = new TodoCommentDAO();
-		
 		todo = todoDAO.selectTodoByTodono(todo.getTodono());
-		List<Member> memList = new ArrayList<Member>();
-		//List<Member> memList = memDAO().
+		
+		List<Member> memList = 
+				memDAO.selectMemberListByTodono(todo.getTodono());
 		List<TodoComment> commList = 
 				commDAO.selectTodoCommentListByTodono(todo.getTodono());
 		
-				
 		ModelAndView mav=new ModelAndView();
 		mav.setViewName("todo/showTodo");
 		mav.addObject("TODO",todo);
 		mav.addObject("TODO_MEM_LIST",memList);
-		mav.addObject("COMM_LIST",commList);
-		return mav;		
+		mav.addObject("TODO_COMM_LIST",commList);
+		return mav;	
 	}
 	
-	@RequestMapping(value="addTodoComment.do")
-	public void addTodoComment (
-			Todo todo,
-			TodoComment comm
+	@RequestMapping(value="addTodoComm.do")
+	public ModelAndView addTodoComm(
+			TodoComment comm,
+			Todo todo
 			)throws Exception{
-		comm.setTodono(todo.getTodono());
-		TodoCommentDAO commDAO = new TodoCommentDAO();
-		commDAO.insertTodoComment(comm);
+		TodoCommentDAO todoCommDAO = new TodoCommentDAO();
+		todoCommDAO.insertTodoComment(comm);
+		
+		ModelAndView mav=new ModelAndView();
+		mav.setViewName("forward:/showTodo.do");
+		mav.addObject("TODO",todo);
+		return mav;
 	}
 	
+	@RequestMapping(value="changeTodo.do")
+	public void changeTodo(
+			Todo todo
+			)throws Exception{
+
+		TodoDAO todoDAO = new TodoDAO();
+		Todo tempTodo = todoDAO.selectTodoByTodono(todo.getTodono());
+		
+		if(todo.getTodoname() == null) todo.setTodoname(tempTodo.getTodoname());
+		if(todo.getTodocont() == null) todo.setTodocont(tempTodo.getTodocont());
+		if(todo.getStartdate() == null){
+			todo.setStartdate(tempTodo.getStartdate().substring(0,10));
+		}
+		if(todo.getEnddate() == null){
+			todo.setEnddate(tempTodo.getEnddate().substring(0,10));
+		}
+		todo.setListno(tempTodo.getListno());
+
+		todoDAO.updateTodo(todo);
+		
+		return;
+	
+	}
+	
+	@RequestMapping(value="addTodoMember.do")
+	public ModelAndView addTodoMember(
+			Todo todo,
+			Member member
+			){
+		TodoDAO todoDAO = null;
+		try{
+		todoDAO = new TodoDAO();
+		MemberDAO memberDAO = new MemberDAO();
+		
+			Member test = memberDAO.selectMemberById(member.getId());
+		}
+		catch(Exception e){
+			// 없는 ID일때
+			return null;
+		}
+		
+		todoDAO.insertJoinTodo(member.getId(), todo.getTodono());	
+		
+		ModelAndView mav=new ModelAndView();
+		mav.setViewName("forward:/showTodo.do");
+		mav.addObject("todono",todo.getTodono());
+		return mav;
+	}
+	
+	@RequestMapping(value="changeTodoList.do")
+	public ModelAndView changeTodoList(
+			TodoList todoList
+			)throws Exception{
+		TodoListDAO tlDAO = new TodoListDAO();
+		TodoList getList = tlDAO.selectTodolistByListno(todoList.getListno());
+		getList.setListname(todoList.getListname());
+		tlDAO.updateTodolist(getList);
+		
+		ModelAndView mav=new ModelAndView();
+		mav.setViewName("forward:/projectPage.do");
+		mav.addObject("projno",getList.getProjno());
+		return mav;
+	}
+	
+	
+	 
 }

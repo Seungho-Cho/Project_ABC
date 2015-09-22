@@ -16,25 +16,30 @@ import com.projectabc.member.MemberDAO;
 
 @Controller
 public class MessageService {
-	@RequestMapping(value="sendMessgeForm.do")
-	public ModelAndView sendMessageForm()throws Exception{
+	@RequestMapping(value="sendMessageForm.do")
+	public ModelAndView sendMessageForm(
+			HttpSession session
+			)throws Exception{
+		Member member = (Member)session.getAttribute("MEMBER");
 		
 		ModelAndView mav=new ModelAndView();
 		mav.setViewName("/message/sendMessageForm");		
 		return mav;
 	}
 	
-	@RequestMapping(value="sendMessgeForm.do")
+	@RequestMapping(value="replyForm.do")
 	public ModelAndView replyForm(
-			@RequestParam("mesgno")String mesgno
+			@RequestParam("mesgno")String mesgno,
+			HttpSession session
 			)throws Exception{
 		
+		Member member = (Member)session.getAttribute("MEMBER");
 		MessageDAO mesDAO = new MessageDAO();
 
-		Message message=mesDAO.selectMessageByNo(mesgno);	
+		Message message=mesDAO.selectMessageByNo(mesgno);
 		
 		ModelAndView mav=new ModelAndView();
-		mav.setViewName("/message/sendMessageForm");		
+		mav.setViewName("/message/replyForm");
 		mav.addObject("MESSAGE",message);
 		return mav;
 	}
@@ -44,28 +49,29 @@ public class MessageService {
 			Message message
 			//, @RequestParam("id")String memid
 			)throws Exception{
-			
+
 		MessageDAO mesDAO = new MessageDAO();
 		mesDAO.insertMessage(message);
 			
 		ModelAndView mav=new ModelAndView();
-		mav.setViewName("/message/showMessageList");		
+		mav.setViewName("forward:/showMessageList.do");		
 		return mav;
 		
 	}
 	
-	@RequestMapping(value="showMessageList.do")
+	@RequestMapping(value="showMessageList.do") 
 	public ModelAndView showMessageList(
 			//@RequestParam("id")String id,
 			HttpSession session
 			)throws Exception{
 		
 		Member member = (Member)session.getAttribute("MEMBER");
+
 		MessageDAO mesDAO = new MessageDAO();
-		
+
 		List<Message> mesList = (List<Message>)
 				mesDAO. selectMessageListByRecvid(member.getId());
-		
+
 		ModelAndView mav=new ModelAndView();
 		mav.setViewName("/message/showMessageList");
 		mav.addObject("MESSAGE_LIST",mesList);
@@ -75,14 +81,15 @@ public class MessageService {
 
 	@RequestMapping(value="messagePage.do")
 	public ModelAndView messagePage(
-			@RequestParam("mesgno")String mesgno,
-			HttpSession session
+			@RequestParam("mesgno")String mesgno
 			)throws Exception{
 		
-		Member member = (Member)session.getAttribute("MEMBER");
 		MessageDAO mesDAO = new MessageDAO();
-
-		Message message=mesDAO.selectMessageByNo(mesgno);	
+		
+		Message mesg=mesDAO.selectMessageByNo(mesgno);
+		mesg.setIsread("1");
+		mesDAO.updateMessage(mesg);
+		Message message=mesDAO.selectMessageByNo(mesgno);
 		
 		ModelAndView mav=new ModelAndView();
 		mav.setViewName("/message/messagePage");

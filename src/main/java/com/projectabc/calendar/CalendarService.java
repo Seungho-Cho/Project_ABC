@@ -1,4 +1,4 @@
-package com.projectabc.test;
+package com.projectabc.calendar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,15 +14,9 @@ import com.projectabc.todo.TodoList;
 import com.projectabc.todo.TodoListDAO;
 
 @Controller
-public class TestService {
-	@RequestMapping(value="todoTest.do")
-	public void todoTest(
-			@RequestParam("test")String test
-			)throws Exception{
-		System.out.println(test);
-	}
+public class CalendarService {
 	
-	@RequestMapping(value="calTest.do")
+	@RequestMapping(value="calendar.do")
 	public ModelAndView calTest(
 			@RequestParam("projno")String projno
 			)throws Exception{
@@ -36,7 +30,7 @@ public class TestService {
 				todoList.add(todo);
 			}
 		}
-		System.out.println(todoList);
+		//System.out.println(todoList);
 		
 		ModelAndView mav=new ModelAndView();
 		mav.setViewName("calendar/calendar");
