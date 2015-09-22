@@ -74,4 +74,16 @@ public class TodoDAO {
 		session.insert("insertJoinTodo",jt);
 		session.close();
 	}
+	
+	public void deleteTodo (String todono) {
+		SqlSession session=sqlMapper.openSession(true);
+		session.delete("deleteTodo",todono);
+		session.close();
+	}
+	
+	public void deleteJoinTodo (JoinTodo joinTodo) {
+		SqlSession session=sqlMapper.openSession(true);
+		session.delete("deleteJoinTodo",joinTodo);
+		session.close();
+	}
 }
