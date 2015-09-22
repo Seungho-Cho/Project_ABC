@@ -150,7 +150,6 @@
 <script type="text/javascript" src="/Project_ABC/js/jquery-1.4.2.min.js"></script>
 <script type="text/javascript" src="/Project_ABC/js/jquery-ui-1.8.custom.min.js"></script>
 
-
 <!-- color picker JavaScript files (https://github.com/tkrotoff/jquery-simplecolorpicker)-->
 <script src="/Project_ABC/js/jquery-2.0.3.min.js"></script> 
 <script src="/Project_ABC/js/bootstrap.js"></script>
