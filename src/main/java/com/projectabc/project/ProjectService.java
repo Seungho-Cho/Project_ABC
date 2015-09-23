@@ -107,7 +107,8 @@ public class ProjectService {
 			for(int j=0; j<todo.get(i).size(); j++)
 			{
 				todoString += todo.get(i).get(j).getTodono()
-						+"@"+todo.get(i).get(j).getTodoname();
+						+"@"+todo.get(i).get(j).getTodoname()
+						+"@"+todo.get(i).get(j).getColor();
 				
 				if(j+1!=todo.get(i).size()) todoString += ",";
 			}

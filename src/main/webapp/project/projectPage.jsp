@@ -7,29 +7,22 @@
 <meta charset="UTF-8">
 <title>JSP</title>
 
-
-<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.css">
-<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css">
-
-
-<!-- x-editable (bootstrap version) -->
-<script src="/Project_ABC/js/jquery-2.0.3.min.js"></script> 
-<script src="/Project_ABC/js/bootstrap.min.js"></script>
-<link href="/Project_ABC/todo/bootstrap-editable.css" rel="stylesheet"/>
-<script src="/Project_ABC/js/bootstrap-editable.min.js"></script>
-	
+<!-- drag&drop (http://devheart.org/articles/jquery-customizable-layout-using-drag-and-drop/) -->
 <link rel="stylesheet" type="text/css" href="/Project_ABC/project/dragStyle.css" media="screen" />
 <link rel="stylesheet" type="text/css" href="/Project_ABC/project/devheart-examples.css" media="screen" />
-<link type="text/css" rel="stylesheet" href="/Project_ABC/css/style.css" />
-
 
 <!-- color picker (https://github.com/tkrotoff/jquery-simplecolorpicker)-->
-
+<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.css">
+<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css">
 <link rel="stylesheet" href="/Project_ABC/css/font-awesome.css">
 <link rel="stylesheet" href="/Project_ABC/css/jquery.simplecolorpicker.css">
 <link rel="stylesheet" href="/Project_ABC/css/jquery.simplecolorpicker-regularfont.css">
 <link rel="stylesheet" href="/Project_ABC/css/jquery.simplecolorpicker-glyphicons.css">
 <link rel="stylesheet" href="/Project_ABC/css/jquery.simplecolorpicker-fontawesome.css">
+
+
+<link type="text/css" rel="stylesheet" href="/Project_ABC/css/style.css" />
+
 
 <%@ page import="com.projectabc.project.Project"%>
 <%@ page import="com.projectabc.member.Member"%>
@@ -87,7 +80,6 @@
 
 </head>
 <body>
-	
 <div id="jb-container">
 	<div id="jb-header">
 		<h2>
@@ -140,25 +132,26 @@
 		
 		
 	<div id="jb-content">
-		<div id="center-wrapper" style="overflow:scroll; white-space:nowrap;">
+		<div id="containment">
+			<div id="center-wrapper" style="overflow:scroll; white-space:nowrap;">
+			</div>
 		</div>
 	</div>
 	
-	<div id="jb-footer">			
-	
+	<div id="jb-footer">
 	</div>
 	
 </div>
- 
-<!-- DragList JavaScript files -->
-<script type="text/javascript" src="/Project_ABC/js/jquery-1.4.2.min.js"></script>
-<script type="text/javascript" src="/Project_ABC/js/jquery-ui-1.8.custom.min.js"></script>
 
-<!-- color picker JavaScript files (https://github.com/tkrotoff/jquery-simplecolorpicker)-->
+ <!-- color picker JavaScript files (https://github.com/tkrotoff/jquery-simplecolorpicker)-->
 <script src="/Project_ABC/js/jquery-2.0.3.min.js"></script> 
 <script src="/Project_ABC/js/bootstrap.js"></script>
 <script src="/Project_ABC/js/jquery.simplecolorpicker.js"></script>
 
+ 
+<!-- DragList JavaScript files -->
+<script type="text/javascript" src="/Project_ABC/js/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="/Project_ABC/js/jquery-ui-1.8.custom.min.js"></script>
 
 <!-- DragList jQuery code (JavaScript)  -->
 <script type="text/javascript">
@@ -167,16 +160,6 @@ $(document).ready(function(){
 	
 	//TodoString 가져와서 동적 생성
 	renderItems('<%=todoString%>');		
-	
-	//ColorPicker 설정
-	$('select[name="colorpicker-picker-longlist"]').simplecolorpicker({
-		  picker: true,
-		  theme: 'glyphicons'
-		}).on('change', function() {
-			var color = $('select[name="colorpicker-picker-longlist"]').val();
-		  alert(color);
-		  
-	});
 	
 	// todoList 찾아서 드래그앤 드랍 설정
 	$('#center-wrapper .sortable-list').sortable({
@@ -189,7 +172,7 @@ $(document).ready(function(){
 			//alert(getItems('#todoList'));
 		}
 	});
-	
+
 });
 
 function renderItems(items)
@@ -214,35 +197,10 @@ function renderItems(items)
 		}
 		html += '">'+'<ul>'
 		+'<form action="deleteTodoList.do" method="post" >'
-		+'<input type="hidden" name="todolistno" value="'+listno+'"/>'
+		+'<input type="hidden" name="listno" value="'+listno+'"/>'
 		+'<a>'+listname+'</a><input type="submit" value="삭제"/>'
 		+'</form>';
-		html +='<select name="colorpicker-picker-longlist">'
-			  +'<option value="#ac725e">#ac725e</option>'
-			  +'<option value="#d06b64">#d06b64</option>'
-			  +'<option value="#f83a22">#f83a22</option>'
-			  +'<option value="#fa573c">#fa573c</option>'
-			  +'<option value="#ff7537">#ff7537</option>'
-			  +'<option value="#ffad46">#ffad46</option>'
-			  +'<option value="#42d692">#42d692</option>'
-			  +'<option value="#16a765">#16a765</option>'
-			  +'<option value="#7bd148">#7bd148</option>'
-			  +'<option value="#b3dc6c">#b3dc6c</option>'
-			  +'<option value="#fbe983">#fbe983</option>'
-			  +'<option value="#fad165">#fad165</option>'
-			  +'<option value="#92e1c0">#92e1c0</option>'
-			  +'<option value="#9fe1e7">#9fe1e7</option>'
-			  +'<option value="#9fc6e7">#9fc6e7</option>'
-			  +'<option value="#4986e7">#4986e7</option>'
-			  +'<option value="#9a9cff">#9a9cff</option>'
-			  +'<option value="#b99aff">#b99aff</option>'
-			  +'<option value="#c2c2c2">#c2c2c2</option>'
-			  +'<option value="#cabdbf">#cabdbf</option>'
-			  +'<option value="#cca6ac">#cca6ac</option>'
-			  +'<option value="#f691b2">#f691b2</option>'
-			  +'<option value="#cd74e6">#cd74e6</option>'
-			  +'<option value="#a47ae2">#a47ae2</option>'
-			  +'</select>';
+		
 		html +='<ul>';
 		html +='<form action="addProjectTodo.do" method="post" >'
 			+'<input type="hidden" name="todoname" value="새 할일"/>'
@@ -257,11 +215,6 @@ function renderItems(items)
 			var items = columns[c].split(','); // Todo로 쪼개기
 			for ( var i in items )
 			{
-				var itemColumns = items[i].split('@'); // Todono, Todoname 쪼개기
-				html += '<li class="sortable-item" id="' + itemColumns[0] + 
-				'"onClick="window.open(\'showTodo.do?todono='+itemColumns[0]+'\',\'window팝업\',\'width=600, height=600, menubar=no, status=no, toolbar=no\');">' + 
-				itemColumns[1] + '</li>';
-				
 				var itemColumns = items[i].split('@'); // Todono, Todoname 쪼개기
 				html += '<li class="sortable-item" id="' + itemColumns[0] + 
 				'"onClick="go_todo('+itemColumns[0]+')" >' + 
@@ -283,8 +236,6 @@ function renderItems(items)
 		+'</td>';
 		
 	$('#center-wrapper').html(html);
-	
-
 }
 
 //Get items

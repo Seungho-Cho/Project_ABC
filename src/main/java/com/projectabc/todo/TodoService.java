@@ -177,6 +177,20 @@ public class TodoService {
 		return mav;
 	}
 	
-	
+	@RequestMapping(value="deleteTodoList.do")
+	public ModelAndView deleteTodoList(
+			TodoList todoList
+			)throws Exception{
+		TodoListDAO tlDAO = new TodoListDAO();
+		
+		todoList = tlDAO.selectTodolistByListno(todoList.getListno());
+		String projno = todoList.getProjno();
+		tlDAO.deleteTodolist(todoList.getListno());
+		
+		ModelAndView mav=new ModelAndView();
+		mav.setViewName("forward:/projectPage.do");
+		mav.addObject("projno",projno);
+		return mav;		
+	}
 	 
 }

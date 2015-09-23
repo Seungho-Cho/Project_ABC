@@ -5,9 +5,30 @@
 	Article title:	jQuery: Customizable layout using drag n drop
 	Article URI:	http://devheart.org/articles/jquery-customizable-layout-using-drag-and-drop/
 
-	Example title:	1. Getting started with sortable lists
-	Example URI:	http://devheart.org/examples/jquery-customizable-layout-using-drag-and-drop/1-getting-started-with-sortable-lists/index.html
+	Example title:	2. Saving and loading items
+	Example URI:	http://devheart.org/examples/jquery-customizable-layout-using-drag-and-drop/2-saving-and-loading-items/index.html
 */
+
+/*
+	Typography
+------------------------------------------------------------------- */
+
+p {margin-bottom: 1em;}
+
+
+/*
+	Forms
+------------------------------------------------------------------- */
+
+.input-button {
+	background-color: #E2E2E2;
+	border: 1px outset #AAA;
+	color: #123;
+	font-weight: bold;
+	padding: 4px 5px;
+}
+.input-button:active {border-style: inset;}
+
 
 /*
 	Alignment
@@ -18,14 +39,12 @@
 .left {float: left;}
 .right {float: right;}
 
-.clear,.clearer {clear: both;
-float: left;}
+.clear,.clearer {clear: both;}
 .clearer {
 	display: block;
 	font-size: 0;
 	height: 0;
 	line-height: 0;
-	float: left;
 }
 
 
@@ -37,20 +56,17 @@ float: left;}
 
 #center-wrapper {
 	margin: 0 auto;
-	width: 100%;
-	float: left;
+	width: 920px;
 }
 
 
 /* Columns */
 
 .column {
-	margin-left: 1%;
-	width: 110px;
-	float: left;
+	margin-left: 2%;
+	width: 32%;
 }
-.column.first {margin-left: 0;
-float: left;}
+.column.first {margin-left: 0;}
 
 
 /* Sortable items */
@@ -61,8 +77,6 @@ float: left;}
 	margin: 0;
 	min-height: 60px;
 	padding: 10px;
-	float: left;
-	
 }
 .sortable-item {
 	background-color: #FFF;
@@ -73,22 +87,10 @@ float: left;}
 	margin-bottom: 5px;
 	padding: 20px 0;
 	text-align: center;
-	width: 100px;
-}
-
-/* Containment area */
-
-#containment {
-	background-color: #FFA;
-	height: 100%;
 }
 
 
-/* Item placeholder (visual helper) */
+/* Disabled list */
 
-.placeholder {
-	background-color: #BFB;
-	border: 1px dashed #666;
-	height: 58px;
-	margin-bottom: 5px;
-}
+#example-2-4 .sortable-list {background-color: #CCC;}
+#example-2-4 .sortable-item {cursor: default;}
