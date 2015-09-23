@@ -7,8 +7,12 @@
 <meta charset="UTF-8">
 <title>JSP</title>
 
+
+<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.css">
+<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css">
+
+
 <!-- x-editable (bootstrap version) -->
-<link href="/Project_ABC/todo/bootstrap-combined.min.css" rel="stylesheet">
 <script src="/Project_ABC/js/jquery-2.0.3.min.js"></script> 
 <script src="/Project_ABC/js/bootstrap.min.js"></script>
 <link href="/Project_ABC/todo/bootstrap-editable.css" rel="stylesheet"/>

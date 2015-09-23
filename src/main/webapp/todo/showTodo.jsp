@@ -22,6 +22,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
+
+
+<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.css">
+<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css">
+
+
 <!-- bootstrap -->
 <link href="/Project_ABC/todo/bootstrap-combined.min.css" rel="stylesheet">
 <script src="/Project_ABC/js/jquery-2.0.3.min.js"></script> 
