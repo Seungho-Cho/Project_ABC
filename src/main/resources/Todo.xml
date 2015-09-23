@@ -15,13 +15,14 @@
 	     <result property="todocont" column="todocont" />
 	     <result property="startdate" column="startdate" />
 	     <result property="enddate" column="enddate" />
+	     <result property="color" column="color" />
 	</resultMap>
     <!-- 
       Todo 테이블에서 listno가 일치하는 레코드 리스트 조회
      -->		
 	<select id="selectTodoListByListno" resultMap="todoResult">
 		<![CDATA[
-			select todono, listno, todoname, todocont, startdate, enddate
+			select todono, listno, todoname, todocont, startdate, enddate, color
 			from Todo where listno=#{listno}
 		]]>
 	</select>
@@ -30,7 +31,7 @@
     -->
 	<select id="selectTodoByTodono" resultMap="todoResult" >
 		<![CDATA[
-			select todono, listno, todoname, todocont, startdate, enddate
+			select todono, listno, todoname, todocont, startdate, enddate, color
 			from Todo where todono=#{todono}
 		]]>
 	</select>
@@ -46,7 +47,8 @@
 				todoname=#{todoname},
 				todocont=#{todocont},
 				startdate=#{startdate}, 
-				enddate=#{enddate}
+				enddate=#{enddate},
+				color=#{color}
 			where todono=#{todono}	
 		]]>
 	</update>
