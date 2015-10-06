@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+		
+<mapper namespace="StorageFolder">	
+	<resultMap type="StorageFolder" id="StorageFolderResult">
+	     <result property="folderno" column="folderno" />
+	     <result property="memid" column="memid" />
+	     <result property="title" column="title" />
+	     <result property="writedate" column="writedate" />
+	     <result property="superboard" column="superboard" />
+	</resultMap>
+	<!-- 
+		folderno가 일치하는 폴더 조회
+	 -->
+	<select id="selectStorageFolderByNo" resultMap="StorageFolderResult">
+		<![CDATA[
+			select folderno, memid, title, writedate, superboard
+			from StorageFolder where folderno=#{folderno}
+		]]>
+	</select>
+	
+    <!-- 
+      StorageFolder 테이블에서 모든 레코드 리스트 조회
+     -->		
+	<select id="selectStorageFolderList" resultMap="StorageFolderResult" >
+		<![CDATA[
+			select folderno, memid, title, writedate, superboard
+			from StorageFolder
+		]]>
+	</select>
+	
+	<!-- 
+		StorageFolder 전체 게시글 개수 조회
+	 -->
+	<select id="selectStorageFolderCount" resultType="int">
+	    select count(*) from StorageFolder
+	</select>
+	
+	<!-- 
+      StorageFolder 테이블에서 레코드 검색
+     -->
+	<select id="searchStorageFolderList" 
+	     parameterType="StorageFolder" resultMap="StorageFolderResult">
+		select folderno, memid, title, writedate, superboard
+       from StorageFolder  
+       <where>
+			<if test="title != null">
+				title LIKE '%' || #{title} || '%'
+		  	</if>
+			<if test="memid != null">
+				memid LIKE '%' || #{memid} || '%'
+			</if>
+       </where>
+	</select>
+	
+	<!-- 
+      StorageFolder 테이블에서 레코드 검색해서 조건에 일치하는 레코드의 수를 리턴
+      -->
+	<select id="searchStorageFolderCount" 	
+	     parameterType="StorageFolder" resultType="int">
+		select count(*)
+		from StorageFolder  
+		<where>
+			<if test="title != null">
+				title LIKE '%' || #{title} || '%'
+			</if>
+			<if test="memid != null">
+				memid LIKE '%' || #{memid} || '%'
+			</if>
+		</where>
+	</select>
+	
+	<!--
+		StorageFolder 테이블에서  superboard가 일치하는 보드 리스트 조회
+	 -->
+	 <select id="selectStorageFolderListBySuperboard" resultMap="StorageFolderResult">
+		<![CDATA[
+			select folderno, memid, title, writedate, superboard
+			from StorageFolder
+			where superboard=#{superboard}
+		]]>
+	</select>
+	
+	<!-- StorageFolder 수정
+	 -->
+	<update id="updateStorageFolder"  parameterType="StorageFolder">
+		<![CDATA[
+			update StorageFolder
+			set title=#{title},
+				superboard=#{superboard}
+			where folderno=#{folderno}
+		]]>
+	</update>
+	
+	<!-- 
+		StorageFolder 테이블에서
+      folderno가 일치하는  레코드를 삭제하는 쿼리
+     -->
+	<delete id="deleteStorageFolder"  parameterType="string">
+		<![CDATA[
+			delete from StorageFolder where folderno=#{folderno}
+		]]>
+	</delete>
+	
+	<!-- 
+		StorageFolder 테이블에 StorageFolder 정보 추가
+	-->
+	<insert id="insertStorageFolder" parameterType="StorageFolder">
+	<selectKey resultType="string"   keyProperty="folderno"   order="BEFORE">
+	  select stgfolder_seq.nextval from dual
+	</selectKey>
+	<![CDATA[
+		insert into StorageFolder (folderno, memid, title, writedate, superboard)
+		values (#{folderno},#{memid},#{title},sysdate,#{superboard})
+		]]>
+	</insert>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+

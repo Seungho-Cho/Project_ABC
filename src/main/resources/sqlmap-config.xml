@@ -18,6 +18,7 @@
     <typeAlias type="com.projectabc.message.Message" alias="Message"/>
     <typeAlias type="com.projectabc.storage.StorageBoard" alias="StorageBoard"/>
     <typeAlias type="com.projectabc.storage.StorageComment" alias="StorageComment"/>
+    <typeAlias type="com.projectabc.storage.StorageFolder" alias="StorageFolder"/>
     
 </typeAliases>
 	<environments default="development">
@@ -46,6 +47,7 @@
 	<mapper resource="Message.xml" />
 	<mapper resource="StorageBoard.xml" />
 	<mapper resource="StorageComment.xml" />
+	<mapper resource="StorageFolder.xml" />
 </mappers>
 </configuration>
 
